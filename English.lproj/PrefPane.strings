@@ -1,0 +1,2 @@
+﻿"SuccessFormat" = "Updated %@";
+"FailureFormat" = "Failed %1$@ (%2$@)";

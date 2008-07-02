@@ -1,0 +1,1315 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 44;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		334CAFFF0D1C4C2F006BAF54 /* Build All */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 334CB0060D1C4C69006BAF54 /* Build configuration list for PBXAggregateTarget "Build All" */;
+			buildPhases = (
+			);
+			dependencies = (
+				33802E970D98856A008BCA40 /* PBXTargetDependency */,
+				3302A7E00D4F05EF00AAF075 /* PBXTargetDependency */,
+			);
+			name = "Build All";
+			productName = "Build All";
+		};
+		33582DC80E158F0800279D7F /* Bundle Sources */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 33582DD40E158F2F00279D7F /* Build configuration list for PBXAggregateTarget "Bundle Sources" */;
+			buildPhases = (
+				33582DC70E158F0800279D7F /* CopyFiles */,
+			);
+			dependencies = (
+				33582DEA0E158F9900279D7F /* PBXTargetDependency */,
+				33582DFA0E158FD000279D7F /* PBXTargetDependency */,
+				33582DEE0E158F9F00279D7F /* PBXTargetDependency */,
+			);
+			name = "Bundle Sources";
+			productName = "Bundle Sources";
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		3302A62D0D4EB71D00AAF075 /* GPBookmarkSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 3302A61F0D4EB23100AAF075 /* GPBookmarkSync.m */; };
+		3302A63D0D4EB8B600AAF075 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		3302A6440D4EBA9A00AAF075 /* TestHarness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3302A6430D4EBA9A00AAF075 /* TestHarness.m */; };
+		3302A7AC0D4EFF2700AAF075 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332204420D4EA96C00EE30FF /* Security.framework */; };
+		331A49380E15B9AC00D855C0 /* GTMSystemVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 331A49370E15B9AC00D855C0 /* GTMSystemVersion.m */; };
+		331FFDDA0D9328D30044B7F1 /* PrecipitatePrefPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 331FFDD80D9328D30044B7F1 /* PrecipitatePrefPane.xib */; };
+		331FFE2E0D94333D0044B7F1 /* GPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 332204320D4EA23100EE30FF /* GPKeychainItem.m */; };
+		332204430D4EA96C00EE30FF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332204420D4EA96C00EE30FF /* Security.framework */; };
+		3358273A0E14516600279D7F /* GoogleDocs.strings in Resources */ = {isa = PBXBuildFile; fileRef = 335827380E14516600279D7F /* GoogleDocs.strings */; };
+		335827850E1451C000279D7F /* PrefPane.strings in Resources */ = {isa = PBXBuildFile; fileRef = 335827830E1451C000279D7F /* PrefPane.strings */; };
+		33582B8C0E157F0200279D7F /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */; };
+		33582D570E15898800279D7F /* GData.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 33582D4B0E15895800279D7F /* GData.framework */; };
+		33582DE60E158F8600279D7F /* GoogleDocs.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 33FED7D60D4E5DC50075A454 /* GoogleDocs.bundle */; };
+		33582DE70E158F8600279D7F /* GoogleBookmarks.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3302A6270D4EB6EF00AAF075 /* GoogleBookmarks.bundle */; };
+		33582E350E1595CD00279D7F /* GData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33582D4B0E15895800279D7F /* GData.framework */; };
+		33582E430E15976D00279D7F /* GData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33582D4B0E15895800279D7F /* GData.framework */; };
+		33582E4F0E1597AD00279D7F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332204420D4EA96C00EE30FF /* Security.framework */; };
+		33582E5A0E1599CC00279D7F /* GPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 332204320D4EA23100EE30FF /* GPKeychainItem.m */; };
+		33582E5B0E1599CD00279D7F /* GPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 332204320D4EA23100EE30FF /* GPKeychainItem.m */; };
+		336B1C180D53B4390019F6B2 /* GPDocsSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 334CAE1E0D0F6798006BAF54 /* GPDocsSync.m */; };
+		33802EA10D9885B4008BCA40 /* Precipitate.app in Resources */ = {isa = PBXBuildFile; fileRef = 8D1107320486CEB800E47090 /* Precipitate.app */; };
+		33802EB50D9885E7008BCA40 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		33802EB80D9885EE008BCA40 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332204420D4EA96C00EE30FF /* Security.framework */; };
+		33802EF30D98860A008BCA40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
+		33802F750D9887B8008BCA40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
+		33802F770D988810008BCA40 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */; };
+		338030520D988A40008BCA40 /* PreferencePanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 338030510D988A40008BCA40 /* PreferencePanes.framework */; };
+		338030E40D9974C6008BCA40 /* Precipitate.icns in Resources */ = {isa = PBXBuildFile; fileRef = 33897F590D4FCCFD00A54981 /* Precipitate.icns */; };
+		3388D3280D906D4200FFC510 /* PrecipitatePreferencePane.m in Sources */ = {isa = PBXBuildFile; fileRef = 3388D30B0D906AE700FFC510 /* PrecipitatePreferencePane.m */; };
+		3388D3420D906D6A00FFC510 /* GPSourceStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 3388D3410D906D6A00FFC510 /* GPSourceStatus.m */; };
+		3388D3430D906D7100FFC510 /* GPSourceStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 3388D3410D906D6A00FFC510 /* GPSourceStatus.m */; };
+		3388D37D0D906F0200FFC510 /* GTMNSFileManager+Path.m in Sources */ = {isa = PBXBuildFile; fileRef = 3388D37C0D906F0200FFC510 /* GTMNSFileManager+Path.m */; };
+		33897ED80D4FB0F800A54981 /* Precipitate.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33897ED60D4FB0F800A54981 /* Precipitate.xib */; };
+		33897EE10D4FB16E00A54981 /* TestHarness.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33897EDF0D4FB16E00A54981 /* TestHarness.xib */; };
+		33897F5A0D4FCCFD00A54981 /* Precipitate.icns in Resources */ = {isa = PBXBuildFile; fileRef = 33897F590D4FCCFD00A54981 /* Precipitate.icns */; };
+		33AE44FC0E11B584007DE32B /* GPSourcePreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AE44FB0E11B584007DE32B /* GPSourcePreferences.m */; };
+		33AE44FD0E11B584007DE32B /* GPSourcePreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AE44FB0E11B584007DE32B /* GPSourcePreferences.m */; };
+		33AE46A50E12F706007DE32B /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */; };
+		33B207410D3B25BA00C8F541 /* GPSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B207400D3B25BA00C8F541 /* GPSyncController.m */; };
+		33BBBC380D2C4F15007FE6D7 /* schema.xml in Resources */ = {isa = PBXBuildFile; fileRef = 33BBBC370D2C4F15007FE6D7 /* schema.xml */; };
+		33BBBC480D2C5153007FE6D7 /* GetMetadataForFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BBBC460D2C5153007FE6D7 /* GetMetadataForFile.m */; };
+		33BBBC490D2C5153007FE6D7 /* Importer-main.c in Sources */ = {isa = PBXBuildFile; fileRef = 33BBBC470D2C5153007FE6D7 /* Importer-main.c */; };
+		33BBBC4B0D2C5179007FE6D7 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */; };
+		33BBBC4C0D2C5182007FE6D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
+		33F88F450D50F2DD00790AEF /* gdocdocument.icns in Resources */ = {isa = PBXBuildFile; fileRef = 334CAF1D0D1C3E58006BAF54 /* gdocdocument.icns */; };
+		33F88F460D50F2DD00790AEF /* gdocpresentation.icns in Resources */ = {isa = PBXBuildFile; fileRef = 334CAF1E0D1C3E58006BAF54 /* gdocpresentation.icns */; };
+		33F88F470D50F2DD00790AEF /* gdocspreadsheet.icns in Resources */ = {isa = PBXBuildFile; fileRef = 334CAF1F0D1C3E58006BAF54 /* gdocspreadsheet.icns */; };
+		33F88F480D50F2DD00790AEF /* gdoc.icns in Resources */ = {isa = PBXBuildFile; fileRef = 334CAF050D17235F006BAF54 /* gdoc.icns */; };
+		33F88F780D50F43600790AEF /* PrecipitateDocsImporter.mdimporter in Copy Importers */ = {isa = PBXBuildFile; fileRef = 33BBBC100D2C4C7A007FE6D7 /* PrecipitateDocsImporter.mdimporter */; };
+		33F891180D51408900790AEF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33F891160D51408900790AEF /* Localizable.strings */; };
+		33F892130D5290B300790AEF /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F892120D5290B300790AEF /* WebKit.framework */; };
+		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3302A7DF0D4F05EF00AAF075 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3302A6350D4EB86B00AAF075;
+			remoteInfo = TestHarness;
+		};
+		33582D4A0E15895800279D7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 33582D440E15895800279D7F /* GData.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4F38F6A60B66E91D00B24B81;
+			remoteInfo = GDataFramework;
+		};
+		33582D4C0E15895800279D7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 33582D440E15895800279D7F /* GData.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4F14A9DD0B1276B70072EBB8;
+			remoteInfo = GDataUnitTests;
+		};
+		33582D4E0E15895800279D7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 33582D440E15895800279D7F /* GData.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4F1AD9020B71603F00DC0485;
+			remoteInfo = DevelopmentTestTool;
+		};
+		33582D7B0E158C9300279D7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 33582D440E15895800279D7F /* GData.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F38F6A50B66E91D00B24B81;
+			remoteInfo = GDataFramework;
+		};
+		33582DB80E158DBB00279D7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D1107260486CEB800E47090;
+			remoteInfo = Precipitate;
+		};
+		33582DBA0E158DBE00279D7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D1107260486CEB800E47090;
+			remoteInfo = Precipitate;
+		};
+		33582DE90E158F9900279D7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D1107260486CEB800E47090;
+			remoteInfo = Precipitate;
+		};
+		33582DED0E158F9F00279D7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3302A6260D4EB6EF00AAF075;
+			remoteInfo = GoogleBookmarks;
+		};
+		33582DEF0E158FAD00279D7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 33582DC80E158F0800279D7F;
+			remoteInfo = "Bundle Sources";
+		};
+		33582DF90E158FD000279D7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 33FED7D50D4E5DC50075A454;
+			remoteInfo = GoogleDocs;
+		};
+		33802E960D98856A008BCA40 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3388D3160D906CBC00FFC510;
+			remoteInfo = PrefPane;
+		};
+		33F88FC80D50F67700790AEF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 33BBBC0F0D2C4C7A007FE6D7;
+			remoteInfo = DocsImporter;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		33582DC70E158F0800279D7F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Precipitate.app/Contents/PlugIns;
+			dstSubfolderSpec = 16;
+			files = (
+				33582DE60E158F8600279D7F /* GoogleDocs.bundle in CopyFiles */,
+				33582DE70E158F8600279D7F /* GoogleBookmarks.bundle in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33802F720D988628008BCA40 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33F88FB10D50F45200790AEF /* Copy Importers */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/Spotlight;
+			dstSubfolderSpec = 1;
+			files = (
+				33F88F780D50F43600790AEF /* PrecipitateDocsImporter.mdimporter in Copy Importers */,
+			);
+			name = "Copy Importers";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33F891040D5132C100790AEF /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				33582D570E15898800279D7F /* GData.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		32CA4F630368D1EE00C91783 /* Precipitate_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Precipitate_Prefix.pch; sourceTree = "<group>"; };
+		3302A61E0D4EB23100AAF075 /* GPBookmarkSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBookmarkSync.h; sourceTree = "<group>"; };
+		3302A61F0D4EB23100AAF075 /* GPBookmarkSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPBookmarkSync.m; sourceTree = "<group>"; };
+		3302A6270D4EB6EF00AAF075 /* GoogleBookmarks.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoogleBookmarks.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		3302A6280D4EB6EF00AAF075 /* GoogleBookmarks-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleBookmarks-Info.plist"; sourceTree = "<group>"; };
+		3302A6360D4EB86B00AAF075 /* TestHarness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestHarness.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3302A6380D4EB86B00AAF075 /* TestHarness-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestHarness-Info.plist"; sourceTree = "<group>"; };
+		3302A6420D4EBA9A00AAF075 /* TestHarness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestHarness.h; sourceTree = "<group>"; };
+		3302A6430D4EBA9A00AAF075 /* TestHarness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestHarness.m; sourceTree = "<group>"; };
+		331A49360E15B9AC00D855C0 /* GTMSystemVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMSystemVersion.h; path = "external/google-toolbox-for-mac/Foundation/GTMSystemVersion.h"; sourceTree = "<group>"; };
+		331A49370E15B9AC00D855C0 /* GTMSystemVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMSystemVersion.m; path = "external/google-toolbox-for-mac/Foundation/GTMSystemVersion.m"; sourceTree = "<group>"; };
+		331A49520E15BCB400D855C0 /* PrefPane_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefPane_Prefix.pch; sourceTree = "<group>"; };
+		331FFDD90D9328D30044B7F1 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/PrecipitatePrefPane.xib; sourceTree = "<group>"; };
+		331FFE360D943A3B0044B7F1 /* SharedConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedConstants.h; sourceTree = "<group>"; };
+		332204310D4EA23100EE30FF /* GPKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPKeychainItem.h; sourceTree = "<group>"; };
+		332204320D4EA23100EE30FF /* GPKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPKeychainItem.m; sourceTree = "<group>"; };
+		332204420D4EA96C00EE30FF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
+		334CAE1D0D0F6798006BAF54 /* GPDocsSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPDocsSync.h; sourceTree = "<group>"; };
+		334CAE1E0D0F6798006BAF54 /* GPDocsSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPDocsSync.m; sourceTree = "<group>"; };
+		334CAF050D17235F006BAF54 /* gdoc.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = gdoc.icns; sourceTree = "<group>"; };
+		334CAF1D0D1C3E58006BAF54 /* gdocdocument.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = gdocdocument.icns; sourceTree = "<group>"; };
+		334CAF1E0D1C3E58006BAF54 /* gdocpresentation.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = gdocpresentation.icns; sourceTree = "<group>"; };
+		334CAF1F0D1C3E58006BAF54 /* gdocspreadsheet.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = gdocspreadsheet.icns; sourceTree = "<group>"; };
+		334CAFFE0D1C4BF4006BAF54 /* DocsInfoKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocsInfoKeys.h; sourceTree = "<group>"; };
+		335827390E14516600279D7F /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/GoogleDocs.strings; sourceTree = "<group>"; };
+		335827840E1451C000279D7F /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/PrefPane.strings; sourceTree = "<group>"; };
+		33582D440E15895800279D7F /* GData.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GData.xcodeproj; path = "external/gdata-objectivec-client/Source/GData.xcodeproj"; sourceTree = "<group>"; };
+		338030510D988A40008BCA40 /* PreferencePanes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PreferencePanes.framework; path = /System/Library/Frameworks/PreferencePanes.framework; sourceTree = "<absolute>"; };
+		3388D30A0D906AE700FFC510 /* PrecipitatePreferencePane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrecipitatePreferencePane.h; sourceTree = "<group>"; };
+		3388D30B0D906AE700FFC510 /* PrecipitatePreferencePane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrecipitatePreferencePane.m; sourceTree = "<group>"; };
+		3388D30C0D906B0000FFC510 /* PrefPane-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PrefPane-Info.plist"; sourceTree = "<group>"; };
+		3388D3170D906CBC00FFC510 /* Precipitate.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Precipitate.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
+		3388D3400D906D6A00FFC510 /* GPSourceStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSourceStatus.h; sourceTree = "<group>"; };
+		3388D3410D906D6A00FFC510 /* GPSourceStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSourceStatus.m; sourceTree = "<group>"; };
+		3388D3530D906DC400FFC510 /* DebugTigerOrLater.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = DebugTigerOrLater.xcconfig; path = "external/google-toolbox-for-mac/XcodeConfig/Project/DebugTigerOrLater.xcconfig"; sourceTree = "<group>"; };
+		3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = LoadableBundle.xcconfig; path = "external/google-toolbox-for-mac/XcodeConfig/Target/LoadableBundle.xcconfig"; sourceTree = "<group>"; };
+		3388D3550D906DC400FFC510 /* ReleaseTigerOrLater.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = ReleaseTigerOrLater.xcconfig; path = "external/google-toolbox-for-mac/XcodeConfig/Project/ReleaseTigerOrLater.xcconfig"; sourceTree = "<group>"; };
+		3388D37B0D906F0200FFC510 /* GTMNSFileManager+Path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GTMNSFileManager+Path.h"; path = "external/google-toolbox-for-mac/Foundation/GTMNSFileManager+Path.h"; sourceTree = "<group>"; };
+		3388D37C0D906F0200FFC510 /* GTMNSFileManager+Path.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GTMNSFileManager+Path.m"; path = "external/google-toolbox-for-mac/Foundation/GTMNSFileManager+Path.m"; sourceTree = "<group>"; };
+		3388D3B80D90764500FFC510 /* GTMObjectSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMObjectSingleton.h; path = "external/google-toolbox-for-mac/Foundation/GTMObjectSingleton.h"; sourceTree = "<group>"; };
+		33897ED70D4FB0F800A54981 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Precipitate.xib; sourceTree = "<group>"; };
+		33897EE00D4FB16E00A54981 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/TestHarness.xib; sourceTree = "<group>"; };
+		33897F590D4FCCFD00A54981 /* Precipitate.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Precipitate.icns; sourceTree = "<group>"; };
+		33AE42EB0E0AFE17007DE32B /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMDefines.h; path = "external/google-toolbox-for-mac/GTMDefines.h"; sourceTree = "<group>"; };
+		33AE44FA0E11B584007DE32B /* GPSourcePreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSourcePreferences.h; sourceTree = "<group>"; };
+		33AE44FB0E11B584007DE32B /* GPSourcePreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSourcePreferences.m; sourceTree = "<group>"; };
+		33AE45950E11C965007DE32B /* GTMGarbageCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMGarbageCollection.h; path = "external/google-toolbox-for-mac/Foundation/GTMGarbageCollection.h"; sourceTree = "<group>"; };
+		33B0CB860D4A585600366ACB /* GPSyncProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSyncProtocol.h; sourceTree = "<group>"; };
+		33B2073F0D3B25BA00C8F541 /* GPSyncController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSyncController.h; sourceTree = "<group>"; };
+		33B207400D3B25BA00C8F541 /* GPSyncController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSyncController.m; sourceTree = "<group>"; };
+		33BBBC100D2C4C7A007FE6D7 /* PrecipitateDocsImporter.mdimporter */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrecipitateDocsImporter.mdimporter; sourceTree = BUILT_PRODUCTS_DIR; };
+		33BBBC110D2C4C7A007FE6D7 /* Importer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Importer-Info.plist"; sourceTree = "<group>"; };
+		33BBBC370D2C4F15007FE6D7 /* schema.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = schema.xml; sourceTree = "<group>"; };
+		33BBBC460D2C5153007FE6D7 /* GetMetadataForFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetMetadataForFile.m; sourceTree = "<group>"; };
+		33BBBC470D2C5153007FE6D7 /* Importer-main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "Importer-main.c"; sourceTree = "<group>"; };
+		33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
+		33F891170D51408900790AEF /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
+		33F892120D5290B300790AEF /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
+		33FED7D60D4E5DC50075A454 /* GoogleDocs.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoogleDocs.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		33FED7D70D4E5DC50075A454 /* GoogleDocs-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleDocs-Info.plist"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Precipitate-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Precipitate-Info.plist"; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* Precipitate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Precipitate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3302A6250D4EB6EF00AAF075 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33802F770D988810008BCA40 /* CoreServices.framework in Frameworks */,
+				33802F750D9887B8008BCA40 /* Foundation.framework in Frameworks */,
+				3302A7AC0D4EFF2700AAF075 /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3302A6340D4EB86B00AAF075 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3388D3150D906CBC00FFC510 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33802EB50D9885E7008BCA40 /* Cocoa.framework in Frameworks */,
+				33802EB80D9885EE008BCA40 /* Security.framework in Frameworks */,
+				338030520D988A40008BCA40 /* PreferencePanes.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33BBBC0E0D2C4C7A007FE6D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33BBBC4C0D2C5182007FE6D7 /* Foundation.framework in Frameworks */,
+				33BBBC4B0D2C5179007FE6D7 /* CoreServices.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33FED7D40D4E5DC50075A454 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33582E430E15976D00279D7F /* GData.framework in Frameworks */,
+				33AE46A50E12F706007DE32B /* CoreServices.framework in Frameworks */,
+				33802EF30D98860A008BCA40 /* Foundation.framework in Frameworks */,
+				332204430D4EA96C00EE30FF /* Security.framework in Frameworks */,
+				33F892130D5290B300790AEF /* WebKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33582E4F0E1597AD00279D7F /* Security.framework in Frameworks */,
+				33582E350E1595CD00279D7F /* GData.framework in Frameworks */,
+				33582B8C0E157F0200279D7F /* CoreServices.framework in Frameworks */,
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Precipitate Core */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* Precipitate_Prefix.pch */,
+				33B0CB860D4A585600366ACB /* GPSyncProtocol.h */,
+				33B2073F0D3B25BA00C8F541 /* GPSyncController.h */,
+				33B207400D3B25BA00C8F541 /* GPSyncController.m */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+			);
+			name = "Precipitate Core";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* Precipitate.app */,
+				33BBBC100D2C4C7A007FE6D7 /* PrecipitateDocsImporter.mdimporter */,
+				33FED7D60D4E5DC50075A454 /* GoogleDocs.bundle */,
+				3302A6270D4EB6EF00AAF075 /* GoogleBookmarks.bundle */,
+				3302A6360D4EB86B00AAF075 /* TestHarness.app */,
+				3388D3170D906CBC00FFC510 /* Precipitate.prefPane */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* Precipitate */ = {
+			isa = PBXGroup;
+			children = (
+				3388D3560D906DC800FFC510 /* Xcode Configs */,
+				3388D3850D906F1700FFC510 /* GTM */,
+				3388D3440D906D7D00FFC510 /* Common */,
+				3388D3020D906A2700FFC510 /* Pref Pane */,
+				080E96DDFE201D6D7F000001 /* Precipitate Core */,
+				33FED7E30D4E5E050075A454 /* Google Docs */,
+				3302A61D0D4EB1FF00AAF075 /* Google Bookmarks */,
+				3302A63E0D4EB8CE00AAF075 /* Source Test Harness */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+				33582D440E15895800279D7F /* GData.xcodeproj */,
+			);
+			name = Precipitate;
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				33897ED60D4FB0F800A54981 /* Precipitate.xib */,
+				8D1107310486CEB800E47090 /* Precipitate-Info.plist */,
+				33F891160D51408900790AEF /* Localizable.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */,
+				338030510D988A40008BCA40 /* PreferencePanes.framework */,
+				33F892120D5290B300790AEF /* WebKit.framework */,
+				332204420D4EA96C00EE30FF /* Security.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3302A61D0D4EB1FF00AAF075 /* Google Bookmarks */ = {
+			isa = PBXGroup;
+			children = (
+				3302A61E0D4EB23100AAF075 /* GPBookmarkSync.h */,
+				3302A61F0D4EB23100AAF075 /* GPBookmarkSync.m */,
+				33897EF30D4FB25A00A54981 /* Resources */,
+			);
+			name = "Google Bookmarks";
+			sourceTree = "<group>";
+		};
+		3302A63E0D4EB8CE00AAF075 /* Source Test Harness */ = {
+			isa = PBXGroup;
+			children = (
+				3302A6420D4EBA9A00AAF075 /* TestHarness.h */,
+				3302A6430D4EBA9A00AAF075 /* TestHarness.m */,
+				33897EF40D4FB26600A54981 /* Resources */,
+			);
+			name = "Source Test Harness";
+			sourceTree = "<group>";
+		};
+		3358273C0E14519D00279D7F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				33897F590D4FCCFD00A54981 /* Precipitate.icns */,
+				3388D30C0D906B0000FFC510 /* PrefPane-Info.plist */,
+				331FFDD80D9328D30044B7F1 /* PrecipitatePrefPane.xib */,
+				335827830E1451C000279D7F /* PrefPane.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		33582D450E15895800279D7F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				33582D4B0E15895800279D7F /* GData.framework */,
+				33582D4D0E15895800279D7F /* GDataUnitTests.octest */,
+				33582D4F0E15895800279D7F /* DevelopmentTestTool */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3388D3020D906A2700FFC510 /* Pref Pane */ = {
+			isa = PBXGroup;
+			children = (
+				331A49520E15BCB400D855C0 /* PrefPane_Prefix.pch */,
+				3388D30A0D906AE700FFC510 /* PrecipitatePreferencePane.h */,
+				3388D30B0D906AE700FFC510 /* PrecipitatePreferencePane.m */,
+				3358273C0E14519D00279D7F /* Resources */,
+			);
+			name = "Pref Pane";
+			sourceTree = "<group>";
+		};
+		3388D3440D906D7D00FFC510 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				33AE44FA0E11B584007DE32B /* GPSourcePreferences.h */,
+				33AE44FB0E11B584007DE32B /* GPSourcePreferences.m */,
+				3388D3400D906D6A00FFC510 /* GPSourceStatus.h */,
+				3388D3410D906D6A00FFC510 /* GPSourceStatus.m */,
+				331FFE360D943A3B0044B7F1 /* SharedConstants.h */,
+				332204310D4EA23100EE30FF /* GPKeychainItem.h */,
+				332204320D4EA23100EE30FF /* GPKeychainItem.m */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		3388D3560D906DC800FFC510 /* Xcode Configs */ = {
+			isa = PBXGroup;
+			children = (
+				3388D3530D906DC400FFC510 /* DebugTigerOrLater.xcconfig */,
+				3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */,
+				3388D3550D906DC400FFC510 /* ReleaseTigerOrLater.xcconfig */,
+			);
+			name = "Xcode Configs";
+			sourceTree = "<group>";
+		};
+		3388D3850D906F1700FFC510 /* GTM */ = {
+			isa = PBXGroup;
+			children = (
+				33AE42EB0E0AFE17007DE32B /* GTMDefines.h */,
+				33AE45950E11C965007DE32B /* GTMGarbageCollection.h */,
+				3388D3B80D90764500FFC510 /* GTMObjectSingleton.h */,
+				3388D37B0D906F0200FFC510 /* GTMNSFileManager+Path.h */,
+				3388D37C0D906F0200FFC510 /* GTMNSFileManager+Path.m */,
+				331A49360E15B9AC00D855C0 /* GTMSystemVersion.h */,
+				331A49370E15B9AC00D855C0 /* GTMSystemVersion.m */,
+			);
+			name = GTM;
+			sourceTree = "<group>";
+		};
+		33897EF20D4FB24200A54981 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				335827380E14516600279D7F /* GoogleDocs.strings */,
+				33FED7D70D4E5DC50075A454 /* GoogleDocs-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		33897EF30D4FB25A00A54981 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3302A6280D4EB6EF00AAF075 /* GoogleBookmarks-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		33897EF40D4FB26600A54981 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				33897EDF0D4FB16E00A54981 /* TestHarness.xib */,
+				3302A6380D4EB86B00AAF075 /* TestHarness-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		33BBBC190D2C4E35007FE6D7 /* Importer */ = {
+			isa = PBXGroup;
+			children = (
+				33BBBC460D2C5153007FE6D7 /* GetMetadataForFile.m */,
+				33BBBC470D2C5153007FE6D7 /* Importer-main.c */,
+				33BBBC1A0D2C4E4C007FE6D7 /* Resources */,
+			);
+			name = Importer;
+			sourceTree = "<group>";
+		};
+		33BBBC1A0D2C4E4C007FE6D7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				33BBBC370D2C4F15007FE6D7 /* schema.xml */,
+				33BBBC110D2C4C7A007FE6D7 /* Importer-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		33FED7E30D4E5E050075A454 /* Google Docs */ = {
+			isa = PBXGroup;
+			children = (
+				334CAFFE0D1C4BF4006BAF54 /* DocsInfoKeys.h */,
+				334CAF1D0D1C3E58006BAF54 /* gdocdocument.icns */,
+				334CAF1E0D1C3E58006BAF54 /* gdocpresentation.icns */,
+				334CAF1F0D1C3E58006BAF54 /* gdocspreadsheet.icns */,
+				334CAF050D17235F006BAF54 /* gdoc.icns */,
+				33FED7E40D4E5E830075A454 /* PrecipitateSource */,
+				33BBBC190D2C4E35007FE6D7 /* Importer */,
+			);
+			name = "Google Docs";
+			sourceTree = "<group>";
+		};
+		33FED7E40D4E5E830075A454 /* PrecipitateSource */ = {
+			isa = PBXGroup;
+			children = (
+				334CAE1D0D0F6798006BAF54 /* GPDocsSync.h */,
+				334CAE1E0D0F6798006BAF54 /* GPDocsSync.m */,
+				33897EF20D4FB24200A54981 /* Resources */,
+			);
+			name = PrecipitateSource;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3302A6260D4EB6EF00AAF075 /* GoogleBookmarks */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3302A62C0D4EB6F000AAF075 /* Build configuration list for PBXNativeTarget "GoogleBookmarks" */;
+			buildPhases = (
+				3302A6230D4EB6EF00AAF075 /* Resources */,
+				3302A6240D4EB6EF00AAF075 /* Sources */,
+				3302A6250D4EB6EF00AAF075 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				33582DBB0E158DBE00279D7F /* PBXTargetDependency */,
+			);
+			name = GoogleBookmarks;
+			productName = GoogleBookmarks;
+			productReference = 3302A6270D4EB6EF00AAF075 /* GoogleBookmarks.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		3302A6350D4EB86B00AAF075 /* TestHarness */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3302A63C0D4EB86C00AAF075 /* Build configuration list for PBXNativeTarget "TestHarness" */;
+			buildPhases = (
+				3302A6320D4EB86B00AAF075 /* Resources */,
+				3302A6330D4EB86B00AAF075 /* Sources */,
+				3302A6340D4EB86B00AAF075 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TestHarness;
+			productName = TestHarness;
+			productReference = 3302A6360D4EB86B00AAF075 /* TestHarness.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3388D3160D906CBC00FFC510 /* PrefPane */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3388D31A0D906CFC00FFC510 /* Build configuration list for PBXNativeTarget "PrefPane" */;
+			buildPhases = (
+				3388D3130D906CBC00FFC510 /* Resources */,
+				3388D3140D906CBC00FFC510 /* Sources */,
+				3388D3150D906CBC00FFC510 /* Frameworks */,
+				33802F720D988628008BCA40 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				33582DF00E158FAD00279D7F /* PBXTargetDependency */,
+			);
+			name = PrefPane;
+			productName = PrefPane;
+			productReference = 3388D3170D906CBC00FFC510 /* Precipitate.prefPane */;
+			productType = "com.apple.product-type.bundle";
+		};
+		33BBBC0F0D2C4C7A007FE6D7 /* DocsImporter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 33BBBC140D2C4C7B007FE6D7 /* Build configuration list for PBXNativeTarget "DocsImporter" */;
+			buildPhases = (
+				33BBBC0C0D2C4C7A007FE6D7 /* Resources */,
+				33BBBC0D0D2C4C7A007FE6D7 /* Sources */,
+				33BBBC0E0D2C4C7A007FE6D7 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DocsImporter;
+			productName = Importer;
+			productReference = 33BBBC100D2C4C7A007FE6D7 /* PrecipitateDocsImporter.mdimporter */;
+			productType = "com.apple.product-type.bundle";
+		};
+		33FED7D50D4E5DC50075A454 /* GoogleDocs */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 33FED7DB0D4E5DC60075A454 /* Build configuration list for PBXNativeTarget "GoogleDocs" */;
+			buildPhases = (
+				33FED7D20D4E5DC50075A454 /* Resources */,
+				33FED7D30D4E5DC50075A454 /* Sources */,
+				33FED7D40D4E5DC50075A454 /* Frameworks */,
+				33F890D10D512BFC00790AEF /* Modify GData Load Path */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				33582DB90E158DBB00279D7F /* PBXTargetDependency */,
+			);
+			name = GoogleDocs;
+			productName = GoogleDocs;
+			productReference = 33FED7D60D4E5DC50075A454 /* GoogleDocs.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		8D1107260486CEB800E47090 /* Precipitate */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Precipitate" */;
+			buildPhases = (
+				33582D9B0E158CC700279D7F /* Copy GData to Build Products */,
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+				33F88FB10D50F45200790AEF /* Copy Importers */,
+				33F891040D5132C100790AEF /* Copy Frameworks */,
+				33F890EF0D51318300790AEF /* Modify GData load path */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				33F88FC90D50F67700790AEF /* PBXTargetDependency */,
+				33582D7C0E158C9300279D7F /* PBXTargetDependency */,
+			);
+			name = Precipitate;
+			productInstallPath = "$(HOME)/Applications";
+			productName = Precipitate;
+			productReference = 8D1107320486CEB800E47090 /* Precipitate.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Precipitate" */;
+			compatibilityVersion = "Xcode 3.0";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* Precipitate */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 33582D450E15895800279D7F /* Products */;
+					ProjectRef = 33582D440E15895800279D7F /* GData.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				334CAFFF0D1C4C2F006BAF54 /* Build All */,
+				3388D3160D906CBC00FFC510 /* PrefPane */,
+				8D1107260486CEB800E47090 /* Precipitate */,
+				33582DC80E158F0800279D7F /* Bundle Sources */,
+				33FED7D50D4E5DC50075A454 /* GoogleDocs */,
+				33BBBC0F0D2C4C7A007FE6D7 /* DocsImporter */,
+				3302A6260D4EB6EF00AAF075 /* GoogleBookmarks */,
+				3302A6350D4EB86B00AAF075 /* TestHarness */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		33582D4B0E15895800279D7F /* GData.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = GData.framework;
+			remoteRef = 33582D4A0E15895800279D7F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		33582D4D0E15895800279D7F /* GDataUnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = GDataUnitTests.octest;
+			remoteRef = 33582D4C0E15895800279D7F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		33582D4F0E15895800279D7F /* DevelopmentTestTool */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = DevelopmentTestTool;
+			remoteRef = 33582D4E0E15895800279D7F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3302A6230D4EB6EF00AAF075 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3302A6320D4EB86B00AAF075 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33897EE10D4FB16E00A54981 /* TestHarness.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3388D3130D906CBC00FFC510 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33802EA10D9885B4008BCA40 /* Precipitate.app in Resources */,
+				331FFDDA0D9328D30044B7F1 /* PrecipitatePrefPane.xib in Resources */,
+				338030E40D9974C6008BCA40 /* Precipitate.icns in Resources */,
+				335827850E1451C000279D7F /* PrefPane.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33BBBC0C0D2C4C7A007FE6D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33BBBC380D2C4F15007FE6D7 /* schema.xml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33FED7D20D4E5DC50075A454 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3358273A0E14516600279D7F /* GoogleDocs.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33897ED80D4FB0F800A54981 /* Precipitate.xib in Resources */,
+				33897F5A0D4FCCFD00A54981 /* Precipitate.icns in Resources */,
+				33F88F450D50F2DD00790AEF /* gdocdocument.icns in Resources */,
+				33F88F460D50F2DD00790AEF /* gdocpresentation.icns in Resources */,
+				33F88F470D50F2DD00790AEF /* gdocspreadsheet.icns in Resources */,
+				33F88F480D50F2DD00790AEF /* gdoc.icns in Resources */,
+				33F891180D51408900790AEF /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		33582D9B0E158CC700279D7F /* Copy GData to Build Products */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy GData to Build Products";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /usr/bin/python;
+			shellScript = "#!/usr/bin/python\n\"\"\"\nCopies the built GData.framework from the GData project build directory\ninto our build directory (if it's not already due to SYMROOT overrides).\n\"\"\"\n\nimport sys\nimport os\n\n# Check if the project file path is a parent of the build products dir. If\n# it is we know that the SYMROOT is project relative.\nif os.environ['BUILT_PRODUCTS_DIR'][0:len(os.environ['PROJECT_DIR'])] == os.environ['PROJECT_DIR']:\n  # BUILT_PRODUCTS_DIR prefix == PROJECT_DIR, GData project will have used its\n  # own output dir\n  # Get the 'build' dir name in a safe way\n  build_dir_name = os.path.split(os.environ['SYMROOT'])[1]\n  gdata_framework_path = os.path.normpath(os.path.abspath(os.path.join(\n                                        os.environ['PROJECT_DIR'],\n                                        'external/gdata-objectivec-client/Source',\n                                        build_dir_name,\n                                        os.environ['CONFIGURATION'],\n                                        'GData.framework')))\n  if not os.path.exists(gdata_framework_path):\n    print 'Missing %s' % gdata_framework_path\n    sys.exit(-1)\n  sys.exit(os.system('/Developer/Tools/CpMac -r \"%s\" \"%s\"' % \n                      (gdata_framework_path, os.environ['BUILT_PRODUCTS_DIR'])))\n\n# If the SYMROOT was not project-relative we have nothing to do. SYMROOT changes\n# apply to all projects being built, and thus the GData framework output\n# directory will be to the same location as this build already.\n";
+		};
+		33F890D10D512BFC00790AEF /* Modify GData Load Path */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Modify GData Load Path";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "/usr/bin/install_name_tool -change @loader_path/../Frameworks/GData.framework/Versions/A/GData @executable_path/../Frameworks/GData.framework/Versions/A/GData $BUILT_PRODUCTS_DIR/$PRODUCT_NAME.$WRAPPER_EXTENSION/Contents/MacOS/$PRODUCT_NAME\n";
+		};
+		33F890EF0D51318300790AEF /* Modify GData load path */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Modify GData load path";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/bin/install_name_tool -id @executable_path/../Frameworks/GData.framework/Versions/A/GData $BUILT_PRODUCTS_DIR/$PRODUCT_NAME.$WRAPPER_EXTENSION/Contents/Frameworks/GData.framework/GData";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3302A6240D4EB6EF00AAF075 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3302A62D0D4EB71D00AAF075 /* GPBookmarkSync.m in Sources */,
+				33582E5B0E1599CD00279D7F /* GPKeychainItem.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3302A6330D4EB86B00AAF075 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3302A63D0D4EB8B600AAF075 /* main.m in Sources */,
+				3302A6440D4EBA9A00AAF075 /* TestHarness.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3388D3140D906CBC00FFC510 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3388D3280D906D4200FFC510 /* PrecipitatePreferencePane.m in Sources */,
+				3388D3430D906D7100FFC510 /* GPSourceStatus.m in Sources */,
+				331FFE2E0D94333D0044B7F1 /* GPKeychainItem.m in Sources */,
+				33AE44FD0E11B584007DE32B /* GPSourcePreferences.m in Sources */,
+				331A49380E15B9AC00D855C0 /* GTMSystemVersion.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33BBBC0D0D2C4C7A007FE6D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33BBBC480D2C5153007FE6D7 /* GetMetadataForFile.m in Sources */,
+				33BBBC490D2C5153007FE6D7 /* Importer-main.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33FED7D30D4E5DC50075A454 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				336B1C180D53B4390019F6B2 /* GPDocsSync.m in Sources */,
+				33582E5A0E1599CC00279D7F /* GPKeychainItem.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072D0486CEB800E47090 /* main.m in Sources */,
+				33B207410D3B25BA00C8F541 /* GPSyncController.m in Sources */,
+				3388D3420D906D6A00FFC510 /* GPSourceStatus.m in Sources */,
+				3388D37D0D906F0200FFC510 /* GTMNSFileManager+Path.m in Sources */,
+				33AE44FC0E11B584007DE32B /* GPSourcePreferences.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3302A7E00D4F05EF00AAF075 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3302A6350D4EB86B00AAF075 /* TestHarness */;
+			targetProxy = 3302A7DF0D4F05EF00AAF075 /* PBXContainerItemProxy */;
+		};
+		33582D7C0E158C9300279D7F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GDataFramework;
+			targetProxy = 33582D7B0E158C9300279D7F /* PBXContainerItemProxy */;
+		};
+		33582DB90E158DBB00279D7F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D1107260486CEB800E47090 /* Precipitate */;
+			targetProxy = 33582DB80E158DBB00279D7F /* PBXContainerItemProxy */;
+		};
+		33582DBB0E158DBE00279D7F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D1107260486CEB800E47090 /* Precipitate */;
+			targetProxy = 33582DBA0E158DBE00279D7F /* PBXContainerItemProxy */;
+		};
+		33582DEA0E158F9900279D7F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D1107260486CEB800E47090 /* Precipitate */;
+			targetProxy = 33582DE90E158F9900279D7F /* PBXContainerItemProxy */;
+		};
+		33582DEE0E158F9F00279D7F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3302A6260D4EB6EF00AAF075 /* GoogleBookmarks */;
+			targetProxy = 33582DED0E158F9F00279D7F /* PBXContainerItemProxy */;
+		};
+		33582DF00E158FAD00279D7F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 33582DC80E158F0800279D7F /* Bundle Sources */;
+			targetProxy = 33582DEF0E158FAD00279D7F /* PBXContainerItemProxy */;
+		};
+		33582DFA0E158FD000279D7F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 33FED7D50D4E5DC50075A454 /* GoogleDocs */;
+			targetProxy = 33582DF90E158FD000279D7F /* PBXContainerItemProxy */;
+		};
+		33802E970D98856A008BCA40 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3388D3160D906CBC00FFC510 /* PrefPane */;
+			targetProxy = 33802E960D98856A008BCA40 /* PBXContainerItemProxy */;
+		};
+		33F88FC90D50F67700790AEF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 33BBBC0F0D2C4C7A007FE6D7 /* DocsImporter */;
+			targetProxy = 33F88FC80D50F67700790AEF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		331FFDD80D9328D30044B7F1 /* PrecipitatePrefPane.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				331FFDD90D9328D30044B7F1 /* English */,
+			);
+			name = PrecipitatePrefPane.xib;
+			sourceTree = "<group>";
+		};
+		335827380E14516600279D7F /* GoogleDocs.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				335827390E14516600279D7F /* English */,
+			);
+			name = GoogleDocs.strings;
+			sourceTree = "<group>";
+		};
+		335827830E1451C000279D7F /* PrefPane.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				335827840E1451C000279D7F /* English */,
+			);
+			name = PrefPane.strings;
+			sourceTree = "<group>";
+		};
+		33897ED60D4FB0F800A54981 /* Precipitate.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				33897ED70D4FB0F800A54981 /* English */,
+			);
+			name = Precipitate.xib;
+			sourceTree = "<group>";
+		};
+		33897EDF0D4FB16E00A54981 /* TestHarness.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				33897EE00D4FB16E00A54981 /* English */,
+			);
+			name = TestHarness.xib;
+			sourceTree = "<group>";
+		};
+		33F891160D51408900790AEF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				33F891170D51408900790AEF /* English */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3302A6290D4EB6F000AAF075 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = "GoogleBookmarks-Info.plist";
+				PRODUCT_NAME = GoogleBookmarks;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		3302A62A0D4EB6F000AAF075 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = "GoogleBookmarks-Info.plist";
+				PRODUCT_NAME = GoogleBookmarks;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		3302A6390D4EB86C00AAF075 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				INFOPLIST_FILE = "TestHarness-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PRODUCT_NAME = TestHarness;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3302A63A0D4EB86C00AAF075 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				INFOPLIST_FILE = "TestHarness-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PRODUCT_NAME = TestHarness;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		334CB0000D1C4C2F006BAF54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "Build All";
+			};
+			name = Debug;
+		};
+		334CB0010D1C4C2F006BAF54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				PRODUCT_NAME = "Build All";
+			};
+			name = Release;
+		};
+		33582DC90E158F0900279D7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "Bundle Sources";
+			};
+			name = Debug;
+		};
+		33582DCA0E158F0900279D7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "Bundle Sources";
+			};
+			name = Release;
+		};
+		3388D3180D906CBD00FFC510 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PrefPane_Prefix.pch;
+				INFOPLIST_FILE = "PrefPane-Info.plist";
+				PRODUCT_NAME = Precipitate;
+				WRAPPER_EXTENSION = prefPane;
+			};
+			name = Debug;
+		};
+		3388D3190D906CBD00FFC510 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PrefPane_Prefix.pch;
+				INFOPLIST_FILE = "PrefPane-Info.plist";
+				PRODUCT_NAME = Precipitate;
+				WRAPPER_EXTENSION = prefPane;
+			};
+			name = Release;
+		};
+		33BBBC120D2C4C7A007FE6D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = "Importer-Info.plist";
+				PRODUCT_NAME = PrecipitateDocsImporter;
+				WRAPPER_EXTENSION = mdimporter;
+			};
+			name = Debug;
+		};
+		33BBBC130D2C4C7A007FE6D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = "Importer-Info.plist";
+				PRODUCT_NAME = PrecipitateDocsImporter;
+				WRAPPER_EXTENSION = mdimporter;
+			};
+			name = Release;
+		};
+		33FED7D80D4E5DC60075A454 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Precipitate.app/Contents/MacOS/Precipitate";
+				INFOPLIST_FILE = "GoogleDocs-Info.plist";
+				PRODUCT_NAME = GoogleDocs;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		33FED7D90D4E5DC60075A454 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Precipitate.app/Contents/MacOS/Precipitate";
+				INFOPLIST_FILE = "GoogleDocs-Info.plist";
+				PRODUCT_NAME = GoogleDocs;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
+				INFOPLIST_FILE = "Precipitate-Info.plist";
+				OTHER_LDFLAGS = (
+					"-sub_umbrella",
+					GData,
+				);
+				PRODUCT_NAME = Precipitate;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
+				INFOPLIST_FILE = "Precipitate-Info.plist";
+				OTHER_LDFLAGS = (
+					"-sub_umbrella",
+					GData,
+				);
+				PRODUCT_NAME = Precipitate;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3388D3530D906DC400FFC510 /* DebugTigerOrLater.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3388D3550D906DC400FFC510 /* ReleaseTigerOrLater.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3302A62C0D4EB6F000AAF075 /* Build configuration list for PBXNativeTarget "GoogleBookmarks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3302A6290D4EB6F000AAF075 /* Debug */,
+				3302A62A0D4EB6F000AAF075 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3302A63C0D4EB86C00AAF075 /* Build configuration list for PBXNativeTarget "TestHarness" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3302A6390D4EB86C00AAF075 /* Debug */,
+				3302A63A0D4EB86C00AAF075 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		334CB0060D1C4C69006BAF54 /* Build configuration list for PBXAggregateTarget "Build All" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				334CB0000D1C4C2F006BAF54 /* Debug */,
+				334CB0010D1C4C2F006BAF54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		33582DD40E158F2F00279D7F /* Build configuration list for PBXAggregateTarget "Bundle Sources" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33582DC90E158F0900279D7F /* Debug */,
+				33582DCA0E158F0900279D7F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3388D31A0D906CFC00FFC510 /* Build configuration list for PBXNativeTarget "PrefPane" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3388D3180D906CBD00FFC510 /* Debug */,
+				3388D3190D906CBD00FFC510 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		33BBBC140D2C4C7B007FE6D7 /* Build configuration list for PBXNativeTarget "DocsImporter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33BBBC120D2C4C7A007FE6D7 /* Debug */,
+				33BBBC130D2C4C7A007FE6D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		33FED7DB0D4E5DC60075A454 /* Build configuration list for PBXNativeTarget "GoogleDocs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33FED7D80D4E5DC60075A454 /* Debug */,
+				33FED7D90D4E5DC60075A454 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Precipitate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Precipitate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

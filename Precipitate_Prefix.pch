@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Precipitate' target in the 'Precipitate' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
