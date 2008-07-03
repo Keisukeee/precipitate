@@ -21,7 +21,7 @@
 #import "GTMGarbageCollection.h"
 #import "GTMNSFileManager+Path.h"
 
-static NSString* const kSlashReplacementToken = @":SLASH:";
+static NSString* const kIDSlashReplacementToken = @":SLASH:";
 
 static NSString* const kDistributedKillNotification = @"GPSyncControllerKillNotification";
 
@@ -252,7 +252,7 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
 + (NSString*)cacheFilenameForItem:(NSDictionary*)item
                        fromSource:(id<GPSyncSource>)source {
   NSString* fileName = [item objectForKey:(NSString*)kMDItemTitle];
-  fileName = [[fileName componentsSeparatedByString:@"/"] componentsJoinedByString:kSlashReplacementToken];
+  fileName = [[fileName componentsSeparatedByString:@"/"] componentsJoinedByString:@":"];
 
   NSString* extension = nil;
   @try {
@@ -289,7 +289,7 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
   NSEnumerator* localFileEnumerator = [cacheIds objectEnumerator];
   NSString* cacheId;
   while ((cacheId = [localFileEnumerator nextObject])) {
-    NSString* sourceId = [[cacheId componentsSeparatedByString:kSlashReplacementToken] componentsJoinedByString:@"/"];
+    NSString* sourceId = [[cacheId componentsSeparatedByString:kIDSlashReplacementToken] componentsJoinedByString:@"/"];
     if (![itemsById objectForKey:sourceId]) {
       NSString* path = [cacheBase stringByAppendingPathComponent:cacheId];
       [fileManager removeFileAtPath:path handler:nil];
@@ -301,7 +301,7 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
   NSEnumerator* sourceEnumerator = [items objectEnumerator];
   while ((item = [sourceEnumerator nextObject])) {
     NSString* itemId = [item objectForKey:kGPMDItemUID];
-    NSString* cacheId = [[itemId componentsSeparatedByString:@"/"] componentsJoinedByString:kSlashReplacementToken];
+    NSString* cacheId = [[itemId componentsSeparatedByString:@"/"] componentsJoinedByString:kIDSlashReplacementToken];
     NSString* directoryPath = [cacheBase stringByAppendingPathComponent:cacheId];
     NSString* filename = [[self class] cacheFilenameForItem:item fromSource:source];
     NSString* itemPath = [directoryPath stringByAppendingPathComponent:filename];
@@ -349,7 +349,7 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
   NSDictionary* item;
   while ((item = [sourceEnumerator nextObject])) {
     NSString* itemId = [item objectForKey:kGPMDItemUID];
-    NSString* cacheId = [[itemId componentsSeparatedByString:@"/"] componentsJoinedByString:kSlashReplacementToken];
+    NSString* cacheId = [[itemId componentsSeparatedByString:@"/"] componentsJoinedByString:kIDSlashReplacementToken];
     NSString* directoryPath = [cacheBase stringByAppendingPathComponent:cacheId];
     [fileManager gtm_createFullPathToDirectory:directoryPath attributes:nil];
 
