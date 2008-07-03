@@ -378,7 +378,7 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
 - (void)infoFetchFailedForSource:(id<GPSyncSource>)source
                        withError:(NSError*)error
 {
-  [self finishedSource:source withError:nil];
+  [self finishedSource:source withError:error];
 }
 
 #pragma mark -
