@@ -692,6 +692,7 @@
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				33F88FB10D50F45200790AEF /* Copy Importers */,
 				33F891040D5132C100790AEF /* Copy Frameworks */,
+				33D795D60E1D7DCE004A8D9C /* Strip GData headers */,
 				33F890EF0D51318300790AEF /* Modify GData load path */,
 			);
 			buildRules = (
@@ -834,6 +835,20 @@
 			shellPath = /usr/bin/python;
 			shellScript = "#!/usr/bin/python\n\"\"\"\nCopies the built GData.framework from the GData project build directory\ninto our build directory (if it's not already due to SYMROOT overrides).\n\"\"\"\n\nimport sys\nimport os\n\n# Check if the project file path is a parent of the build products dir. If\n# it is we know that the SYMROOT is project relative.\nif os.environ['BUILT_PRODUCTS_DIR'][0:len(os.environ['PROJECT_DIR'])] == os.environ['PROJECT_DIR']:\n  # BUILT_PRODUCTS_DIR prefix == PROJECT_DIR, GData project will have used its\n  # own output dir\n  # Get the 'build' dir name in a safe way\n  build_dir_name = os.path.split(os.environ['SYMROOT'])[1]\n  gdata_framework_path = os.path.normpath(os.path.abspath(os.path.join(\n                                        os.environ['PROJECT_DIR'],\n                                        'external/gdata-objectivec-client/Source',\n                                        build_dir_name,\n                                        os.environ['CONFIGURATION'],\n                                        'GData.framework')))\n  if not os.path.exists(gdata_framework_path):\n    print 'Missing %s' % gdata_framework_path\n    sys.exit(-1)\n  sys.exit(os.system('/Developer/Tools/CpMac -r \"%s\" \"%s\"' % \n                      (gdata_framework_path, os.environ['BUILT_PRODUCTS_DIR'])))\n\n# If the SYMROOT was not project-relative we have nothing to do. SYMROOT changes\n# apply to all projects being built, and thus the GData framework output\n# directory will be to the same location as this build already.\n";
 		};
+		33D795D60E1D7DCE004A8D9C /* Strip GData headers */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Strip GData headers";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n# Remove header files from the GData framework inside our application.\n\n# Strip \"*.h\" files\nfind \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.$WRAPPER_EXTENSION/Contents/Frameworks/GData.framework/\" -iname '*.h' -delete\n\n# Strip \"Headers\" links\nfind \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.$WRAPPER_EXTENSION/Contents/Frameworks/GData.framework/\" -iname 'Headers' -type l -delete\n\n# Strip \"Headers\" directories\nfind \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.$WRAPPER_EXTENSION/Contents/Frameworks/GData.framework/\" -iname 'Headers' -type d -prune -delete";
+		};
 		33F890D10D512BFC00790AEF /* Modify GData Load Path */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -860,7 +875,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/bin/install_name_tool -id @executable_path/../Frameworks/GData.framework/Versions/A/GData $BUILT_PRODUCTS_DIR/$PRODUCT_NAME.$WRAPPER_EXTENSION/Contents/Frameworks/GData.framework/GData";
+			shellScript = "/usr/bin/install_name_tool -id @executable_path/../Frameworks/GData.framework/Versions/A/GData \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.$WRAPPER_EXTENSION/Contents/Frameworks/GData.framework/GData\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
