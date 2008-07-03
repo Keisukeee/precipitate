@@ -179,7 +179,6 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
   if (!extensionToSourceMapping_)
     extensionToSourceMapping_ = [[NSMutableDictionary alloc] init];
 
-  NSMutableDictionary* availableSources = [NSMutableDictionary dictionary];
   NSString* sourcePluginDirectory = [self sourcePluginDirectory];
   NSArray* plugins = [[NSFileManager defaultManager] directoryContentsAtPath:sourcePluginDirectory];
   NSEnumerator* pluginEnumerator = [plugins objectEnumerator];
@@ -205,11 +204,17 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
       NSString* extension;
       while ((extension = [extensionEnumerator nextObject]))
         [extensionToSourceMapping_ setObject:source forKey:extension];
-      [availableSources setObject:[NSDictionary dictionaryWithObject:[source displayName] forKey:kGPSourcePrefDisplayNameKey]
-                           forKey:[self identifierForSource:source]];
     } @catch (id exception) {
       NSLog(@"Failed to load source '%@': %@", plugin, exception);
     }
+  }
+  NSMutableDictionary* availableSources = [NSMutableDictionary dictionary];
+  NSEnumerator* sourceEnumerator = [sources_ objectEnumerator];
+  id<GPSyncSource> source;
+  while ((source = [sourceEnumerator nextObject])) {
+    [availableSources setObject:[NSDictionary dictionaryWithObject:[source displayName]
+                                                            forKey:kGPSourcePrefDisplayNameKey]
+                         forKey:[self identifierForSource:source]];
   }
   [[GPSourcePreferences sharedSourcePreferences] setAvailableSources:availableSources];
 }
