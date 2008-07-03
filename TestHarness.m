@@ -50,23 +50,24 @@
 }
 
 - (void)basicItemsInfo:(NSArray*)items
-      fetchedForSource:(id<GPSyncSource>)source
-{
+      fetchedForSource:(id<GPSyncSource>)source {
   NSLog(@"Source '%@' returned basic items: %@", source, items);
   [source fetchFullInfoForItems:items];
 }
 
 - (void)fullItemsInfo:(NSArray*)items
-     fetchedForSource:(id<GPSyncSource>)source
-{
-  NSLog(@"Source '%@' returned full items: %@", source, items);
+     fetchedForSource:(id<GPSyncSource>)source {
+  NSLog(@"Source '%@' returned full item info: %@", source, items);
+}
+
+- (void)fullItemsInfoFetchCompletedForSource:(id<GPSyncSource>)source {
+  NSLog(@"Source '%@' reports finished", source);
 
   [NSApp terminate:self];
 }
 
 - (void)infoFetchFailedForSource:(id<GPSyncSource>)source
-                       withError:(NSError*)error
-{
+                       withError:(NSError*)error {
   NSLog(@"Source %@ reported error: %@", source, error);
 
   [NSApp terminate:self];

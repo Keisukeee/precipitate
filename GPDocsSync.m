@@ -152,15 +152,14 @@
 }
 
 - (void)inflateDocuments:(NSArray*)docs {
-  NSMutableArray* inflatedDocs = [NSMutableArray arrayWithCapacity:[docs count]];
   NSEnumerator* docEnumerator = [docs objectEnumerator];
   NSDictionary* docInfo;
   while ((docInfo = [docEnumerator nextObject])) {
     NSMutableDictionary* fullDocInfo = [[docInfo mutableCopy] autorelease];
     [fullDocInfo setObject:[self contentForDoc:docInfo] forKey:(NSString*)kMDItemTextContent];
-    [inflatedDocs addObject:fullDocInfo];
+    [manager_ fullItemsInfo:[NSArray arrayWithObject:fullDocInfo] fetchedForSource:self];
   }
-  [manager_ fullItemsInfo:inflatedDocs fetchedForSource:self];
+  [manager_ fullItemsInfoFetchCompletedForSource:self];
 }
 
 - (NSArray*)peopleStringsForGDataPeople:(NSArray*)people {

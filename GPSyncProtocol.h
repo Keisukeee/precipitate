@@ -33,6 +33,8 @@
 - (void)fullItemsInfo:(NSArray*)items
      fetchedForSource:(id<GPSyncSource>)source;
 
+- (void)fullItemsInfoFetchCompletedForSource:(id<GPSyncSource>)source;
+
 - (void)infoFetchFailedForSource:(id<GPSyncSource>)source
                        withError:(NSError*)error;
 
@@ -52,11 +54,23 @@
 // Each dictionary must contain at least kMDItemTitle, kGPMDItemUID, and
 // kGPMDItemModificationDate. Anything else which is expensive to fetch can be
 // delayed until fetchFullInfoForItems:
+//
+// The source must either call basicItemsInfo:fetchedForSource: or
+// infoFetchFailedForSource:withError: in response to this message.
 - (void)fetchAllItemsBasicInfo;
 
 // Fetch the full info (metadata and content) for each of the given items--which
 // are dictionaries of basic info--and asynchronously return it to the manager
-// as an array of dictionaries using fullItemsInfo:fetchedForSource:
+// as arrays of dictionaries using one or more calls to
+// fullItemsInfo:fetchedForSource:. The source may break its results into
+// however many calls are convenient for it, anywhere from one call with the
+// entire array to one callback per item each with an array containing only that
+// item's info.
+// 
+// The source must call either fullItemsInfoFetchCompletedForSource: or
+// infoFetchFailedForSource:withError: exactly once in response to this method.
+// No further callbacks should be made once either has been called (e.g., do
+// not return an error for each item; once an error occurs, stop processing).
 - (void)fetchFullInfoForItems:(NSArray*)items;
 
 // Returns the extension to use for the cache file.

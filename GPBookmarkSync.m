@@ -46,6 +46,7 @@
 - (void)fetchFullInfoForItems:(NSArray*)items {
   // All the data is already present, so nothing to do.
   [manager_ fullItemsInfo:items fetchedForSource:self];
+  [manager_ fullItemsInfoFetchCompletedForSource:self];
 }
 
 - (NSString*)cacheFileExtensionForItem:(NSDictionary*)item {

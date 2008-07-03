@@ -369,7 +369,9 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
 - (void)fullItemsInfo:(NSArray*)items fetchedForSource:(id<GPSyncSource>)source {
   NSString* cachePath = [self cachePathForSource:source];
   [self writeItems:items fromSource:source toCacheAtPath:cachePath];
-  
+}
+
+- (void)fullItemsInfoFetchCompletedForSource:(id<GPSyncSource>)source {
   [self finishedSource:source withError:nil];
 }
 
