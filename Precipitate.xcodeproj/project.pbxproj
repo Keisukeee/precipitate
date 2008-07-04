@@ -74,7 +74,7 @@
 		33AE44FD0E11B584007DE32B /* GPSourcePreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AE44FB0E11B584007DE32B /* GPSourcePreferences.m */; };
 		33AE46A50E12F706007DE32B /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */; };
 		33B207410D3B25BA00C8F541 /* GPSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B207400D3B25BA00C8F541 /* GPSyncController.m */; };
-		33BBBC380D2C4F15007FE6D7 /* schema.xml in Resources */ = {isa = PBXBuildFile; fileRef = 33BBBC370D2C4F15007FE6D7 /* schema.xml */; };
+		33BBBC380D2C4F15007FE6D7 /* Sources/Docs/schema.xml in Resources */ = {isa = PBXBuildFile; fileRef = 33BBBC370D2C4F15007FE6D7 /* Sources/Docs/schema.xml */; };
 		33BBBC480D2C5153007FE6D7 /* GetMetadataForFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BBBC460D2C5153007FE6D7 /* GetMetadataForFile.m */; };
 		33BBBC490D2C5153007FE6D7 /* Importer-main.c in Sources */ = {isa = PBXBuildFile; fileRef = 33BBBC470D2C5153007FE6D7 /* Importer-main.c */; };
 		33BBBC4B0D2C5179007FE6D7 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */; };
@@ -232,42 +232,42 @@
 
 /* Begin PBXFileReference section */
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Agent/main.m; sourceTree = "<group>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		32CA4F630368D1EE00C91783 /* Precipitate_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Precipitate_Prefix.pch; sourceTree = "<group>"; };
-		3302A61E0D4EB23100AAF075 /* GPBookmarkSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBookmarkSync.h; sourceTree = "<group>"; };
-		3302A61F0D4EB23100AAF075 /* GPBookmarkSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPBookmarkSync.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* Precipitate_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Precipitate_Prefix.pch; path = Agent/Precipitate_Prefix.pch; sourceTree = "<group>"; };
+		3302A61E0D4EB23100AAF075 /* GPBookmarkSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPBookmarkSync.h; path = Sources/Bookmarks/GPBookmarkSync.h; sourceTree = "<group>"; };
+		3302A61F0D4EB23100AAF075 /* GPBookmarkSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPBookmarkSync.m; path = Sources/Bookmarks/GPBookmarkSync.m; sourceTree = "<group>"; };
 		3302A6270D4EB6EF00AAF075 /* GoogleBookmarks.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoogleBookmarks.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		3302A6280D4EB6EF00AAF075 /* GoogleBookmarks-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleBookmarks-Info.plist"; sourceTree = "<group>"; };
+		3302A6280D4EB6EF00AAF075 /* GoogleBookmarks-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleBookmarks-Info.plist"; path = "Sources/Bookmarks/GoogleBookmarks-Info.plist"; sourceTree = "<group>"; };
 		3302A6360D4EB86B00AAF075 /* TestHarness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestHarness.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3302A6380D4EB86B00AAF075 /* TestHarness-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestHarness-Info.plist"; sourceTree = "<group>"; };
-		3302A6420D4EBA9A00AAF075 /* TestHarness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestHarness.h; sourceTree = "<group>"; };
-		3302A6430D4EBA9A00AAF075 /* TestHarness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestHarness.m; sourceTree = "<group>"; };
+		3302A6380D4EB86B00AAF075 /* TestHarness-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "TestHarness-Info.plist"; path = "TestHarness/TestHarness-Info.plist"; sourceTree = "<group>"; };
+		3302A6420D4EBA9A00AAF075 /* TestHarness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestHarness.h; path = TestHarness/TestHarness.h; sourceTree = "<group>"; };
+		3302A6430D4EBA9A00AAF075 /* TestHarness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestHarness.m; path = TestHarness/TestHarness.m; sourceTree = "<group>"; };
 		331A49360E15B9AC00D855C0 /* GTMSystemVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMSystemVersion.h; path = "external/google-toolbox-for-mac/Foundation/GTMSystemVersion.h"; sourceTree = "<group>"; };
 		331A49370E15B9AC00D855C0 /* GTMSystemVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMSystemVersion.m; path = "external/google-toolbox-for-mac/Foundation/GTMSystemVersion.m"; sourceTree = "<group>"; };
-		331A49520E15BCB400D855C0 /* PrefPane_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefPane_Prefix.pch; sourceTree = "<group>"; };
+		331A49520E15BCB400D855C0 /* PrefPane_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefPane_Prefix.pch; path = PrefPane/PrefPane_Prefix.pch; sourceTree = "<group>"; };
 		331FFDD90D9328D30044B7F1 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/PrecipitatePrefPane.xib; sourceTree = "<group>"; };
-		331FFE360D943A3B0044B7F1 /* SharedConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedConstants.h; sourceTree = "<group>"; };
-		332204310D4EA23100EE30FF /* GPKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPKeychainItem.h; sourceTree = "<group>"; };
-		332204320D4EA23100EE30FF /* GPKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPKeychainItem.m; sourceTree = "<group>"; };
+		331FFE360D943A3B0044B7F1 /* SharedConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharedConstants.h; path = Shared/SharedConstants.h; sourceTree = "<group>"; };
+		332204310D4EA23100EE30FF /* GPKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPKeychainItem.h; path = Shared/GPKeychainItem.h; sourceTree = "<group>"; };
+		332204320D4EA23100EE30FF /* GPKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPKeychainItem.m; path = Shared/GPKeychainItem.m; sourceTree = "<group>"; };
 		332204420D4EA96C00EE30FF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
-		334CAE1D0D0F6798006BAF54 /* GPDocsSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPDocsSync.h; sourceTree = "<group>"; };
-		334CAE1E0D0F6798006BAF54 /* GPDocsSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPDocsSync.m; sourceTree = "<group>"; };
-		334CAF050D17235F006BAF54 /* gdoc.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = gdoc.icns; sourceTree = "<group>"; };
-		334CAF1D0D1C3E58006BAF54 /* gdocdocument.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = gdocdocument.icns; sourceTree = "<group>"; };
-		334CAF1E0D1C3E58006BAF54 /* gdocpresentation.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = gdocpresentation.icns; sourceTree = "<group>"; };
-		334CAF1F0D1C3E58006BAF54 /* gdocspreadsheet.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = gdocspreadsheet.icns; sourceTree = "<group>"; };
-		334CAFFE0D1C4BF4006BAF54 /* DocsInfoKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocsInfoKeys.h; sourceTree = "<group>"; };
+		334CAE1D0D0F6798006BAF54 /* GPDocsSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPDocsSync.h; path = Sources/Docs/GPDocsSync.h; sourceTree = "<group>"; };
+		334CAE1E0D0F6798006BAF54 /* GPDocsSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPDocsSync.m; path = Sources/Docs/GPDocsSync.m; sourceTree = "<group>"; };
+		334CAF050D17235F006BAF54 /* gdoc.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = gdoc.icns; path = Sources/Docs/gdoc.icns; sourceTree = "<group>"; };
+		334CAF1D0D1C3E58006BAF54 /* gdocdocument.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = gdocdocument.icns; path = Sources/Docs/gdocdocument.icns; sourceTree = "<group>"; };
+		334CAF1E0D1C3E58006BAF54 /* gdocpresentation.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = gdocpresentation.icns; path = Sources/Docs/gdocpresentation.icns; sourceTree = "<group>"; };
+		334CAF1F0D1C3E58006BAF54 /* gdocspreadsheet.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = gdocspreadsheet.icns; path = Sources/Docs/gdocspreadsheet.icns; sourceTree = "<group>"; };
+		334CAFFE0D1C4BF4006BAF54 /* DocsInfoKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocsInfoKeys.h; path = Sources/Docs/DocsInfoKeys.h; sourceTree = "<group>"; };
 		335827390E14516600279D7F /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/GoogleDocs.strings; sourceTree = "<group>"; };
 		335827840E1451C000279D7F /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/PrefPane.strings; sourceTree = "<group>"; };
 		33582D440E15895800279D7F /* GData.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GData.xcodeproj; path = "external/gdata-objectivec-client/Source/GData.xcodeproj"; sourceTree = "<group>"; };
 		338030510D988A40008BCA40 /* PreferencePanes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PreferencePanes.framework; path = /System/Library/Frameworks/PreferencePanes.framework; sourceTree = "<absolute>"; };
-		3388D30A0D906AE700FFC510 /* PrecipitatePreferencePane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrecipitatePreferencePane.h; sourceTree = "<group>"; };
-		3388D30B0D906AE700FFC510 /* PrecipitatePreferencePane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrecipitatePreferencePane.m; sourceTree = "<group>"; };
-		3388D30C0D906B0000FFC510 /* PrefPane-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PrefPane-Info.plist"; sourceTree = "<group>"; };
+		3388D30A0D906AE700FFC510 /* PrecipitatePreferencePane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrecipitatePreferencePane.h; path = PrefPane/PrecipitatePreferencePane.h; sourceTree = "<group>"; };
+		3388D30B0D906AE700FFC510 /* PrecipitatePreferencePane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrecipitatePreferencePane.m; path = PrefPane/PrecipitatePreferencePane.m; sourceTree = "<group>"; };
+		3388D30C0D906B0000FFC510 /* PrefPane-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "PrefPane-Info.plist"; path = "PrefPane/PrefPane-Info.plist"; sourceTree = "<group>"; };
 		3388D3170D906CBC00FFC510 /* Precipitate.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Precipitate.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
-		3388D3400D906D6A00FFC510 /* GPSourceStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSourceStatus.h; sourceTree = "<group>"; };
-		3388D3410D906D6A00FFC510 /* GPSourceStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSourceStatus.m; sourceTree = "<group>"; };
+		3388D3400D906D6A00FFC510 /* GPSourceStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPSourceStatus.h; path = Shared/GPSourceStatus.h; sourceTree = "<group>"; };
+		3388D3410D906D6A00FFC510 /* GPSourceStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPSourceStatus.m; path = Shared/GPSourceStatus.m; sourceTree = "<group>"; };
 		3388D3530D906DC400FFC510 /* DebugTigerOrLater.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = DebugTigerOrLater.xcconfig; path = "external/google-toolbox-for-mac/XcodeConfig/Project/DebugTigerOrLater.xcconfig"; sourceTree = "<group>"; };
 		3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = LoadableBundle.xcconfig; path = "external/google-toolbox-for-mac/XcodeConfig/Target/LoadableBundle.xcconfig"; sourceTree = "<group>"; };
 		3388D3550D906DC400FFC510 /* ReleaseTigerOrLater.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = ReleaseTigerOrLater.xcconfig; path = "external/google-toolbox-for-mac/XcodeConfig/Project/ReleaseTigerOrLater.xcconfig"; sourceTree = "<group>"; };
@@ -276,26 +276,26 @@
 		3388D3B80D90764500FFC510 /* GTMObjectSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMObjectSingleton.h; path = "external/google-toolbox-for-mac/Foundation/GTMObjectSingleton.h"; sourceTree = "<group>"; };
 		33897ED70D4FB0F800A54981 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Precipitate.xib; sourceTree = "<group>"; };
 		33897EE00D4FB16E00A54981 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/TestHarness.xib; sourceTree = "<group>"; };
-		33897F590D4FCCFD00A54981 /* Precipitate.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Precipitate.icns; sourceTree = "<group>"; };
+		33897F590D4FCCFD00A54981 /* Precipitate.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Precipitate.icns; path = PrefPane/Precipitate.icns; sourceTree = "<group>"; };
 		33AE42EB0E0AFE17007DE32B /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMDefines.h; path = "external/google-toolbox-for-mac/GTMDefines.h"; sourceTree = "<group>"; };
-		33AE44FA0E11B584007DE32B /* GPSourcePreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSourcePreferences.h; sourceTree = "<group>"; };
-		33AE44FB0E11B584007DE32B /* GPSourcePreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSourcePreferences.m; sourceTree = "<group>"; };
+		33AE44FA0E11B584007DE32B /* GPSourcePreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPSourcePreferences.h; path = Shared/GPSourcePreferences.h; sourceTree = "<group>"; };
+		33AE44FB0E11B584007DE32B /* GPSourcePreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPSourcePreferences.m; path = Shared/GPSourcePreferences.m; sourceTree = "<group>"; };
 		33AE45950E11C965007DE32B /* GTMGarbageCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMGarbageCollection.h; path = "external/google-toolbox-for-mac/Foundation/GTMGarbageCollection.h"; sourceTree = "<group>"; };
-		33B0CB860D4A585600366ACB /* GPSyncProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSyncProtocol.h; sourceTree = "<group>"; };
-		33B2073F0D3B25BA00C8F541 /* GPSyncController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPSyncController.h; sourceTree = "<group>"; };
-		33B207400D3B25BA00C8F541 /* GPSyncController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPSyncController.m; sourceTree = "<group>"; };
+		33B0CB860D4A585600366ACB /* GPSyncProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPSyncProtocol.h; path = Shared/GPSyncProtocol.h; sourceTree = "<group>"; };
+		33B2073F0D3B25BA00C8F541 /* GPSyncController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPSyncController.h; path = Agent/GPSyncController.h; sourceTree = "<group>"; };
+		33B207400D3B25BA00C8F541 /* GPSyncController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPSyncController.m; path = Agent/GPSyncController.m; sourceTree = "<group>"; };
 		33BBBC100D2C4C7A007FE6D7 /* PrecipitateDocsImporter.mdimporter */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrecipitateDocsImporter.mdimporter; sourceTree = BUILT_PRODUCTS_DIR; };
-		33BBBC110D2C4C7A007FE6D7 /* Importer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Importer-Info.plist"; sourceTree = "<group>"; };
-		33BBBC370D2C4F15007FE6D7 /* schema.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = schema.xml; sourceTree = "<group>"; };
-		33BBBC460D2C5153007FE6D7 /* GetMetadataForFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetMetadataForFile.m; sourceTree = "<group>"; };
-		33BBBC470D2C5153007FE6D7 /* Importer-main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "Importer-main.c"; sourceTree = "<group>"; };
+		33BBBC110D2C4C7A007FE6D7 /* Importer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Importer-Info.plist"; path = "Sources/Docs/Importer-Info.plist"; sourceTree = "<group>"; };
+		33BBBC370D2C4F15007FE6D7 /* Sources/Docs/schema.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Sources/Docs/schema.xml; sourceTree = "<group>"; };
+		33BBBC460D2C5153007FE6D7 /* GetMetadataForFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetMetadataForFile.m; path = Sources/Docs/GetMetadataForFile.m; sourceTree = "<group>"; };
+		33BBBC470D2C5153007FE6D7 /* Importer-main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "Importer-main.c"; path = "Sources/Docs/Importer-main.c"; sourceTree = "<group>"; };
 		33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		33D7942D0E1D39B6004A8D9C /* GData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		33F891170D51408900790AEF /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		33F892120D5290B300790AEF /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
 		33FED7D60D4E5DC50075A454 /* GoogleDocs.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoogleDocs.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		33FED7D70D4E5DC50075A454 /* GoogleDocs-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleDocs-Info.plist"; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* Precipitate-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Precipitate-Info.plist"; sourceTree = "<group>"; };
+		33FED7D70D4E5DC50075A454 /* GoogleDocs-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleDocs-Info.plist"; path = "Sources/Docs/GoogleDocs-Info.plist"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Precipitate-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Precipitate-Info.plist"; path = "Agent/Precipitate-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Precipitate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Precipitate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -362,7 +362,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* Precipitate Core */ = {
+		080E96DDFE201D6D7F000001 /* Agent */ = {
 			isa = PBXGroup;
 			children = (
 				32CA4F630368D1EE00C91783 /* Precipitate_Prefix.pch */,
@@ -372,7 +372,7 @@
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 			);
-			name = "Precipitate Core";
+			name = Agent;
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
@@ -395,7 +395,7 @@
 				3388D3850D906F1700FFC510 /* GTM */,
 				3388D3440D906D7D00FFC510 /* Common */,
 				3388D3020D906A2700FFC510 /* Pref Pane */,
-				080E96DDFE201D6D7F000001 /* Precipitate Core */,
+				080E96DDFE201D6D7F000001 /* Agent */,
 				33FED7E30D4E5E050075A454 /* Google Docs */,
 				3302A61D0D4EB1FF00AAF075 /* Google Bookmarks */,
 				3302A63E0D4EB8CE00AAF075 /* Source Test Harness */,
@@ -559,7 +559,7 @@
 		33BBBC1A0D2C4E4C007FE6D7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				33BBBC370D2C4F15007FE6D7 /* schema.xml */,
+				33BBBC370D2C4F15007FE6D7 /* Sources/Docs/schema.xml */,
 				33BBBC110D2C4C7A007FE6D7 /* Importer-Info.plist */,
 			);
 			name = Resources;
@@ -573,20 +573,20 @@
 				334CAF1E0D1C3E58006BAF54 /* gdocpresentation.icns */,
 				334CAF1F0D1C3E58006BAF54 /* gdocspreadsheet.icns */,
 				334CAF050D17235F006BAF54 /* gdoc.icns */,
-				33FED7E40D4E5E830075A454 /* PrecipitateSource */,
+				33FED7E40D4E5E830075A454 /* Source */,
 				33BBBC190D2C4E35007FE6D7 /* Importer */,
 			);
 			name = "Google Docs";
 			sourceTree = "<group>";
 		};
-		33FED7E40D4E5E830075A454 /* PrecipitateSource */ = {
+		33FED7E40D4E5E830075A454 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				334CAE1D0D0F6798006BAF54 /* GPDocsSync.h */,
 				334CAE1E0D0F6798006BAF54 /* GPDocsSync.m */,
 				33897EF20D4FB24200A54981 /* Resources */,
 			);
-			name = PrecipitateSource;
+			name = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -792,7 +792,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33BBBC380D2C4F15007FE6D7 /* schema.xml in Resources */,
+				33BBBC380D2C4F15007FE6D7 /* Sources/Docs/schema.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1051,7 +1051,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
 			buildSettings = {
-				INFOPLIST_FILE = "GoogleBookmarks-Info.plist";
+				INFOPLIST_FILE = "Sources/Bookmarks/GoogleBookmarks-Info.plist";
 				PRODUCT_NAME = GoogleBookmarks;
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -1061,7 +1061,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
 			buildSettings = {
-				INFOPLIST_FILE = "GoogleBookmarks-Info.plist";
+				INFOPLIST_FILE = "Sources/Bookmarks/GoogleBookmarks-Info.plist";
 				PRODUCT_NAME = GoogleBookmarks;
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -1071,7 +1071,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = "TestHarness-Info.plist";
+				INFOPLIST_FILE = "TestHarness/TestHarness-Info.plist";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -1088,7 +1088,7 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				INFOPLIST_FILE = "TestHarness-Info.plist";
+				INFOPLIST_FILE = "TestHarness/TestHarness-Info.plist";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -1137,8 +1137,8 @@
 			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = PrefPane_Prefix.pch;
-				INFOPLIST_FILE = "PrefPane-Info.plist";
+				GCC_PREFIX_HEADER = PrefPane/PrefPane_Prefix.pch;
+				INFOPLIST_FILE = "PrefPane/PrefPane-Info.plist";
 				PRODUCT_NAME = Precipitate;
 				WRAPPER_EXTENSION = prefPane;
 			};
@@ -1149,8 +1149,8 @@
 			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = PrefPane_Prefix.pch;
-				INFOPLIST_FILE = "PrefPane-Info.plist";
+				GCC_PREFIX_HEADER = PrefPane/PrefPane_Prefix.pch;
+				INFOPLIST_FILE = "PrefPane/PrefPane-Info.plist";
 				PRODUCT_NAME = Precipitate;
 				WRAPPER_EXTENSION = prefPane;
 			};
@@ -1160,7 +1160,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
 			buildSettings = {
-				INFOPLIST_FILE = "Importer-Info.plist";
+				INFOPLIST_FILE = "Sources/Docs/Importer-Info.plist";
 				PRODUCT_NAME = PrecipitateDocsImporter;
 				WRAPPER_EXTENSION = mdimporter;
 			};
@@ -1170,7 +1170,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
 			buildSettings = {
-				INFOPLIST_FILE = "Importer-Info.plist";
+				INFOPLIST_FILE = "Sources/Docs/Importer-Info.plist";
 				PRODUCT_NAME = PrecipitateDocsImporter;
 				WRAPPER_EXTENSION = mdimporter;
 			};
@@ -1181,7 +1181,7 @@
 			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Precipitate.app/Contents/MacOS/Precipitate";
-				INFOPLIST_FILE = "GoogleDocs-Info.plist";
+				INFOPLIST_FILE = "Sources/Docs/GoogleDocs-Info.plist";
 				PRODUCT_NAME = GoogleDocs;
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -1192,7 +1192,7 @@
 			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Precipitate.app/Contents/MacOS/Precipitate";
-				INFOPLIST_FILE = "GoogleDocs-Info.plist";
+				INFOPLIST_FILE = "Sources/Docs/GoogleDocs-Info.plist";
 				PRODUCT_NAME = GoogleDocs;
 				WRAPPER_EXTENSION = bundle;
 			};
@@ -1202,7 +1202,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
-				INFOPLIST_FILE = "Precipitate-Info.plist";
+				INFOPLIST_FILE = "Agent/Precipitate-Info.plist";
 				OTHER_LDFLAGS = (
 					"-sub_umbrella",
 					GData,
@@ -1217,7 +1217,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)";
-				INFOPLIST_FILE = "Precipitate-Info.plist";
+				INFOPLIST_FILE = "Agent/Precipitate-Info.plist";
 				OTHER_LDFLAGS = (
 					"-sub_umbrella",
 					GData,
