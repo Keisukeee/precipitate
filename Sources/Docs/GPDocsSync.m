@@ -122,8 +122,16 @@
   NSEnumerator* docEnumerator = [[docList entries] objectEnumerator];
   GDataEntryDocBase* doc;
   while ((doc = [docEnumerator nextObject])) {
-    NSDictionary* docInfo = [self dictionaryForDoc:doc];
-    [docsById setObject:docInfo forKey:[docInfo objectForKey:kGPMDItemUID]];
+    @try {
+      if (![doc isKindOfClass:[GDataEntryDocBase class]]) {
+        NSLog(@"Discarding unexpected Docs entry: %@", doc);
+        continue;
+      }
+      NSDictionary* docInfo = [self dictionaryForDoc:doc];
+      [docsById setObject:docInfo forKey:[docInfo objectForKey:kGPMDItemUID]];
+    } @catch (id exception) {
+      NSLog(@"Caught exception while processing base Docs info: %@", exception);
+    }
   }
 
   [manager_ basicItemsInfo:[docsById allValues] fetchedForSource:self];
