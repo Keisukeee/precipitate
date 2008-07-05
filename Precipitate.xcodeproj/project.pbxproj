@@ -92,6 +92,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		009ABFA60E1FE7BD009E5175 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D1107260486CEB800E47090 /* Precipitate */;
+			remoteInfo = Precipitate;
+		};
 		3302A7DF0D4F05EF00AAF075 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -617,10 +624,12 @@
 				3302A6320D4EB86B00AAF075 /* Resources */,
 				3302A6330D4EB86B00AAF075 /* Sources */,
 				3302A6340D4EB86B00AAF075 /* Frameworks */,
+				009ABFAC0E1FE7D6009E5175 /* Bundle GData */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				009ABFA70E1FE7BD009E5175 /* PBXTargetDependency */,
 			);
 			name = TestHarness;
 			productName = TestHarness;
@@ -821,6 +830,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		009ABFAC0E1FE7D6009E5175 /* Bundle GData */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle GData";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Grab the GData framework from inside the built Precipitate.app so that\n# we get the load path changes for free rather than duplicating that logic.\n/Developer/Tools/CpMac -r \"$BUILT_PRODUCTS_DIR/Precipitate.app/Contents/Frameworks\" \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.$WRAPPER_EXTENSION/Contents/\"";
+		};
 		33582D9B0E158CC700279D7F /* Copy GData to Build Products */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -943,6 +966,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		009ABFA70E1FE7BD009E5175 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D1107260486CEB800E47090 /* Precipitate */;
+			targetProxy = 009ABFA60E1FE7BD009E5175 /* PBXContainerItemProxy */;
+		};
 		3302A7E00D4F05EF00AAF075 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3302A6350D4EB86B00AAF075 /* TestHarness */;
