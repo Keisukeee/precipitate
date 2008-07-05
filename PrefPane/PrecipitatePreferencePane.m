@@ -212,6 +212,13 @@
     [[syncButton_ superview] setFrameSize:paneSize];
   }
 
+  NSBundle* prefPaneBundle = [NSBundle bundleForClass:[self class]];
+  NSString* versionFormat = [prefPaneBundle localizedStringForKey:@"VersionFormat"
+                                                            value:@"VersionFormat"
+                                                            table:@"PrefPane"];
+  NSString* version = [prefPaneBundle objectForInfoDictionaryKey:@"CFBundleVersion"];
+  [versionLabel_ setStringValue:[NSString stringWithFormat:versionFormat, version]];
+
   NSDistributedNotificationCenter* dnc = [NSDistributedNotificationCenter defaultCenter];
   [dnc addObserver:self
           selector:@selector(startProgressIndicator)

@@ -25,6 +25,7 @@
   IBOutlet NSTableView*         sourceTable_;
   IBOutlet NSProgressIndicator* progressSpinner_;
   IBOutlet NSButton*            syncButton_;
+  IBOutlet NSTextField*         versionLabel_;
   NSArray*                      sourceStatuses_;
   GPSourceStatus*               sourceStatusManager_;
 }
