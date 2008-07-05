@@ -71,14 +71,19 @@
   // We don't need this information, but we need to call a fetch method to
   // ensure that the service is primed with the authorization ticket for later
   // requests.
-  [spreadsheetService_ fetchSpreadsheetFeedWithURL:[NSURL URLWithString:kGDataGoogleSpreadsheetsPrivateFullFeed]
+  NSString* spreadsheetFeedURI = kGDataGoogleDocsDefaultPrivateFullFeed;
+  if ([spreadsheetFeedURI hasPrefix:@"http:"])
+    spreadsheetFeedURI = [@"https:" stringByAppendingString:[spreadsheetFeedURI substringFromIndex:5]];
+  [spreadsheetService_ fetchSpreadsheetFeedWithURL:[NSURL URLWithString:spreadsheetFeedURI]
                                           delegate:self
                                  didFinishSelector:@selector(dummySpreadsheetFetch:finishedWithObject:)
                                    didFailSelector:@selector(dummySpreadsheetFetch:finishedWithObject:)];
 
   // Get the data we actually want. The callbacks will report to the manager
-  NSURL* docURL = [NSURL URLWithString:kGDataGoogleDocsDefaultPrivateFullFeed];
-  [docService_ fetchDocsFeedWithURL:docURL
+  NSString* docsFeedURI = kGDataGoogleDocsDefaultPrivateFullFeed;
+  if ([docsFeedURI hasPrefix:@"http:"])
+    docsFeedURI = [@"https:" stringByAppendingString:[docsFeedURI substringFromIndex:5]];
+  [docService_ fetchDocsFeedWithURL:[NSURL URLWithString:docsFeedURI]
                            delegate:self
                   didFinishSelector:@selector(serviceTicket:finishedWithObject:)
                     didFailSelector:@selector(serviceTicket:failedWithError:)];
@@ -200,7 +205,10 @@
 
   NSArray* categories = [docInfo objectForKey:kDocDictionaryCategoriesKey];
   if ([categories containsObject:kDocCategoryDocument]) {
-    NSURL* sourceURL = [NSURL URLWithString:[docInfo objectForKey:kDocDictionarySourceURIKey]];
+    NSString* sourceURI = [docInfo objectForKey:kDocDictionarySourceURIKey];
+    if ([sourceURI hasPrefix:@"http:"])
+      sourceURI = [@"https:" stringByAppendingString:[sourceURI substringFromIndex:5]];
+    NSURL* sourceURL = [NSURL URLWithString:sourceURI];
     NSError* error = nil;
     NSURLResponse* response = nil;
     NSData* data = nil;
@@ -235,7 +243,7 @@
       key = [key substringWithRange:NSMakeRange(0, ampersandRange.location - 1)];
 
     NSString* worksheetFeedURI =
-      [NSString stringWithFormat:@"http://spreadsheets.google.com/feeds/worksheets/%@/private/full", key];
+      [NSString stringWithFormat:@"https://spreadsheets.google.com/feeds/worksheets/%@/private/full", key];
     NSURLRequest *request = [spreadsheetService_ requestForURL:[NSURL URLWithString:worksheetFeedURI]
                                                           ETag:nil
                                                     httpMethod:nil];
