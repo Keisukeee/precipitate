@@ -22,6 +22,7 @@
 @interface GPBookmarkSync : NSObject <GPSyncSource> {
   id<GPSyncManager> manager_;       // weak
   NSMutableData*    bookmarkData_;
+  NSMutableArray*   bookmarks_;
 }
 
 @end

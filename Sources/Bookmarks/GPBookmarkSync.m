@@ -18,9 +18,12 @@
 #import "GPKeychainItem.h"
 #import "SharedConstants.h"
 
+static NSString* const kBookmarkURLFormat = @"https://www.google.com/bookmarks/lookup?output=rss&start=%d";
+
 @interface GPBookmarkSync (Private)
 
-- (void)parseBookmarksFromData:(NSData*)data;
+- (void)requestBookmarksStartingFrom:(int)start;
+- (NSArray*)bookmarksFromData:(NSData*)data;
 
 @end
 
@@ -29,18 +32,20 @@
 - (id)initWithManager:(id<GPSyncManager>)manager {
   if ((self = [super init])) {
     manager_ = manager;
+    bookmarks_ = [[NSMutableArray alloc] init];
   }
   return self;
 }
 
 - (void)dealloc {
   [bookmarkData_ release];
+  [bookmarks_ release];
   [super dealloc];
 }
 
 - (void)fetchAllItemsBasicInfo {
-  NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.google.com/bookmarks/lookup?output=rss"]];
-  [NSURLConnection connectionWithRequest:request delegate:self];
+  [bookmarks_ removeAllObjects];
+  [self requestBookmarksStartingFrom:0];
 }
 
 - (void)fetchFullInfoForItems:(NSArray*)items {
@@ -63,7 +68,13 @@
 
 #pragma mark -
 
-- (void)parseBookmarksFromData:(NSData*)data {
+- (void)requestBookmarksStartingFrom:(int)start {
+  NSString* requestURI = [NSString stringWithFormat:kBookmarkURLFormat, start];
+  NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:requestURI]];
+  [NSURLConnection connectionWithRequest:request delegate:self];
+}
+
+- (NSArray*)bookmarksFromData:(NSData*)data {
   NSXMLDocument* bookmarksXML = [[[NSXMLDocument alloc] initWithData:data
                                                              options:0
                                                                error:nil] autorelease];
@@ -91,7 +102,7 @@
     }
     [bookmarkItems addObject:bookmarkInfo];
   }
-  [manager_ basicItemsInfo:bookmarkItems fetchedForSource:self];
+  return bookmarkItems;
 }
 
 #pragma mark -
@@ -118,15 +129,26 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)connection {
-  [self parseBookmarksFromData:bookmarkData_];
+  NSArray* newBookmarks = [self bookmarksFromData:bookmarkData_];
   [bookmarkData_ release];
   bookmarkData_ = nil;
+  // The bookmarks feed returns chunks, not everything, so unless there were no
+  // bookmarks in the response we assume there are more. Once we hit an empty
+  // feed, we can be sure we've walked the entire list.
+  if ([newBookmarks count] > 0) {
+    [bookmarks_ addObjectsFromArray:newBookmarks];
+    [self requestBookmarksStartingFrom:[bookmarks_ count]];
+  } else {
+    [manager_ basicItemsInfo:bookmarks_ fetchedForSource:self];
+    [bookmarks_ removeAllObjects];
+  }
 }
 
 - (void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error {
   [bookmarkData_ release];
   bookmarkData_ = nil;
   [manager_ infoFetchFailedForSource:self withError:error];
+  [bookmarks_ removeAllObjects];
 }
 
 @end
