@@ -299,6 +299,10 @@
 #pragma mark -
 
 - (IBAction)syncNow:(id)sender {
+  // Apply any login changes now, to handle the case where the user changes
+  // login info then triggers a sync without leaving one of the fields.
+  if ([[[syncButton_ window] firstResponder] isKindOfClass:[NSTextView class]])
+    [self setLogin:nil];
   [NSObject cancelPreviousPerformRequestsWithTarget:self
                                            selector:@selector(postSyncNotification)
                                              object:nil];
