@@ -15,7 +15,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>${PRODUCT_VERSION_STRING}</string>
 	<key>NSPrincipalClass</key>
 	<string>GPBookmarkSync</string>
 </dict>

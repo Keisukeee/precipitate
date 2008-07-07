@@ -1260,6 +1260,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3388D3530D906DC400FFC510 /* DebugTigerOrLater.xcconfig */;
 			buildSettings = {
+				PRODUCT_VERSION_STRING = 1.0.2;
 			};
 			name = Debug;
 		};
@@ -1267,6 +1268,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3388D3550D906DC400FFC510 /* ReleaseTigerOrLater.xcconfig */;
 			buildSettings = {
+				PRODUCT_VERSION_STRING = 1.0.2;
 			};
 			name = Release;
 		};
