@@ -216,7 +216,17 @@
   NSString* versionFormat = [prefPaneBundle localizedStringForKey:@"VersionFormat"
                                                             value:@"VersionFormat"
                                                             table:@"PrefPane"];
-  NSString* version = [prefPaneBundle objectForInfoDictionaryKey:@"CFBundleVersion"];
+  // In an upgrade case, System Preferences will load the old bundle on launch
+  // before installing the new bundle, and since NSBundle caches information
+  // getting the version that way will give us the old version. Showing
+  // stale version info on an upgrade is very confusing, so work around it.
+  NSString* infoPlistPath = [[[prefPaneBundle bundlePath] stringByAppendingPathComponent:@"Contents"]
+                              stringByAppendingPathComponent:@"Info.plist"];
+  NSDictionary* appInfo = [NSPropertyListSerialization propertyListFromData:[NSData dataWithContentsOfFile:infoPlistPath]
+                                                           mutabilityOption:kCFPropertyListImmutable
+                                                                     format:NULL
+                                                           errorDescription:NULL];
+  NSString* version = [appInfo objectForKey:@"CFBundleVersion"];
   [versionLabel_ setStringValue:[NSString stringWithFormat:versionFormat, version]];
 
   NSDistributedNotificationCenter* dnc = [NSDistributedNotificationCenter defaultCenter];
