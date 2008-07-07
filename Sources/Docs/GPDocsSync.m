@@ -19,6 +19,8 @@
 #import "SharedConstants.h"
 #import "GPKeychainItem.h"
 
+static NSString* const kGDataUserAgent = @"Google-Precipitate-" USER_AGENT_VERSION;
+
 @interface GPDocsSync (Private)
 
 - (NSArray*)peopleStringsForGDataPeople:(NSArray*)people;
@@ -60,12 +62,12 @@
 
   [docService_ autorelease];
   docService_ = [[GDataServiceGoogleDocs alloc] init];
-  [docService_ setUserAgent:@"Google-Precipitate-1.0.0"];
+  [docService_ setUserAgent:kGDataUserAgent];
   [docService_ setUserCredentialsWithUsername:username password:password];
 
   [spreadsheetService_ autorelease];
   spreadsheetService_ = [[GDataServiceGoogleSpreadsheet alloc] init];
-  [spreadsheetService_ setUserAgent:@"Google-Precipitate-1.0.0"];
+  [spreadsheetService_ setUserAgent:kGDataUserAgent];
   [spreadsheetService_ setUserCredentialsWithUsername:username password:password];
 
   // We don't need this information, but we need to call a fetch method to

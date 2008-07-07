@@ -96,7 +96,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8D1107260486CEB800E47090 /* Precipitate */;
+			remoteGlobalIDString = 8D1107260486CEB800E47090;
 			remoteInfo = Precipitate;
 		};
 		3302A7DF0D4F05EF00AAF075 /* PBXContainerItemProxy */ = {
@@ -1260,6 +1260,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3388D3530D906DC400FFC510 /* DebugTigerOrLater.xcconfig */;
 			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "USER_AGENT_VERSION=\\\"$(PRODUCT_VERSION_STRING)\\\"";
 				PRODUCT_VERSION_STRING = 1.0.2;
 			};
 			name = Debug;
@@ -1268,6 +1269,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3388D3550D906DC400FFC510 /* ReleaseTigerOrLater.xcconfig */;
 			buildSettings = {
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "USER_AGENT_VERSION=\\\"$(PRODUCT_VERSION_STRING)\\\"";
 				PRODUCT_VERSION_STRING = 1.0.2;
 			};
 			name = Release;
