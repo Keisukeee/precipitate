@@ -60,15 +60,22 @@ static NSString* const kGDataUserAgent = @"Google-Precipitate-" USER_AGENT_VERSI
   NSString* username = [loginCredentials username];
   NSString* password = [loginCredentials password];
 
+  // If the debugging flag to enable logging is set, do so.
+  if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"EnableGDataHTTPLogging"] boolValue])
+    [GDataHTTPFetcher setIsLoggingEnabled:YES];
+  
   [docService_ autorelease];
   docService_ = [[GDataServiceGoogleDocs alloc] init];
   [docService_ setUserAgent:kGDataUserAgent];
   [docService_ setUserCredentialsWithUsername:username password:password];
+  [docService_ setIsServiceRetryEnabled:YES];
+  [docService_ setServiceShouldFollowNextLinks:YES];
 
   [spreadsheetService_ autorelease];
   spreadsheetService_ = [[GDataServiceGoogleSpreadsheet alloc] init];
   [spreadsheetService_ setUserAgent:kGDataUserAgent];
   [spreadsheetService_ setUserCredentialsWithUsername:username password:password];
+  [spreadsheetService_ setIsServiceRetryEnabled:YES];
 
   // We don't need this information, but we need to call a fetch method to
   // ensure that the service is primed with the authorization ticket for later
