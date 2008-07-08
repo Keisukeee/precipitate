@@ -85,8 +85,8 @@ static NSString* const kGDataUserAgent = @"Google-Precipitate-" USER_AGENT_VERSI
     spreadsheetFeedURI = [@"https:" stringByAppendingString:[spreadsheetFeedURI substringFromIndex:5]];
   [spreadsheetService_ fetchSpreadsheetFeedWithURL:[NSURL URLWithString:spreadsheetFeedURI]
                                           delegate:self
-                                 didFinishSelector:@selector(dummySpreadsheetFetch:finishedWithObject:)
-                                   didFailSelector:@selector(dummySpreadsheetFetch:finishedWithObject:)];
+                                 didFinishSelector:nil
+                                   didFailSelector:nil];
 
   // Get the data we actually want. The callbacks will report to the manager
   NSString* docsFeedURI = kGDataGoogleDocsDefaultPrivateFullFeed;
@@ -168,11 +168,6 @@ static NSString* const kGDataUserAgent = @"Google-Precipitate-" USER_AGENT_VERSI
   }
 }
 
-- (void)dummySpreadsheetFetch:(GDataServiceTicket *)ticket
-           finishedWithObject:(id)foo {
-  // Do nothing; see the comment in fetchAllItemsBasicInfo
-}
-
 - (void)inflateDocuments:(NSArray*)docs {
   NSEnumerator* docEnumerator = [docs objectEnumerator];
   NSDictionary* docInfo;
@@ -239,8 +234,9 @@ static NSString* const kGDataUserAgent = @"Google-Precipitate-" USER_AGENT_VERSI
     }
   }
   else if ([categories containsObject:kDocCategorySpreadsheet]) {
-    // Spreadsheets don't honor the GData auth, so we'll get a login page from
-    // the docs method unless there happens to be a valid cookie in the OS
+    // The HTML view of the spreadsheet at sourceURI doesn't honor the GData
+    // auth header, so the document approach of just reading that page results
+    // in a login page unless there happens to be a valid cookie in the OS
     // cookie store (e.g., from Safari), so pull the content out of the cells.
     NSString* sourceURI = [docInfo objectForKey:kDocDictionarySourceURIKey];
     NSRange keyLabelRange = [sourceURI rangeOfString:@"key="];
