@@ -268,6 +268,13 @@
 }
 
 - (IBAction)setLogin:(id)sender {
+  // Auto-correct an account with no domain
+  if (sender == usernameField_) {
+    NSString* username = [usernameField_ stringValue];
+    if ([username rangeOfString:@"@"].location == NSNotFound)
+      [usernameField_ setStringValue:[username stringByAppendingString:@"@gmail.com"]];
+  }
+
   GPKeychainItem *item = [GPKeychainItem keychainItemForService:kPrecipitateGoogleAccountKeychainServiceName];
   if (item) {
     [item setUsername:[usernameField_ stringValue]
