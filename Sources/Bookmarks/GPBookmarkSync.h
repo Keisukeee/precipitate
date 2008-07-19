@@ -21,7 +21,6 @@
 // Source for sites stored in Google Bookmarks.
 @interface GPBookmarkSync : NSObject <GPSyncSource> {
   id<GPSyncManager> manager_;       // weak
-  NSMutableData*    bookmarkData_;
   NSMutableArray*   bookmarks_;
 }
 

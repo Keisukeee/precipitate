@@ -55,6 +55,7 @@
 		33582E5A0E1599CC00279D7F /* GPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 332204320D4EA23100EE30FF /* GPKeychainItem.m */; };
 		33582E5B0E1599CD00279D7F /* GPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 332204320D4EA23100EE30FF /* GPKeychainItem.m */; };
 		336B1C180D53B4390019F6B2 /* GPDocsSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 334CAE1E0D0F6798006BAF54 /* GPDocsSync.m */; };
+		337B5FA20E315BAD00847BC1 /* GTMHTTPFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 337B5FA10E315BAD00847BC1 /* GTMHTTPFetcher.m */; };
 		33802EA10D9885B4008BCA40 /* Precipitate.app in Resources */ = {isa = PBXBuildFile; fileRef = 8D1107320486CEB800E47090 /* Precipitate.app */; };
 		33802EB50D9885E7008BCA40 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		33802EB80D9885EE008BCA40 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332204420D4EA96C00EE30FF /* Security.framework */; };
@@ -268,6 +269,9 @@
 		335827390E14516600279D7F /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/GoogleDocs.strings; sourceTree = "<group>"; };
 		335827840E1451C000279D7F /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/PrefPane.strings; sourceTree = "<group>"; };
 		33582D440E15895800279D7F /* GData.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GData.xcodeproj; path = "external/gdata-objectivec-client/Source/GData.xcodeproj"; sourceTree = "<group>"; };
+		337B5FA00E315BAD00847BC1 /* GTMHTTPFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMHTTPFetcher.h; path = "external/google-toolbox-for-mac/Foundation/GTMHTTPFetcher.h"; sourceTree = "<group>"; };
+		337B5FA10E315BAD00847BC1 /* GTMHTTPFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMHTTPFetcher.m; path = "external/google-toolbox-for-mac/Foundation/GTMHTTPFetcher.m"; sourceTree = "<group>"; };
+		337B5FAA0E315E3100847BC1 /* GTMDebugSelectorValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMDebugSelectorValidation.h; path = "external/google-toolbox-for-mac/DebugUtils/GTMDebugSelectorValidation.h"; sourceTree = "<group>"; };
 		338030510D988A40008BCA40 /* PreferencePanes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PreferencePanes.framework; path = /System/Library/Frameworks/PreferencePanes.framework; sourceTree = "<absolute>"; };
 		3388D30A0D906AE700FFC510 /* PrecipitatePreferencePane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrecipitatePreferencePane.h; path = PrefPane/PrecipitatePreferencePane.h; sourceTree = "<group>"; };
 		3388D30B0D906AE700FFC510 /* PrecipitatePreferencePane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrecipitatePreferencePane.m; path = PrefPane/PrecipitatePreferencePane.m; sourceTree = "<group>"; };
@@ -516,8 +520,11 @@
 		3388D3850D906F1700FFC510 /* GTM */ = {
 			isa = PBXGroup;
 			children = (
+				337B5FAA0E315E3100847BC1 /* GTMDebugSelectorValidation.h */,
 				33AE42EB0E0AFE17007DE32B /* GTMDefines.h */,
 				33AE45950E11C965007DE32B /* GTMGarbageCollection.h */,
+				337B5FA00E315BAD00847BC1 /* GTMHTTPFetcher.h */,
+				337B5FA10E315BAD00847BC1 /* GTMHTTPFetcher.m */,
 				3388D3B80D90764500FFC510 /* GTMObjectSingleton.h */,
 				3388D37B0D906F0200FFC510 /* GTMNSFileManager+Path.h */,
 				3388D37C0D906F0200FFC510 /* GTMNSFileManager+Path.m */,
@@ -909,6 +916,7 @@
 			files = (
 				3302A62D0D4EB71D00AAF075 /* GPBookmarkSync.m in Sources */,
 				33582E5B0E1599CD00279D7F /* GPKeychainItem.m in Sources */,
+				337B5FA20E315BAD00847BC1 /* GTMHTTPFetcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
