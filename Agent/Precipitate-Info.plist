@@ -9,7 +9,7 @@
 	<key>CFBundleIconFile</key>
 	<string>Precipitate.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.google.Precipitate.Sync</string>
+	<string>com.google.precipitate.agent</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

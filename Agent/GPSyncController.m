@@ -25,6 +25,8 @@ static NSString* const kIDSlashReplacementToken = @":SLASH:";
 
 static NSString* const kDistributedKillNotification = @"GPSyncControllerKillNotification";
 
+static NSString* const kPrefCustomLaunchKey = @"CustomLaunchers";
+
 // sync the cache every hour
 static const NSTimeInterval kUpdatePeriod = 3600.0;
 
@@ -395,7 +397,21 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
     NSURL* url = [NSURL URLWithString:link];
     if (!url)
       return NO;
-    return [[NSWorkspace sharedWorkspace] openURL:url];
+
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    // Synchronize to pick up any defaults writes that may have happened.
+    [defaults synchronize];
+    NSString* sourceId = [self identifierForSource:managingSource];
+    NSString* launcherId = [[defaults dictionaryForKey:kPrefCustomLaunchKey] objectForKey:sourceId];
+    if (launcherId) {
+      return [[NSWorkspace sharedWorkspace] openURLs:[NSArray arrayWithObject:url]
+                             withAppBundleIdentifier:launcherId
+                                             options:NSWorkspaceLaunchDefault
+                      additionalEventParamDescriptor:nil
+                                   launchIdentifiers:nil];
+    } else {
+      return [[NSWorkspace sharedWorkspace] openURL:url];
+    }
   }
 }
 
