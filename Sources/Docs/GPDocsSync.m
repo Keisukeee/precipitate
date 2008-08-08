@@ -24,7 +24,7 @@ static NSString* const kGDataUserAgent = @"Google-Precipitate-" USER_AGENT_VERSI
 @interface GPDocsSync (Private)
 
 - (NSArray*)peopleStringsForGDataPeople:(NSArray*)people;
-- (NSDictionary*)dictionaryForDoc:(GDataEntryDocBase*)doc;
+- (NSDictionary*)dictionaryForEntry:(GDataEntryBase*)doc;
 - (NSString*)contentForDoc:(NSDictionary*)docInfo;
 - (void)inflateDocuments:(NSArray*)documents;
 
@@ -111,11 +111,19 @@ static NSString* const kGDataUserAgent = @"Google-Precipitate-" USER_AGENT_VERSI
     return @"gdocspreadsheet";
   else if ([categories containsObject:kDocCategoryPresentation])
     return @"gdocpresentation";
+  else if ([categories containsObject:kDocCategoryPDF])
+    return @"gdocpdf";
   return @"gdoc";
 }
 
 - (NSArray*)itemExtensions {
-  return [NSArray arrayWithObjects:@"gdocdocument", @"gdocspreadsheet", @"gdocpresentation", @"gdoc", nil];
+  return [NSArray arrayWithObjects:
+            @"gdocdocument",
+            @"gdocspreadsheet",
+            @"gdocpresentation",
+            @"gdocpdf",
+            @"gdoc",
+            nil];
 }
 
 - (NSString*)displayName {
@@ -133,16 +141,15 @@ static NSString* const kGDataUserAgent = @"Google-Precipitate-" USER_AGENT_VERSI
 - (void)serviceTicket:(GDataServiceTicket *)ticket
    finishedWithObject:(GDataFeedDocList *)docList {
   NSMutableDictionary* docsById = [NSMutableDictionary dictionary];
-  NSEnumerator* docEnumerator = [[docList entries] objectEnumerator];
-  GDataEntryDocBase* doc;
-  while ((doc = [docEnumerator nextObject])) {
+  NSEnumerator* entryEnumerator = [[docList entries] objectEnumerator];
+  GDataEntryBase* entry;
+  while ((entry = [entryEnumerator nextObject])) {
     @try {
-      if (![doc isKindOfClass:[GDataEntryDocBase class]]) {
-        NSLog(@"Discarding unexpected Docs entry: %@", doc);
-        continue;
-      }
-      NSDictionary* docInfo = [self dictionaryForDoc:doc];
-      [docsById setObject:docInfo forKey:[docInfo objectForKey:kGPMDItemUID]];
+      NSDictionary* docInfo = [self dictionaryForEntry:entry];
+      if (docInfo)
+        [docsById setObject:docInfo forKey:[docInfo objectForKey:kGPMDItemUID]];
+      else
+        NSLog(@"Couldn't get info for Docs entry: %@", entry);
     } @catch (id exception) {
       NSLog(@"Caught exception while processing base Docs info: %@", exception);
     }
@@ -190,18 +197,26 @@ static NSString* const kGDataUserAgent = @"Google-Precipitate-" USER_AGENT_VERSI
   return peopleStrings;
 }
 
-- (NSDictionary*)dictionaryForDoc:(GDataEntryDocBase*)doc {
-  return [NSDictionary dictionaryWithObjectsAndKeys:
-                                            [doc identifier], kDocDictionaryIdentifierPathKey,
-                        [[doc identifier] lastPathComponent], kGPMDItemUID,
-                   [NSNumber numberWithBool:[doc isStarred]], kDocDictionaryStarredKey,
-                                   [[doc title] stringValue], (NSString*)kMDItemTitle,
-                                    [[doc updatedDate] date], kGPMDItemModificationDate,
-            [self peopleStringsForGDataPeople:[doc authors]], (NSString*)kMDItemAuthors,
-                               [[[doc links] HTMLLink] href], (NSString*)kGPMDItemURL,
-                                   [[doc content] sourceURI], kDocDictionarySourceURIKey,
-                     [[doc categories] valueForKey:@"label"], kDocDictionaryCategoriesKey,
+- (NSDictionary*)dictionaryForEntry:(GDataEntryBase*)entry {
+  NSString* title = [[entry title] stringValue];
+  if ([title hasSuffix:@".pdf"])
+    title = [title substringToIndex:([title length] - 4)];
+  NSMutableDictionary* info = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                          [entry identifier], kDocDictionaryIdentifierPathKey,
+                      [[entry identifier] lastPathComponent], kGPMDItemUID,
+                                                       title, (NSString*)kMDItemTitle,
+                                  [[entry updatedDate] date], kGPMDItemModificationDate,
+          [self peopleStringsForGDataPeople:[entry authors]], (NSString*)kMDItemAuthors,
+                             [[[entry links] HTMLLink] href], (NSString*)kGPMDItemURL,
+                                 [[entry content] sourceURI], kDocDictionarySourceURIKey,
+                   [[entry categories] valueForKey:@"label"], kDocDictionaryCategoriesKey,
                                                               nil];
+  if ([entry isKindOfClass:[GDataEntryDocBase class]]) {
+    GDataEntryDocBase* doc = (GDataEntryDocBase*)entry;
+    [info setObject:[NSNumber numberWithBool:[doc isStarred]]
+             forKey:kDocDictionaryStarredKey];
+  }
+  return info;
 }
 
 - (NSString*)contentForDoc:(NSDictionary*)docInfo {
@@ -291,8 +306,13 @@ static NSString* const kGDataUserAgent = @"Google-Precipitate-" USER_AGENT_VERSI
     }
 
     content = contentAccumulator;
+  } else if ([categories containsObject:kDocCategoryPresentation]) {
+    // TODO: there is currently no reliable way to get presentation content
+  } else if ([categories containsObject:kDocCategoryPDF]) {
+    // TODO: there doesn't seem to be a way to get the text content without
+    // downloading the entire PDF, which is potentially very costly.
   } else {
-  // TODO: presentations, which isn't currently possible
+    NSLog(@"Unknown document type: %@", categories);
   }
 
   if (!content)

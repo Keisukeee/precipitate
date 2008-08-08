@@ -37,7 +37,7 @@
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.google.docs.document</string>
+				<string>com.googlecode.precpitate.docs.document</string>
 			</array>
 		</dict>
 		<dict>
@@ -49,7 +49,7 @@
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.google.docs.spreadsheet</string>
+				<string>com.googlecode.precpitate.docs.spreadsheet</string>
 			</array>
 		</dict>
 		<dict>
@@ -61,7 +61,19 @@
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.google.docs.presentation</string>
+				<string>com.googlecode.precpitate.docs.presentation</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeIconFile</key>
+			<string>gdocpdf.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Google Docs PDF</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.googlecode.precpitate.docs.pdf</string>
 			</array>
 		</dict>
 		<dict>
@@ -90,7 +102,7 @@
 			<key>UTTypeIconFile</key>
 			<string>gdocdocument.icns</string>
 			<key>UTTypeIdentifier</key>
-			<string>com.google.docs.document</string>
+			<string>com.googlecode.precpitate.docs.document</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
@@ -110,7 +122,7 @@
 			<key>UTTypeIconFile</key>
 			<string>gdocspreadsheet.icns</string>
 			<key>UTTypeIdentifier</key>
-			<string>com.google.docs.spreadsheet</string>
+			<string>com.googlecode.precpitate.docs.spreadsheet</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
@@ -130,12 +142,32 @@
 			<key>UTTypeIconFile</key>
 			<string>gdocpresentation.icns</string>
 			<key>UTTypeIdentifier</key>
-			<string>com.google.docs.presentation</string>
+			<string>com.googlecode.precpitate.docs.presentation</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
 				<array>
 					<string>gdocpresentation</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.composite-content</string>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Google Docs PDF</string>
+			<key>UTTypeIconFile</key>
+			<string>gdocpdf.icns</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.googlecode.precpitate.docs.pdf</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>gdocpdf</string>
 				</array>
 			</dict>
 		</dict>

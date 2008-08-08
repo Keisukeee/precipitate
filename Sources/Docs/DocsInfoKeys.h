@@ -22,3 +22,4 @@
 #define kDocCategoryDocument @"document"
 #define kDocCategorySpreadsheet @"spreadsheet"
 #define kDocCategoryPresentation @"presentation"
+#define kDocCategoryPDF @"pdf"

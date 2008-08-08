@@ -25,7 +25,7 @@
     -->
 
     <types>
-        <type name="com.google.docs.document">
+        <type name="com.googlecode.precpitate.docs.document">
             <allattrs>
             kMDItemTitle kMDItemTextContent kMDItemAuthors kMDItemContentModificationDate
             </allattrs>
@@ -33,7 +33,7 @@
             kMDItemTitle kMDItemTextContent kMDItemAuthors kMDItemContentModificationDate
             </displayattrs>
         </type>
-        <type name="com.google.docs.spreadsheet">
+        <type name="com.googlecode.precpitate.docs.spreadsheet">
             <allattrs>
             kMDItemTitle kMDItemTextContent kMDItemAuthors kMDItemContentModificationDate
             </allattrs>
@@ -41,7 +41,15 @@
             kMDItemTitle kMDItemTextContent kMDItemAuthors kMDItemContentModificationDate
             </displayattrs>
         </type>
-        <type name="com.google.docs.presentation">
+        <type name="com.googlecode.precpitate.docs.presentation">
+            <allattrs>
+            kMDItemTitle kMDItemTextContent kMDItemAuthors kMDItemContentModificationDate
+            </allattrs>
+             <displayattrs>
+            kMDItemTitle kMDItemTextContent kMDItemAuthors kMDItemContentModificationDate
+            </displayattrs>
+        </type>
+        <type name="com.googlecode.precpitate.docs.pdf">
             <allattrs>
             kMDItemTitle kMDItemTextContent kMDItemAuthors kMDItemContentModificationDate
             </allattrs>

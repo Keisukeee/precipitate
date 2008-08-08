@@ -55,6 +55,7 @@
 		33582E5A0E1599CC00279D7F /* GPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 332204320D4EA23100EE30FF /* GPKeychainItem.m */; };
 		33582E5B0E1599CD00279D7F /* GPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 332204320D4EA23100EE30FF /* GPKeychainItem.m */; };
 		336B1C180D53B4390019F6B2 /* GPDocsSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 334CAE1E0D0F6798006BAF54 /* GPDocsSync.m */; };
+		337440490E4C0B2300CFB4FC /* gdocpdf.icns in Resources */ = {isa = PBXBuildFile; fileRef = 337440460E4C0B1000CFB4FC /* gdocpdf.icns */; };
 		337B5FA20E315BAD00847BC1 /* GTMHTTPFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 337B5FA10E315BAD00847BC1 /* GTMHTTPFetcher.m */; };
 		33802EA10D9885B4008BCA40 /* Precipitate.app in Resources */ = {isa = PBXBuildFile; fileRef = 8D1107320486CEB800E47090 /* Precipitate.app */; };
 		33802EB50D9885E7008BCA40 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -269,6 +270,7 @@
 		335827390E14516600279D7F /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/GoogleDocs.strings; sourceTree = "<group>"; };
 		335827840E1451C000279D7F /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/PrefPane.strings; sourceTree = "<group>"; };
 		33582D440E15895800279D7F /* GData.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GData.xcodeproj; path = "external/gdata-objectivec-client/Source/GData.xcodeproj"; sourceTree = "<group>"; };
+		337440460E4C0B1000CFB4FC /* gdocpdf.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = gdocpdf.icns; path = Sources/Docs/gdocpdf.icns; sourceTree = "<group>"; };
 		337B5FA00E315BAD00847BC1 /* GTMHTTPFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMHTTPFetcher.h; path = "external/google-toolbox-for-mac/Foundation/GTMHTTPFetcher.h"; sourceTree = "<group>"; };
 		337B5FA10E315BAD00847BC1 /* GTMHTTPFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMHTTPFetcher.m; path = "external/google-toolbox-for-mac/Foundation/GTMHTTPFetcher.m"; sourceTree = "<group>"; };
 		337B5FAA0E315E3100847BC1 /* GTMDebugSelectorValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMDebugSelectorValidation.h; path = "external/google-toolbox-for-mac/DebugUtils/GTMDebugSelectorValidation.h"; sourceTree = "<group>"; };
@@ -586,6 +588,7 @@
 				334CAF1D0D1C3E58006BAF54 /* gdocdocument.icns */,
 				334CAF1E0D1C3E58006BAF54 /* gdocpresentation.icns */,
 				334CAF1F0D1C3E58006BAF54 /* gdocspreadsheet.icns */,
+				337440460E4C0B1000CFB4FC /* gdocpdf.icns */,
 				334CAF050D17235F006BAF54 /* gdoc.icns */,
 				33FED7E40D4E5E830075A454 /* Source */,
 				33BBBC190D2C4E35007FE6D7 /* Importer */,
@@ -831,6 +834,7 @@
 				33F88F470D50F2DD00790AEF /* gdocspreadsheet.icns in Resources */,
 				33F88F480D50F2DD00790AEF /* gdoc.icns in Resources */,
 				33F891180D51408900790AEF /* Localizable.strings in Resources */,
+				337440490E4C0B2300CFB4FC /* gdocpdf.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

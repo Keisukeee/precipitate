@@ -11,9 +11,10 @@
 			<string>MDImporter</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.google.docs.document</string>
-				<string>com.google.docs.spreadsheet</string>
-				<string>com.google.docs.presentation</string>
+				<string>com.googlecode.precpitate.docs.document</string>
+				<string>com.googlecode.precpitate.docs.spreadsheet</string>
+				<string>com.googlecode.precpitate.docs.presentation</string>
+				<string>com.googlecode.precpitate.docs.pdf</string>
 			</array>
 		</dict>
 	</array>
