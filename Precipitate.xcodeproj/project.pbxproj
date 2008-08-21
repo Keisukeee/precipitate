@@ -44,7 +44,6 @@
 		331FFDDA0D9328D30044B7F1 /* PrecipitatePrefPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 331FFDD80D9328D30044B7F1 /* PrecipitatePrefPane.xib */; };
 		331FFE2E0D94333D0044B7F1 /* GPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 332204320D4EA23100EE30FF /* GPKeychainItem.m */; };
 		332204430D4EA96C00EE30FF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332204420D4EA96C00EE30FF /* Security.framework */; };
-		3358273A0E14516600279D7F /* GoogleDocs.strings in Resources */ = {isa = PBXBuildFile; fileRef = 335827380E14516600279D7F /* GoogleDocs.strings */; };
 		335827850E1451C000279D7F /* PrefPane.strings in Resources */ = {isa = PBXBuildFile; fileRef = 335827830E1451C000279D7F /* PrefPane.strings */; };
 		33582B8C0E157F0200279D7F /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */; };
 		33582DE60E158F8600279D7F /* GoogleDocs.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 33FED7D60D4E5DC50075A454 /* GoogleDocs.bundle */; };
@@ -82,6 +81,7 @@
 		33BBBC4B0D2C5179007FE6D7 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */; };
 		33BBBC4C0D2C5182007FE6D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
 		33D794F00E1D39CD004A8D9C /* GData.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 33D7942D0E1D39B6004A8D9C /* GData.framework */; };
+		33F0856C0E5CF17C00DB70B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33F891160D51408900790AEF /* Localizable.strings */; };
 		33F88F450D50F2DD00790AEF /* gdocdocument.icns in Resources */ = {isa = PBXBuildFile; fileRef = 334CAF1D0D1C3E58006BAF54 /* gdocdocument.icns */; };
 		33F88F460D50F2DD00790AEF /* gdocpresentation.icns in Resources */ = {isa = PBXBuildFile; fileRef = 334CAF1E0D1C3E58006BAF54 /* gdocpresentation.icns */; };
 		33F88F470D50F2DD00790AEF /* gdocspreadsheet.icns in Resources */ = {isa = PBXBuildFile; fileRef = 334CAF1F0D1C3E58006BAF54 /* gdocspreadsheet.icns */; };
@@ -267,7 +267,6 @@
 		334CAF1E0D1C3E58006BAF54 /* gdocpresentation.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = gdocpresentation.icns; path = Sources/Docs/gdocpresentation.icns; sourceTree = "<group>"; };
 		334CAF1F0D1C3E58006BAF54 /* gdocspreadsheet.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = gdocspreadsheet.icns; path = Sources/Docs/gdocspreadsheet.icns; sourceTree = "<group>"; };
 		334CAFFE0D1C4BF4006BAF54 /* DocsInfoKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocsInfoKeys.h; path = Sources/Docs/DocsInfoKeys.h; sourceTree = "<group>"; };
-		335827390E14516600279D7F /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/GoogleDocs.strings; sourceTree = "<group>"; };
 		335827840E1451C000279D7F /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/PrefPane.strings; sourceTree = "<group>"; };
 		33582D440E15895800279D7F /* GData.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GData.xcodeproj; path = "external/gdata-objectivec-client/Source/GData.xcodeproj"; sourceTree = "<group>"; };
 		337440460E4C0B1000CFB4FC /* gdocpdf.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = gdocpdf.icns; path = Sources/Docs/gdocpdf.icns; sourceTree = "<group>"; };
@@ -539,7 +538,6 @@
 		33897EF20D4FB24200A54981 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				335827380E14516600279D7F /* GoogleDocs.strings */,
 				33FED7D70D4E5DC50075A454 /* GoogleDocs-Info.plist */,
 			);
 			name = Resources;
@@ -793,6 +791,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33897EE10D4FB16E00A54981 /* TestHarness.xib in Resources */,
+				33F0856C0E5CF17C00DB70B9 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -819,7 +818,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3358273A0E14516600279D7F /* GoogleDocs.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1042,14 +1040,6 @@
 				331FFDD90D9328D30044B7F1 /* English */,
 			);
 			name = PrecipitatePrefPane.xib;
-			sourceTree = "<group>";
-		};
-		335827380E14516600279D7F /* GoogleDocs.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				335827390E14516600279D7F /* English */,
-			);
-			name = GoogleDocs.strings;
 			sourceTree = "<group>";
 		};
 		335827830E1451C000279D7F /* PrefPane.strings */ = {

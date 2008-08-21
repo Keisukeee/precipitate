@@ -45,10 +45,7 @@ static NSString* const kGDataUserAgent = @"Google-Precipitate-" USER_AGENT_VERSI
   GPKeychainItem* loginCredentials =
     [GPKeychainItem keychainItemForService:kPrecipitateGoogleAccountKeychainServiceName];
   if (!loginCredentials) {
-    NSString* errorString =
-      [[NSBundle bundleForClass:[self class]] localizedStringForKey:@"NoLoginInfo"
-                                                              value:@"NoLoginInfo"
-                                                              table:@"GoogleDocs"];
+    NSString* errorString = NSLocalizedString(@"NoLoginInfo", nil);
     NSDictionary* errorInfo = [NSDictionary dictionaryWithObject:errorString
                                                           forKey:NSLocalizedDescriptionKey];
     [manager_ infoFetchFailedForSource:self withError:[NSError errorWithDomain:@"LoginFailure"
@@ -161,10 +158,7 @@ static NSString* const kGDataUserAgent = @"Google-Precipitate-" USER_AGENT_VERSI
 - (void)serviceTicket:(GDataServiceTicket *)ticket
       failedWithError:(NSError *)error {
   if ([error code] == 403) {
-    NSString* errorString =
-      [[NSBundle bundleForClass:[self class]] localizedStringForKey:@"LoginFailed"
-                                                              value:@"LoginFailed"
-                                                              table:@"GoogleDocs"];
+    NSString* errorString = NSLocalizedString(@"LoginFailed", nil);
     NSDictionary* errorInfo = [NSDictionary dictionaryWithObject:errorString
                                                           forKey:NSLocalizedDescriptionKey];
     [manager_ infoFetchFailedForSource:self withError:[NSError errorWithDomain:@"LoginFailure"
@@ -207,7 +201,7 @@ static NSString* const kGDataUserAgent = @"Google-Precipitate-" USER_AGENT_VERSI
                                                        title, (NSString*)kMDItemTitle,
                                   [[entry updatedDate] date], kGPMDItemModificationDate,
           [self peopleStringsForGDataPeople:[entry authors]], (NSString*)kMDItemAuthors,
-                             [[[entry links] HTMLLink] href], (NSString*)kGPMDItemURL,
+                                     [[entry HTMLLink] href], (NSString*)kGPMDItemURL,
                                  [[entry content] sourceURI], kDocDictionarySourceURIKey,
                    [[entry categories] valueForKey:@"label"], kDocDictionaryCategoriesKey,
                                                               nil];

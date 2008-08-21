@@ -1,3 +1,3 @@
-"LoginFailureTitle" = "Failed to log in to Google Docs";
-"LoginFailureText" = "Please check your Google Docs username and password and try again.";
-"OK" = "OK";
+/* Common login failure messages, for use by sources */
+"NoLoginInfo" = "No login information";
+"LoginFailed" = "Login failed";
