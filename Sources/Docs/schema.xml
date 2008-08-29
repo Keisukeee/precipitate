@@ -27,34 +27,34 @@
     <types>
         <type name="com.googlecode.precpitate.docs.document">
             <allattrs>
-            kMDItemTitle kMDItemTextContent kMDItemAuthors kMDItemContentModificationDate
+            kMDItemTitle kMDItemTextContent kMDItemAuthors kMDItemContentModificationDate kMDItemDisplayName
             </allattrs>
              <displayattrs>
-            kMDItemTitle kMDItemTextContent kMDItemAuthors kMDItemContentModificationDate
+            kMDItemTitle kMDItemTextContent kMDItemAuthors kMDItemContentModificationDate kMDItemDisplayName
             </displayattrs>
         </type>
         <type name="com.googlecode.precpitate.docs.spreadsheet">
             <allattrs>
-            kMDItemTitle kMDItemTextContent kMDItemAuthors kMDItemContentModificationDate
+            kMDItemTitle kMDItemTextContent kMDItemAuthors kMDItemContentModificationDate kMDItemDisplayName
             </allattrs>
              <displayattrs>
-            kMDItemTitle kMDItemTextContent kMDItemAuthors kMDItemContentModificationDate
+            kMDItemTitle kMDItemTextContent kMDItemAuthors kMDItemContentModificationDate kMDItemDisplayName
             </displayattrs>
         </type>
         <type name="com.googlecode.precpitate.docs.presentation">
             <allattrs>
-            kMDItemTitle kMDItemTextContent kMDItemAuthors kMDItemContentModificationDate
+            kMDItemTitle kMDItemTextContent kMDItemAuthors kMDItemContentModificationDate kMDItemDisplayName
             </allattrs>
              <displayattrs>
-            kMDItemTitle kMDItemTextContent kMDItemAuthors kMDItemContentModificationDate
+            kMDItemTitle kMDItemTextContent kMDItemAuthors kMDItemContentModificationDate kMDItemDisplayName
             </displayattrs>
         </type>
         <type name="com.googlecode.precpitate.docs.pdf">
             <allattrs>
-            kMDItemTitle kMDItemTextContent kMDItemAuthors kMDItemContentModificationDate
+            kMDItemTitle kMDItemTextContent kMDItemAuthors kMDItemContentModificationDate kMDItemDisplayName
             </allattrs>
              <displayattrs>
-            kMDItemTitle kMDItemTextContent kMDItemAuthors kMDItemContentModificationDate
+            kMDItemTitle kMDItemTextContent kMDItemAuthors kMDItemContentModificationDate kMDItemDisplayName
             </displayattrs>
         </type>
     </types>

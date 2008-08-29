@@ -358,6 +358,9 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
     NSString* filename = [[self class] cacheFilenameForItem:item fromSource:source];
     NSString* itemPath = [directoryPath stringByAppendingPathComponent:filename];
     [item writeToFile:itemPath atomically:YES];
+    [fileManager changeFileAttributes:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES]
+                                                                  forKey:NSFileExtensionHidden]
+                               atPath:itemPath];
   }
 }
 

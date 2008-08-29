@@ -30,6 +30,9 @@ Boolean GetMetadataForFile(void* thisInterface,
   
   [(NSMutableDictionary*)attributes setObject:[fileInfo objectForKey:(NSString*)kMDItemTitle]
                                        forKey:(NSString*)kMDItemTitle];
+  [(NSMutableDictionary*)attributes setObject:[NSDictionary dictionaryWithObject:[fileInfo objectForKey:(NSString*)kMDItemTitle]
+                                                                          forKey:@""]
+                                       forKey:(NSString*)kMDItemDisplayName];
   [(NSMutableDictionary*)attributes setObject:[fileInfo objectForKey:(NSString*)kMDItemTextContent]
                                        forKey:(NSString*)kMDItemTextContent];
   [(NSMutableDictionary*)attributes setObject:[fileInfo objectForKey:(NSString*)kMDItemAuthors]
