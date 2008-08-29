@@ -71,8 +71,8 @@
 		33897ED80D4FB0F800A54981 /* Precipitate.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33897ED60D4FB0F800A54981 /* Precipitate.xib */; };
 		33897EE10D4FB16E00A54981 /* TestHarness.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33897EDF0D4FB16E00A54981 /* TestHarness.xib */; };
 		33897F5A0D4FCCFD00A54981 /* Precipitate.icns in Resources */ = {isa = PBXBuildFile; fileRef = 33897F590D4FCCFD00A54981 /* Precipitate.icns */; };
-		33AE44FC0E11B584007DE32B /* GPSourcePreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AE44FB0E11B584007DE32B /* GPSourcePreferences.m */; };
-		33AE44FD0E11B584007DE32B /* GPSourcePreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AE44FB0E11B584007DE32B /* GPSourcePreferences.m */; };
+		33AE44FC0E11B584007DE32B /* GPSharedPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AE44FB0E11B584007DE32B /* GPSharedPreferences.m */; };
+		33AE44FD0E11B584007DE32B /* GPSharedPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AE44FB0E11B584007DE32B /* GPSharedPreferences.m */; };
 		33AE46A50E12F706007DE32B /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */; };
 		33B207410D3B25BA00C8F541 /* GPSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B207400D3B25BA00C8F541 /* GPSyncController.m */; };
 		33BBBC380D2C4F15007FE6D7 /* Sources/Docs/schema.xml in Resources */ = {isa = PBXBuildFile; fileRef = 33BBBC370D2C4F15007FE6D7 /* Sources/Docs/schema.xml */; };
@@ -290,8 +290,8 @@
 		33897EE00D4FB16E00A54981 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/TestHarness.xib; sourceTree = "<group>"; };
 		33897F590D4FCCFD00A54981 /* Precipitate.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Precipitate.icns; path = PrefPane/Precipitate.icns; sourceTree = "<group>"; };
 		33AE42EB0E0AFE17007DE32B /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMDefines.h; path = "external/google-toolbox-for-mac/GTMDefines.h"; sourceTree = "<group>"; };
-		33AE44FA0E11B584007DE32B /* GPSourcePreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPSourcePreferences.h; path = Shared/GPSourcePreferences.h; sourceTree = "<group>"; };
-		33AE44FB0E11B584007DE32B /* GPSourcePreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPSourcePreferences.m; path = Shared/GPSourcePreferences.m; sourceTree = "<group>"; };
+		33AE44FA0E11B584007DE32B /* GPSharedPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPSharedPreferences.h; path = Shared/GPSharedPreferences.h; sourceTree = "<group>"; };
+		33AE44FB0E11B584007DE32B /* GPSharedPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPSharedPreferences.m; path = Shared/GPSharedPreferences.m; sourceTree = "<group>"; };
 		33AE45950E11C965007DE32B /* GTMGarbageCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMGarbageCollection.h; path = "external/google-toolbox-for-mac/Foundation/GTMGarbageCollection.h"; sourceTree = "<group>"; };
 		33B0CB860D4A585600366ACB /* GPSyncProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPSyncProtocol.h; path = Shared/GPSyncProtocol.h; sourceTree = "<group>"; };
 		33B2073F0D3B25BA00C8F541 /* GPSyncController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPSyncController.h; path = Agent/GPSyncController.h; sourceTree = "<group>"; };
@@ -497,8 +497,8 @@
 		3388D3440D906D7D00FFC510 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				33AE44FA0E11B584007DE32B /* GPSourcePreferences.h */,
-				33AE44FB0E11B584007DE32B /* GPSourcePreferences.m */,
+				33AE44FA0E11B584007DE32B /* GPSharedPreferences.h */,
+				33AE44FB0E11B584007DE32B /* GPSharedPreferences.m */,
 				3388D3400D906D6A00FFC510 /* GPSourceStatus.h */,
 				3388D3410D906D6A00FFC510 /* GPSourceStatus.m */,
 				331FFE360D943A3B0044B7F1 /* SharedConstants.h */,
@@ -938,7 +938,7 @@
 				3388D3280D906D4200FFC510 /* PrecipitatePreferencePane.m in Sources */,
 				3388D3430D906D7100FFC510 /* GPSourceStatus.m in Sources */,
 				331FFE2E0D94333D0044B7F1 /* GPKeychainItem.m in Sources */,
-				33AE44FD0E11B584007DE32B /* GPSourcePreferences.m in Sources */,
+				33AE44FD0E11B584007DE32B /* GPSharedPreferences.m in Sources */,
 				331A49380E15B9AC00D855C0 /* GTMSystemVersion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -969,7 +969,7 @@
 				33B207410D3B25BA00C8F541 /* GPSyncController.m in Sources */,
 				3388D3420D906D6A00FFC510 /* GPSourceStatus.m in Sources */,
 				3388D37D0D906F0200FFC510 /* GTMNSFileManager+Path.m in Sources */,
-				33AE44FC0E11B584007DE32B /* GPSourcePreferences.m in Sources */,
+				33AE44FC0E11B584007DE32B /* GPSharedPreferences.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

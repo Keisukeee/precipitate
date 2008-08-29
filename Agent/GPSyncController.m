@@ -15,7 +15,7 @@
 //
 
 #import "GPSyncController.h"
-#import "GPSourcePreferences.h"
+#import "GPSharedPreferences.h"
 #import "GPSourceStatus.h"
 #import "SharedConstants.h"
 #import "GTMGarbageCollection.h"
@@ -24,11 +24,6 @@
 static NSString* const kIDSlashReplacementToken = @":SLASH:";
 
 static NSString* const kDistributedKillNotification = @"GPSyncControllerKillNotification";
-
-static NSString* const kPrefCustomLaunchKey = @"CustomLaunchers";
-
-// sync the cache every hour
-static const NSTimeInterval kUpdatePeriod = 3600.0;
 
 static NSString* const kDefaultCacheExtension = @"precipitate";
 
@@ -39,7 +34,7 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
 - (NSString*)cachePathForSource:(id<GPSyncSource>)source;
 - (void)loadSources;
 - (void)syncAllSources;
-- (void)updateSource;
+- (void)updateSources;
 - (void)finishedSource:(id<GPSyncSource>)source withError:(NSError*)error;
 
 @end
@@ -68,13 +63,7 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
 
   currentlySyncingSources_ = [[NSMutableSet alloc] init];
   syncStatus_ = [[GPSourceStatus sharedSourceStatus] retain];
-  [self loadSources];
-  [self syncAllSources];
-  [NSTimer scheduledTimerWithTimeInterval:kUpdatePeriod
-                                   target:self
-                                 selector:@selector(updateSources)
-                                 userInfo:nil
-                                  repeats:YES];
+  [self updateSources];
 }
 
 - (void)dealloc {
@@ -145,7 +134,7 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
 - (void)syncAllSources {
   NSDistributedNotificationCenter* dnc = [NSDistributedNotificationCenter defaultCenter];
   [dnc postNotificationName:kPrecipitateSyncStartedNotification object:nil userInfo:nil];
-  GPSourcePreferences* sourcePrefs = [GPSourcePreferences sharedSourcePreferences];
+  GPSharedPreferences* sourcePrefs = [GPSharedPreferences sharedPreferences];
   NSEnumerator* sourceEnumerator = [sources_ objectEnumerator];
   id<GPSyncSource> source;
   while ((source = [sourceEnumerator nextObject])) {
@@ -218,10 +207,17 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
                                                             forKey:kGPSourcePrefDisplayNameKey]
                          forKey:[self identifierForSource:source]];
   }
-  [[GPSourcePreferences sharedSourcePreferences] setAvailableSources:availableSources];
+  [[GPSharedPreferences sharedPreferences] setAvailableSources:availableSources];
 }
 
 - (void)updateSources {
+  // Schedule the next update up front, so that a slow source won't delay everything
+  [[self class] cancelPreviousPerformRequestsWithTarget:self
+                                               selector:@selector(updateSources)
+                                                 object:nil];
+  NSTimeInterval updateInterval = [[GPSharedPreferences sharedPreferences] updateInterval];
+  [self performSelector:@selector(updateSources) withObject:nil afterDelay:updateInterval];
+
   [self loadSources];
   [self syncAllSources];
 }
@@ -401,11 +397,8 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
     if (!url)
       return NO;
 
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    // Synchronize to pick up any defaults writes that may have happened.
-    [defaults synchronize];
     NSString* sourceId = [self identifierForSource:managingSource];
-    NSString* launcherId = [[defaults dictionaryForKey:kPrefCustomLaunchKey] objectForKey:sourceId];
+    NSString* launcherId = [[GPSharedPreferences sharedPreferences] customLauncherForSource:sourceId];
     if (launcherId) {
       return [[NSWorkspace sharedWorkspace] openURLs:[NSArray arrayWithObject:url]
                              withAppBundleIdentifier:launcherId

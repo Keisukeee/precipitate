@@ -16,7 +16,7 @@
 
 #import "PrecipitatePreferencePane.h"
 
-#import "GPSourcePreferences.h"
+#import "GPSharedPreferences.h"
 #import "GPSourceStatus.h"
 #import "SharedConstants.h"
 #import "GPKeychainItem.h"
@@ -166,8 +166,8 @@
 - (void)setEnabled:(BOOL)value {
   if (enabled_ != value) {
     enabled_ = value;
-    [[GPSourcePreferences sharedSourcePreferences] setEnabled:enabled_
-                                                    forSource:[self identifier]];
+    [[GPSharedPreferences sharedPreferences] setEnabled:enabled_
+                                              forSource:[self identifier]];
   }
 }
 
@@ -368,7 +368,7 @@
 }
 
 - (void)populateSourceList {
-  NSDictionary* allSourceInfo = [[GPSourcePreferences sharedSourcePreferences] availableSources];
+  NSDictionary* allSourceInfo = [[GPSharedPreferences sharedPreferences] availableSources];
   NSDictionary* allSourceStatus = [sourceStatusManager_ allStatuses];
 
   NSMutableArray* statusList = [NSMutableArray arrayWithCapacity:[allSourceInfo count]];

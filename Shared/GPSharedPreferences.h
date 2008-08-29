@@ -22,11 +22,11 @@ NSString* const kGPSourcePrefEnabledKey;
 // Provides an interface to the shared preferences domain used by various
 // parts of Precipitate. Note that this class does not allow observing any
 // pref values for changes made either internally or in another process.
-@interface GPSourcePreferences : NSObject {
+@interface GPSharedPreferences : NSObject {
 }
 
 // Returns the shared preferences object
-+ (GPSourcePreferences*)sharedSourcePreferences;
++ (GPSharedPreferences*)sharedPreferences;
 
 // Sets the list of available sources. |sourceInfo| should be a dictionary
 // mapping the identifier of each available source to an info dictionary
@@ -44,5 +44,12 @@ NSString* const kGPSourcePrefEnabledKey;
 
 // Gets the enabled status for the given source
 - (BOOL)sourceIsEnabled:(NSString*)sourceId;
+
+// Gets the interval for refreshing all the sources.
+// This method internally enforces a sane lower-bound on the interval
+- (NSTimeInterval)updateInterval;
+
+// Gets the bundle id of the custom launching application for the given source.
+- (NSString*)customLauncherForSource:(NSString*)sourceId;
 
 @end
