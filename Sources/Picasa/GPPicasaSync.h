@@ -14,12 +14,14 @@
 // limitations under the License.
 //
 
-// The service name used for Precipitate's keychain entry.
-#define kPrecipitateGoogleAccountKeychainServiceName @"Precipitate: Google Account"
+#import <Cocoa/Cocoa.h>
+#import <GData/GData.h>
+#import "GPSyncProtocol.h"
 
-#define kPrecipitateUserAgent @"Google-Precipitate-" USER_AGENT_VERSION
 
-// Distributed notifications used for coordination of the UI and the helper app.
-#define kPrecipitateReSyncNeededNotification @"PrecipitateReSyncNeeded"
-#define kPrecipitateSyncStartedNotification @"PrecipitateSyncStarted"
-#define kPrecipitateSyncFinishedNotification @"PrecipitateSyncFinished"
+@interface GPPicasaSync : NSObject <GPSyncSource> {
+  id<GPSyncManager>              manager_;  // weak
+  GDataServiceGooglePicasaWeb*   picasaService_;
+}
+
+@end

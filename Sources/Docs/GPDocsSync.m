@@ -19,8 +19,6 @@
 #import "SharedConstants.h"
 #import "GPKeychainItem.h"
 
-static NSString* const kGDataUserAgent = @"Google-Precipitate-" USER_AGENT_VERSION;
-
 @interface GPDocsSync (Private)
 
 - (NSArray*)peopleStringsForGDataPeople:(NSArray*)people;
@@ -63,14 +61,14 @@ static NSString* const kGDataUserAgent = @"Google-Precipitate-" USER_AGENT_VERSI
   
   [docService_ autorelease];
   docService_ = [[GDataServiceGoogleDocs alloc] init];
-  [docService_ setUserAgent:kGDataUserAgent];
+  [docService_ setUserAgent:kPrecipitateUserAgent];
   [docService_ setUserCredentialsWithUsername:username password:password];
   [docService_ setIsServiceRetryEnabled:YES];
   [docService_ setServiceShouldFollowNextLinks:YES];
 
   [spreadsheetService_ autorelease];
   spreadsheetService_ = [[GDataServiceGoogleSpreadsheet alloc] init];
-  [spreadsheetService_ setUserAgent:kGDataUserAgent];
+  [spreadsheetService_ setUserAgent:kPrecipitateUserAgent];
   [spreadsheetService_ setUserCredentialsWithUsername:username password:password];
   [spreadsheetService_ setIsServiceRetryEnabled:YES];
 

@@ -16,7 +16,7 @@
 
 #include <Foundation/Foundation.h>
 #include <CoreServices/CoreServices.h>
-#include "DocsInfoKeys.h"
+#include "PWAInfoKeys.h"
 #include "GPSyncProtocol.h"
 
 Boolean GetMetadataForFile(void* thisInterface, 
@@ -27,18 +27,23 @@ Boolean GetMetadataForFile(void* thisInterface,
   NSDictionary* fileInfo = [NSDictionary dictionaryWithContentsOfFile:(NSString*)pathToFile];
   if (!fileInfo)
     return FALSE;
-  
+
   [(NSMutableDictionary*)attributes setObject:[fileInfo objectForKey:(NSString*)kMDItemTitle]
                                        forKey:(NSString*)kMDItemTitle];
   [(NSMutableDictionary*)attributes setObject:[NSDictionary dictionaryWithObject:[fileInfo objectForKey:(NSString*)kMDItemTitle]
                                                                           forKey:@""]
                                        forKey:(NSString*)kMDItemDisplayName];
-  [(NSMutableDictionary*)attributes setObject:[fileInfo objectForKey:(NSString*)kMDItemTextContent]
-                                       forKey:(NSString*)kMDItemTextContent];
+  [(NSMutableDictionary*)attributes setObject:[fileInfo objectForKey:(NSString*)kMDItemDescription]
+                                       forKey:(NSString*)kMDItemDescription];
   [(NSMutableDictionary*)attributes setObject:[fileInfo objectForKey:(NSString*)kMDItemAuthors]
                                        forKey:(NSString*)kMDItemAuthors];
+  // There's no generic location field, so just use comment.
+  [(NSMutableDictionary*)attributes setObject:[fileInfo objectForKey:kAlbumDictionaryLocationKey]
+                                       forKey:(NSString*)kMDItemComment];
   [(NSMutableDictionary*)attributes setObject:[fileInfo objectForKey:kGPMDItemModificationDate]
                                        forKey:(NSString*)kMDItemContentModificationDate];
+  [(NSMutableDictionary*)attributes setObject:[fileInfo objectForKey:(NSString*)kMDItemContentCreationDate]
+                                       forKey:(NSString*)kMDItemContentCreationDate];
   
   return TRUE;
 }

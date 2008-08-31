@@ -88,6 +88,30 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>pwaalbum</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>pwaalbum.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Picasa Web Album</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>pwaphoto</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>pwaphoto.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Picasa Web Albums photo</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
 	</array>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
@@ -168,6 +192,46 @@
 				<key>public.filename-extension</key>
 				<array>
 					<string>gdocpdf</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.composite-content</string>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Picasa Web Album</string>
+			<key>UTTypeIconFile</key>
+			<string>pwaalbum.icns</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.googlecode.precpitate.pwa.album</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>pwaalbum</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.image</string>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Picasa Web Albums photo</string>
+			<key>UTTypeIconFile</key>
+			<string>pwaphoto.icns</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.googlecode.precpitate.pwa.photo</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>pwaphoto</string>
 				</array>
 			</dict>
 		</dict>

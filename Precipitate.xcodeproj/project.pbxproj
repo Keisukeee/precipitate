@@ -29,6 +29,7 @@
 				33582DEA0E158F9900279D7F /* PBXTargetDependency */,
 				33582DFA0E158FD000279D7F /* PBXTargetDependency */,
 				33582DEE0E158F9F00279D7F /* PBXTargetDependency */,
+				33F0841D0E5CE73600DB70B9 /* PBXTargetDependency */,
 			);
 			name = "Bundle Sources";
 			productName = "Bundle Sources";
@@ -51,8 +52,13 @@
 		33582E350E1595CD00279D7F /* GData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33582D4B0E15895800279D7F /* GData.framework */; };
 		33582E430E15976D00279D7F /* GData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33582D4B0E15895800279D7F /* GData.framework */; };
 		33582E4F0E1597AD00279D7F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332204420D4EA96C00EE30FF /* Security.framework */; };
-		33582E5A0E1599CC00279D7F /* GPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 332204320D4EA23100EE30FF /* GPKeychainItem.m */; };
-		33582E5B0E1599CD00279D7F /* GPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 332204320D4EA23100EE30FF /* GPKeychainItem.m */; };
+		336232530E6A039400DD5373 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
+		336232540E6A039400DD5373 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */; };
+		336232E70E6A050700DD5373 /* GetMetadataForFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 336232E30E6A04EB00DD5373 /* GetMetadataForFile.m */; };
+		336232E80E6A050700DD5373 /* Importer-main.c in Sources */ = {isa = PBXBuildFile; fileRef = 336232E40E6A04EB00DD5373 /* Importer-main.c */; };
+		336232E90E6A050700DD5373 /* schema.xml in Resources */ = {isa = PBXBuildFile; fileRef = 336232E50E6A04EB00DD5373 /* schema.xml */; };
+		3362332F0E6A0E7500DD5373 /* PrecipitatePicasaImporter.mdimporter in Copy Importers */ = {isa = PBXBuildFile; fileRef = 336232580E6A039400DD5373 /* PrecipitatePicasaImporter.mdimporter */; };
+		336233660E6A123D00DD5373 /* pwaalbum.icns in Resources */ = {isa = PBXBuildFile; fileRef = 336233650E6A123D00DD5373 /* pwaalbum.icns */; };
 		336B1C180D53B4390019F6B2 /* GPDocsSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 334CAE1E0D0F6798006BAF54 /* GPDocsSync.m */; };
 		337440490E4C0B2300CFB4FC /* gdocpdf.icns in Resources */ = {isa = PBXBuildFile; fileRef = 337440460E4C0B1000CFB4FC /* gdocpdf.icns */; };
 		337B5FA20E315BAD00847BC1 /* GTMHTTPFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 337B5FA10E315BAD00847BC1 /* GTMHTTPFetcher.m */; };
@@ -75,13 +81,23 @@
 		33AE44FD0E11B584007DE32B /* GPSharedPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 33AE44FB0E11B584007DE32B /* GPSharedPreferences.m */; };
 		33AE46A50E12F706007DE32B /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */; };
 		33B207410D3B25BA00C8F541 /* GPSyncController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33B207400D3B25BA00C8F541 /* GPSyncController.m */; };
-		33BBBC380D2C4F15007FE6D7 /* Sources/Docs/schema.xml in Resources */ = {isa = PBXBuildFile; fileRef = 33BBBC370D2C4F15007FE6D7 /* Sources/Docs/schema.xml */; };
+		33BBBC380D2C4F15007FE6D7 /* schema.xml in Resources */ = {isa = PBXBuildFile; fileRef = 33BBBC370D2C4F15007FE6D7 /* schema.xml */; };
 		33BBBC480D2C5153007FE6D7 /* GetMetadataForFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BBBC460D2C5153007FE6D7 /* GetMetadataForFile.m */; };
 		33BBBC490D2C5153007FE6D7 /* Importer-main.c in Sources */ = {isa = PBXBuildFile; fileRef = 33BBBC470D2C5153007FE6D7 /* Importer-main.c */; };
 		33BBBC4B0D2C5179007FE6D7 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */; };
 		33BBBC4C0D2C5182007FE6D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
 		33D794F00E1D39CD004A8D9C /* GData.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 33D7942D0E1D39B6004A8D9C /* GData.framework */; };
+		33F0838C0E5CE61000DB70B9 /* GData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33582D4B0E15895800279D7F /* GData.framework */; };
+		33F0838D0E5CE61000DB70B9 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */; };
+		33F0838E0E5CE61000DB70B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
+		33F0838F0E5CE61000DB70B9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332204420D4EA96C00EE30FF /* Security.framework */; };
+		33F083900E5CE61000DB70B9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F892120D5290B300790AEF /* WebKit.framework */; };
+		33F083A30E5CE65F00DB70B9 /* GPPicasaSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F083800E5CDFBC00DB70B9 /* GPPicasaSync.m */; };
 		33F0856C0E5CF17C00DB70B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33F891160D51408900790AEF /* Localizable.strings */; };
+		33F086180E68738D00DB70B9 /* PicasaWebAlbums.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 33F083950E5CE61000DB70B9 /* PicasaWebAlbums.bundle */; };
+		33F087140E687BD900DB70B9 /* GPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 332204320D4EA23100EE30FF /* GPKeychainItem.m */; };
+		33F087150E687BDA00DB70B9 /* GPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 332204320D4EA23100EE30FF /* GPKeychainItem.m */; };
+		33F087160E687BDE00DB70B9 /* GPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 332204320D4EA23100EE30FF /* GPKeychainItem.m */; };
 		33F88F450D50F2DD00790AEF /* gdocdocument.icns in Resources */ = {isa = PBXBuildFile; fileRef = 334CAF1D0D1C3E58006BAF54 /* gdocdocument.icns */; };
 		33F88F460D50F2DD00790AEF /* gdocpresentation.icns in Resources */ = {isa = PBXBuildFile; fileRef = 334CAF1E0D1C3E58006BAF54 /* gdocpresentation.icns */; };
 		33F88F470D50F2DD00790AEF /* gdocspreadsheet.icns in Resources */ = {isa = PBXBuildFile; fileRef = 334CAF1F0D1C3E58006BAF54 /* gdocspreadsheet.icns */; };
@@ -178,12 +194,33 @@
 			remoteGlobalIDString = 33FED7D50D4E5DC50075A454;
 			remoteInfo = GoogleDocs;
 		};
+		3362332A0E6A0E3300DD5373 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3362324C0E6A039400DD5373 /* PicasaImporter */;
+			remoteInfo = PicasaImporter;
+		};
 		33802E960D98856A008BCA40 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3388D3160D906CBC00FFC510;
 			remoteInfo = PrefPane;
+		};
+		33F083850E5CE61000DB70B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D1107260486CEB800E47090;
+			remoteInfo = Precipitate;
+		};
+		33F0841C0E5CE73600DB70B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 33F083830E5CE61000DB70B9;
+			remoteInfo = PicasaWebAlbums;
 		};
 		33F88FC80D50F67700790AEF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -203,6 +240,7 @@
 			files = (
 				33582DE60E158F8600279D7F /* GoogleDocs.bundle in CopyFiles */,
 				33582DE70E158F8600279D7F /* GoogleBookmarks.bundle in CopyFiles */,
+				33F086180E68738D00DB70B9 /* PicasaWebAlbums.bundle in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +260,7 @@
 			dstSubfolderSpec = 1;
 			files = (
 				33F88F780D50F43600790AEF /* PrecipitateDocsImporter.mdimporter in Copy Importers */,
+				3362332F0E6A0E7500DD5373 /* PrecipitatePicasaImporter.mdimporter in Copy Importers */,
 			);
 			name = "Copy Importers";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,6 +308,13 @@
 		334CAFFE0D1C4BF4006BAF54 /* DocsInfoKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocsInfoKeys.h; path = Sources/Docs/DocsInfoKeys.h; sourceTree = "<group>"; };
 		335827840E1451C000279D7F /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/PrefPane.strings; sourceTree = "<group>"; };
 		33582D440E15895800279D7F /* GData.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GData.xcodeproj; path = "external/gdata-objectivec-client/Source/GData.xcodeproj"; sourceTree = "<group>"; };
+		3362323A0E6A02A600DD5373 /* PWAInfoKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PWAInfoKeys.h; path = Sources/Picasa/PWAInfoKeys.h; sourceTree = "<group>"; };
+		336232580E6A039400DD5373 /* PrecipitatePicasaImporter.mdimporter */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrecipitatePicasaImporter.mdimporter; sourceTree = BUILT_PRODUCTS_DIR; };
+		336232E20E6A047D00DD5373 /* Importer-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Importer-Info.plist"; path = "Sources/Picasa/Importer-Info.plist"; sourceTree = "<group>"; };
+		336232E30E6A04EB00DD5373 /* GetMetadataForFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetMetadataForFile.m; path = Sources/Picasa/GetMetadataForFile.m; sourceTree = "<group>"; };
+		336232E40E6A04EB00DD5373 /* Importer-main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "Importer-main.c"; path = "Sources/Picasa/Importer-main.c"; sourceTree = "<group>"; };
+		336232E50E6A04EB00DD5373 /* schema.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = schema.xml; path = Sources/Picasa/schema.xml; sourceTree = "<group>"; };
+		336233650E6A123D00DD5373 /* pwaalbum.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = pwaalbum.icns; path = Sources/Picasa/pwaalbum.icns; sourceTree = "<group>"; };
 		337440460E4C0B1000CFB4FC /* gdocpdf.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = gdocpdf.icns; path = Sources/Docs/gdocpdf.icns; sourceTree = "<group>"; };
 		337B5FA00E315BAD00847BC1 /* GTMHTTPFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMHTTPFetcher.h; path = "external/google-toolbox-for-mac/Foundation/GTMHTTPFetcher.h"; sourceTree = "<group>"; };
 		337B5FA10E315BAD00847BC1 /* GTMHTTPFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMHTTPFetcher.m; path = "external/google-toolbox-for-mac/Foundation/GTMHTTPFetcher.m"; sourceTree = "<group>"; };
@@ -298,11 +344,15 @@
 		33B207400D3B25BA00C8F541 /* GPSyncController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPSyncController.m; path = Agent/GPSyncController.m; sourceTree = "<group>"; };
 		33BBBC100D2C4C7A007FE6D7 /* PrecipitateDocsImporter.mdimporter */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrecipitateDocsImporter.mdimporter; sourceTree = BUILT_PRODUCTS_DIR; };
 		33BBBC110D2C4C7A007FE6D7 /* Importer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Importer-Info.plist"; path = "Sources/Docs/Importer-Info.plist"; sourceTree = "<group>"; };
-		33BBBC370D2C4F15007FE6D7 /* Sources/Docs/schema.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Sources/Docs/schema.xml; sourceTree = "<group>"; };
+		33BBBC370D2C4F15007FE6D7 /* schema.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = schema.xml; path = Sources/Docs/schema.xml; sourceTree = "<group>"; };
 		33BBBC460D2C5153007FE6D7 /* GetMetadataForFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetMetadataForFile.m; path = Sources/Docs/GetMetadataForFile.m; sourceTree = "<group>"; };
 		33BBBC470D2C5153007FE6D7 /* Importer-main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "Importer-main.c"; path = "Sources/Docs/Importer-main.c"; sourceTree = "<group>"; };
 		33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		33D7942D0E1D39B6004A8D9C /* GData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		33F0837F0E5CDFBC00DB70B9 /* GPPicasaSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPPicasaSync.h; path = Sources/Picasa/GPPicasaSync.h; sourceTree = "<group>"; };
+		33F083800E5CDFBC00DB70B9 /* GPPicasaSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPPicasaSync.m; path = Sources/Picasa/GPPicasaSync.m; sourceTree = "<group>"; };
+		33F083950E5CE61000DB70B9 /* PicasaWebAlbums.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicasaWebAlbums.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		33F084430E5CEBC500DB70B9 /* PicasaWebAlbums-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "PicasaWebAlbums-Info.plist"; path = "Sources/Picasa/PicasaWebAlbums-Info.plist"; sourceTree = "<group>"; };
 		33F891170D51408900790AEF /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		33F892120D5290B300790AEF /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
 		33FED7D60D4E5DC50075A454 /* GoogleDocs.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoogleDocs.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -329,6 +379,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		336232520E6A039400DD5373 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				336232530E6A039400DD5373 /* Foundation.framework in Frameworks */,
+				336232540E6A039400DD5373 /* CoreServices.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3388D3150D906CBC00FFC510 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -345,6 +404,18 @@
 			files = (
 				33BBBC4C0D2C5182007FE6D7 /* Foundation.framework in Frameworks */,
 				33BBBC4B0D2C5179007FE6D7 /* CoreServices.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33F0838B0E5CE61000DB70B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33F0838C0E5CE61000DB70B9 /* GData.framework in Frameworks */,
+				33F0838D0E5CE61000DB70B9 /* CoreServices.framework in Frameworks */,
+				33F0838E0E5CE61000DB70B9 /* Foundation.framework in Frameworks */,
+				33F0838F0E5CE61000DB70B9 /* Security.framework in Frameworks */,
+				33F083900E5CE61000DB70B9 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +467,8 @@
 				3302A6270D4EB6EF00AAF075 /* GoogleBookmarks.bundle */,
 				3302A6360D4EB86B00AAF075 /* TestHarness.app */,
 				3388D3170D906CBC00FFC510 /* Precipitate.prefPane */,
+				33F083950E5CE61000DB70B9 /* PicasaWebAlbums.bundle */,
+				336232580E6A039400DD5373 /* PrecipitatePicasaImporter.mdimporter */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -410,6 +483,7 @@
 				080E96DDFE201D6D7F000001 /* Agent */,
 				33FED7E30D4E5E050075A454 /* Google Docs */,
 				3302A61D0D4EB1FF00AAF075 /* Google Bookmarks */,
+				33F0837E0E5CDF0C00DB70B9 /* Picasa */,
 				3302A63E0D4EB8CE00AAF075 /* Source Test Harness */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -483,6 +557,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		3362323B0E6A02D800DD5373 /* Importer */ = {
+			isa = PBXGroup;
+			children = (
+				336232E30E6A04EB00DD5373 /* GetMetadataForFile.m */,
+				336232E40E6A04EB00DD5373 /* Importer-main.c */,
+				336232E50E6A04EB00DD5373 /* schema.xml */,
+				336232E20E6A047D00DD5373 /* Importer-Info.plist */,
+			);
+			name = Importer;
+			sourceTree = "<group>";
+		};
 		3388D3020D906A2700FFC510 /* Pref Pane */ = {
 			isa = PBXGroup;
 			children = (
@@ -538,6 +623,11 @@
 		33897EF20D4FB24200A54981 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				334CAF1D0D1C3E58006BAF54 /* gdocdocument.icns */,
+				334CAF1E0D1C3E58006BAF54 /* gdocpresentation.icns */,
+				334CAF1F0D1C3E58006BAF54 /* gdocspreadsheet.icns */,
+				337440460E4C0B1000CFB4FC /* gdocpdf.icns */,
+				334CAF050D17235F006BAF54 /* gdoc.icns */,
 				33FED7D70D4E5DC50075A454 /* GoogleDocs-Info.plist */,
 			);
 			name = Resources;
@@ -565,16 +655,29 @@
 			children = (
 				33BBBC460D2C5153007FE6D7 /* GetMetadataForFile.m */,
 				33BBBC470D2C5153007FE6D7 /* Importer-main.c */,
-				33BBBC1A0D2C4E4C007FE6D7 /* Resources */,
+				33BBBC370D2C4F15007FE6D7 /* schema.xml */,
+				33BBBC110D2C4C7A007FE6D7 /* Importer-Info.plist */,
 			);
 			name = Importer;
 			sourceTree = "<group>";
 		};
-		33BBBC1A0D2C4E4C007FE6D7 /* Resources */ = {
+		33F0837E0E5CDF0C00DB70B9 /* Picasa */ = {
 			isa = PBXGroup;
 			children = (
-				33BBBC370D2C4F15007FE6D7 /* Sources/Docs/schema.xml */,
-				33BBBC110D2C4C7A007FE6D7 /* Importer-Info.plist */,
+				3362323A0E6A02A600DD5373 /* PWAInfoKeys.h */,
+				33F0837F0E5CDFBC00DB70B9 /* GPPicasaSync.h */,
+				33F083800E5CDFBC00DB70B9 /* GPPicasaSync.m */,
+				33F084420E5CEBA300DB70B9 /* Resources */,
+				3362323B0E6A02D800DD5373 /* Importer */,
+			);
+			name = Picasa;
+			sourceTree = "<group>";
+		};
+		33F084420E5CEBA300DB70B9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				336233650E6A123D00DD5373 /* pwaalbum.icns */,
+				33F084430E5CEBC500DB70B9 /* PicasaWebAlbums-Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -583,25 +686,12 @@
 			isa = PBXGroup;
 			children = (
 				334CAFFE0D1C4BF4006BAF54 /* DocsInfoKeys.h */,
-				334CAF1D0D1C3E58006BAF54 /* gdocdocument.icns */,
-				334CAF1E0D1C3E58006BAF54 /* gdocpresentation.icns */,
-				334CAF1F0D1C3E58006BAF54 /* gdocspreadsheet.icns */,
-				337440460E4C0B1000CFB4FC /* gdocpdf.icns */,
-				334CAF050D17235F006BAF54 /* gdoc.icns */,
-				33FED7E40D4E5E830075A454 /* Source */,
-				33BBBC190D2C4E35007FE6D7 /* Importer */,
-			);
-			name = "Google Docs";
-			sourceTree = "<group>";
-		};
-		33FED7E40D4E5E830075A454 /* Source */ = {
-			isa = PBXGroup;
-			children = (
 				334CAE1D0D0F6798006BAF54 /* GPDocsSync.h */,
 				334CAE1E0D0F6798006BAF54 /* GPDocsSync.m */,
 				33897EF20D4FB24200A54981 /* Resources */,
+				33BBBC190D2C4E35007FE6D7 /* Importer */,
 			);
-			name = Source;
+			name = "Google Docs";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -644,6 +734,23 @@
 			productReference = 3302A6360D4EB86B00AAF075 /* TestHarness.app */;
 			productType = "com.apple.product-type.application";
 		};
+		3362324C0E6A039400DD5373 /* PicasaImporter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 336232550E6A039400DD5373 /* Build configuration list for PBXNativeTarget "PicasaImporter" */;
+			buildPhases = (
+				3362324D0E6A039400DD5373 /* Resources */,
+				3362324F0E6A039400DD5373 /* Sources */,
+				336232520E6A039400DD5373 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PicasaImporter;
+			productName = Importer;
+			productReference = 336232580E6A039400DD5373 /* PrecipitatePicasaImporter.mdimporter */;
+			productType = "com.apple.product-type.bundle";
+		};
 		3388D3160D906CBC00FFC510 /* PrefPane */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3388D31A0D906CFC00FFC510 /* Build configuration list for PBXNativeTarget "PrefPane" */;
@@ -678,6 +785,25 @@
 			name = DocsImporter;
 			productName = Importer;
 			productReference = 33BBBC100D2C4C7A007FE6D7 /* PrecipitateDocsImporter.mdimporter */;
+			productType = "com.apple.product-type.bundle";
+		};
+		33F083830E5CE61000DB70B9 /* PicasaWebAlbums */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 33F083920E5CE61000DB70B9 /* Build configuration list for PBXNativeTarget "PicasaWebAlbums" */;
+			buildPhases = (
+				33F083860E5CE61000DB70B9 /* Resources */,
+				33F083880E5CE61000DB70B9 /* Sources */,
+				33F0838B0E5CE61000DB70B9 /* Frameworks */,
+				33F083910E5CE61000DB70B9 /* Modify GData Load Path */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				33F083840E5CE61000DB70B9 /* PBXTargetDependency */,
+			);
+			name = PicasaWebAlbums;
+			productName = GoogleDocs;
+			productReference = 33F083950E5CE61000DB70B9 /* PicasaWebAlbums.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 		33FED7D50D4E5DC50075A454 /* GoogleDocs */ = {
@@ -716,6 +842,7 @@
 			);
 			dependencies = (
 				33F88FC90D50F67700790AEF /* PBXTargetDependency */,
+				3362332B0E6A0E3300DD5373 /* PBXTargetDependency */,
 				33582D7C0E158C9300279D7F /* PBXTargetDependency */,
 			);
 			name = Precipitate;
@@ -749,6 +876,8 @@
 				33FED7D50D4E5DC50075A454 /* GoogleDocs */,
 				33BBBC0F0D2C4C7A007FE6D7 /* DocsImporter */,
 				3302A6260D4EB6EF00AAF075 /* GoogleBookmarks */,
+				33F083830E5CE61000DB70B9 /* PicasaWebAlbums */,
+				3362324C0E6A039400DD5373 /* PicasaImporter */,
 				3302A6350D4EB86B00AAF075 /* TestHarness */,
 			);
 		};
@@ -795,6 +924,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3362324D0E6A039400DD5373 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				336232E90E6A050700DD5373 /* schema.xml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3388D3130D906CBC00FFC510 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -810,7 +947,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33BBBC380D2C4F15007FE6D7 /* Sources/Docs/schema.xml in Resources */,
+				33BBBC380D2C4F15007FE6D7 /* schema.xml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33F083860E5CE61000DB70B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -833,6 +977,7 @@
 				33F88F480D50F2DD00790AEF /* gdoc.icns in Resources */,
 				33F891180D51408900790AEF /* Localizable.strings in Resources */,
 				337440490E4C0B2300CFB4FC /* gdocpdf.icns in Resources */,
+				336233660E6A123D00DD5373 /* pwaalbum.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -881,6 +1026,20 @@
 			shellPath = /bin/sh;
 			shellScript = "#!/bin/sh\n# Remove header files from the GData framework inside our application.\n\n# Strip \"*.h\" files\nfind \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.$WRAPPER_EXTENSION/Contents/Frameworks/GData.framework/\" -iname '*.h' -delete\n\n# Strip \"Headers\" links\nfind \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.$WRAPPER_EXTENSION/Contents/Frameworks/GData.framework/\" -iname 'Headers' -type l -delete\n\n# Strip \"Headers\" directories\nfind \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.$WRAPPER_EXTENSION/Contents/Frameworks/GData.framework/\" -iname 'Headers' -type d -prune -delete";
 		};
+		33F083910E5CE61000DB70B9 /* Modify GData Load Path */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Modify GData Load Path";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "/usr/bin/install_name_tool -change @loader_path/../Frameworks/GData.framework/Versions/A/GData @executable_path/../Frameworks/GData.framework/Versions/A/GData $BUILT_PRODUCTS_DIR/$PRODUCT_NAME.$WRAPPER_EXTENSION/Contents/MacOS/$PRODUCT_NAME\n";
+		};
 		33F890D10D512BFC00790AEF /* Modify GData Load Path */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -917,8 +1076,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3302A62D0D4EB71D00AAF075 /* GPBookmarkSync.m in Sources */,
-				33582E5B0E1599CD00279D7F /* GPKeychainItem.m in Sources */,
 				337B5FA20E315BAD00847BC1 /* GTMHTTPFetcher.m in Sources */,
+				33F087150E687BDA00DB70B9 /* GPKeychainItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -928,6 +1087,15 @@
 			files = (
 				3302A63D0D4EB8B600AAF075 /* main.m in Sources */,
 				3302A6440D4EBA9A00AAF075 /* TestHarness.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3362324F0E6A039400DD5373 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				336232E70E6A050700DD5373 /* GetMetadataForFile.m in Sources */,
+				336232E80E6A050700DD5373 /* Importer-main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -952,12 +1120,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		33F083880E5CE61000DB70B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33F083A30E5CE65F00DB70B9 /* GPPicasaSync.m in Sources */,
+				33F087160E687BDE00DB70B9 /* GPKeychainItem.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		33FED7D30D4E5DC50075A454 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				336B1C180D53B4390019F6B2 /* GPDocsSync.m in Sources */,
-				33582E5A0E1599CC00279D7F /* GPKeychainItem.m in Sources */,
+				33F087140E687BD900DB70B9 /* GPKeychainItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1021,10 +1198,25 @@
 			target = 33FED7D50D4E5DC50075A454 /* GoogleDocs */;
 			targetProxy = 33582DF90E158FD000279D7F /* PBXContainerItemProxy */;
 		};
+		3362332B0E6A0E3300DD5373 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3362324C0E6A039400DD5373 /* PicasaImporter */;
+			targetProxy = 3362332A0E6A0E3300DD5373 /* PBXContainerItemProxy */;
+		};
 		33802E970D98856A008BCA40 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3388D3160D906CBC00FFC510 /* PrefPane */;
 			targetProxy = 33802E960D98856A008BCA40 /* PBXContainerItemProxy */;
+		};
+		33F083840E5CE61000DB70B9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D1107260486CEB800E47090 /* Precipitate */;
+			targetProxy = 33F083850E5CE61000DB70B9 /* PBXContainerItemProxy */;
+		};
+		33F0841D0E5CE73600DB70B9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 33F083830E5CE61000DB70B9 /* PicasaWebAlbums */;
+			targetProxy = 33F0841C0E5CE73600DB70B9 /* PBXContainerItemProxy */;
 		};
 		33F88FC90D50F67700790AEF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1162,6 +1354,26 @@
 			};
 			name = Release;
 		};
+		336232560E6A039400DD5373 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = "Sources/Picasa/Importer-Info.plist";
+				PRODUCT_NAME = PrecipitatePicasaImporter;
+				WRAPPER_EXTENSION = mdimporter;
+			};
+			name = Debug;
+		};
+		336232570E6A039400DD5373 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = "Sources/Picasa/Importer-Info.plist";
+				PRODUCT_NAME = PrecipitatePicasaImporter;
+				WRAPPER_EXTENSION = mdimporter;
+			};
+			name = Release;
+		};
 		3388D3180D906CBD00FFC510 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
@@ -1203,6 +1415,28 @@
 				INFOPLIST_FILE = "Sources/Docs/Importer-Info.plist";
 				PRODUCT_NAME = PrecipitateDocsImporter;
 				WRAPPER_EXTENSION = mdimporter;
+			};
+			name = Release;
+		};
+		33F083930E5CE61000DB70B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Precipitate.app/Contents/MacOS/Precipitate";
+				INFOPLIST_FILE = "Sources/Picasa/PicasaWebAlbums-Info.plist";
+				PRODUCT_NAME = PicasaWebAlbums;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		33F083940E5CE61000DB70B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Precipitate.app/Contents/MacOS/Precipitate";
+				INFOPLIST_FILE = "Sources/Picasa/PicasaWebAlbums-Info.plist";
+				PRODUCT_NAME = PicasaWebAlbums;
+				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
 		};
@@ -1315,6 +1549,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		336232550E6A039400DD5373 /* Build configuration list for PBXNativeTarget "PicasaImporter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				336232560E6A039400DD5373 /* Debug */,
+				336232570E6A039400DD5373 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3388D31A0D906CFC00FFC510 /* Build configuration list for PBXNativeTarget "PrefPane" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1329,6 +1572,15 @@
 			buildConfigurations = (
 				33BBBC120D2C4C7A007FE6D7 /* Debug */,
 				33BBBC130D2C4C7A007FE6D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		33F083920E5CE61000DB70B9 /* Build configuration list for PBXNativeTarget "PicasaWebAlbums" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33F083930E5CE61000DB70B9 /* Debug */,
+				33F083940E5CE61000DB70B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
