@@ -24,26 +24,32 @@ Boolean GetMetadataForFile(void* thisInterface,
 			   CFStringRef contentTypeUTI,
 			   CFStringRef pathToFile)
 {
+  NSMutableDictionary* outDict = (NSMutableDictionary*)attributes;
   NSDictionary* fileInfo = [NSDictionary dictionaryWithContentsOfFile:(NSString*)pathToFile];
   if (!fileInfo)
     return FALSE;
 
-  [(NSMutableDictionary*)attributes setObject:[fileInfo objectForKey:(NSString*)kMDItemTitle]
-                                       forKey:(NSString*)kMDItemTitle];
-  [(NSMutableDictionary*)attributes setObject:[NSDictionary dictionaryWithObject:[fileInfo objectForKey:(NSString*)kMDItemTitle]
-                                                                          forKey:@""]
-                                       forKey:(NSString*)kMDItemDisplayName];
-  [(NSMutableDictionary*)attributes setObject:[fileInfo objectForKey:(NSString*)kMDItemDescription]
-                                       forKey:(NSString*)kMDItemDescription];
-  [(NSMutableDictionary*)attributes setObject:[fileInfo objectForKey:(NSString*)kMDItemAuthors]
-                                       forKey:(NSString*)kMDItemAuthors];
-  // There's no generic location field, so just use comment.
-  [(NSMutableDictionary*)attributes setObject:[fileInfo objectForKey:kAlbumDictionaryLocationKey]
-                                       forKey:(NSString*)kMDItemComment];
-  [(NSMutableDictionary*)attributes setObject:[fileInfo objectForKey:kGPMDItemModificationDate]
-                                       forKey:(NSString*)kMDItemContentModificationDate];
-  [(NSMutableDictionary*)attributes setObject:[fileInfo objectForKey:(NSString*)kMDItemContentCreationDate]
-                                       forKey:(NSString*)kMDItemContentCreationDate];
+  // Push any kMDItem* values directly into the output dictionary.
+  NSEnumerator* keyEnumerator = [fileInfo keyEnumerator];
+  NSString* metadataKey;
+  while ((metadataKey = [keyEnumerator nextObject])) {
+    if ([metadataKey hasPrefix:@"kMDItem"]) {
+      [outDict setObject:[fileInfo objectForKey:metadataKey]
+                  forKey:metadataKey];
+    }
+  }
+
+  // Handle a few custom mappings.
+  [outDict setObject:[NSDictionary dictionaryWithObject:[fileInfo objectForKey:(NSString*)kMDItemTitle]
+                                                 forKey:@""]
+              forKey:(NSString*)kMDItemDisplayName];
+  [outDict setObject:[fileInfo objectForKey:kGPMDItemModificationDate]
+              forKey:(NSString*)kMDItemContentModificationDate];
+  if ([fileInfo objectForKey:kAlbumDictionaryLocationKey]) {
+    // There's no generic location field, so just use comment.
+    [outDict setObject:[fileInfo objectForKey:kAlbumDictionaryLocationKey]
+                forKey:(NSString*)kMDItemComment];
+  }
   
   return TRUE;
 }

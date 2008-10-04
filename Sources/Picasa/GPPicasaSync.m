@@ -22,6 +22,8 @@
 #define kPWADictionaryTypeKey @"_PWAType"
 
 @interface GPPicasaSync (Private)
+- (NSMutableDictionary*)baseDictionaryForPhotoBase:(GDataEntryPhotoBase*)entry;
+- (NSDictionary*)dictionaryForPhoto:(GDataEntryPhoto*)photo;
 - (NSDictionary*)dictionaryForAlbum:(GDataEntryPhotoAlbum*)album;
 - (NSArray*)peopleStringsForGDataPeople:(NSArray*)people;
 - (NSString*)thumbnailURLForEntry:(GDataEntryPhotoBase*)entry;
@@ -63,20 +65,22 @@
   [picasaService_ setUserCredentialsWithUsername:username password:password];
   [picasaService_ setIsServiceRetryEnabled:YES];
   [picasaService_ setServiceShouldFollowNextLinks:YES];
-  
-  NSString* albumFeedURI =
+
+  NSString* kinds = [NSString stringWithFormat:@"%@,%@",
+                     kGDataPicasaWebKindAlbum, kGDataPicasaWebKindPhoto];
+  NSString* albumFeedURI = 
     [[GDataServiceGooglePicasaWeb picasaWebFeedURLForUserID:username
                                                     albumID:nil
                                                   albumName:nil
                                                     photoID:nil
-                                                       kind:nil
+                                                       kind:kinds
                                                      access:nil] absoluteString];
   // Ideally we would use https, but the album list redirects when accessed that way.
   //if ([albumFeedURI hasPrefix:@"http:"])
   //  albumFeedURI = [@"https:" stringByAppendingString:[albumFeedURI substringFromIndex:5]];
   [picasaService_ fetchPicasaWebFeedWithURL:[NSURL URLWithString:albumFeedURI]
                                    delegate:self
-                          didFinishSelector:@selector(serviceTicket:finishedWithObject:)
+                          didFinishSelector:@selector(serviceTicket:finishedWithAlbum:)
                             didFailSelector:@selector(serviceTicket:failedWithError:)];
 }
 
@@ -102,27 +106,34 @@
 #pragma mark -
 
 - (void)serviceTicket:(GDataServiceTicket *)ticket
-   finishedWithObject:(GDataFeedPhotoAlbum *)albumList {
-  NSMutableDictionary* albumsById = [NSMutableDictionary dictionary];
+    finishedWithAlbum:(GDataFeedPhotoAlbum *)albumList {
+  NSMutableArray* basicInfoDicts =
+    [[[NSMutableArray alloc] initWithCapacity:[[albumList entries] count]] autorelease];
+
   NSEnumerator* entryEnumerator = [[albumList entries] objectEnumerator];
   GDataEntryBase* entry;
   while ((entry = [entryEnumerator nextObject])) {
     @try {
-      if (![entry isKindOfClass:[GDataEntryPhotoAlbum class]]) {
+      NSDictionary* entryInfo = nil;
+      if ([entry isKindOfClass:[GDataEntryPhoto class]]) {
+        entryInfo = [self dictionaryForPhoto:(GDataEntryPhoto*)entry];
+      } else if ([entry isKindOfClass:[GDataEntryPhotoAlbum class]]) {
+        entryInfo = [self dictionaryForAlbum:(GDataEntryPhotoAlbum*)entry];
+      } else {
         NSLog(@"Unexpected entry in album list: %@", entry);
         continue;
       }
-      NSDictionary* albumInfo = [self dictionaryForAlbum:(GDataEntryPhotoAlbum*)entry];
-      if (albumInfo)
-        [albumsById setObject:albumInfo forKey:[albumInfo objectForKey:kGPMDItemUID]];
+
+      if (entryInfo)
+        [basicInfoDicts addObject:entryInfo];
       else
-        NSLog(@"Couldn't get info for album: %@", entry);
+        NSLog(@"Couldn't get info for PWA entry: %@", entry);
     } @catch (id exception) {
       NSLog(@"Caught exception while processing basic album info: %@", exception);
     }
   }
-  
-  [manager_ basicItemsInfo:[albumsById allValues] fetchedForSource:self];
+
+  [manager_ basicItemsInfo:basicInfoDicts fetchedForSource:self];
 }
 
 - (void)serviceTicket:(GDataServiceTicket *)ticket
@@ -139,18 +150,62 @@
   }
 }
 
+- (NSDictionary*)dictionaryForPhoto:(GDataEntryPhoto*)photo {
+  NSMutableDictionary* infoDictionary = [self baseDictionaryForPhotoBase:photo];
+  [infoDictionary setObject:kPWATypePhoto forKey:kPWADictionaryTypeKey];
+  [infoDictionary setObject:[[photo timestamp] dateValue]
+                     forKey:(NSString*)kMDItemContentCreationDate];
+  [infoDictionary setObject:[photo width] forKey:(NSString*)kMDItemPixelWidth];
+  [infoDictionary setObject:[photo height] forKey:(NSString*)kMDItemPixelHeight];
+  NSArray* keywords = [[[photo mediaGroup] mediaKeywords] keywords];
+  if ([keywords count] > 0)
+    [infoDictionary setObject:keywords forKey:(NSString*)kMDItemKeywords];
+  NSEnumerator* exifTagEnumerator = [[[photo EXIFTags] tags] objectEnumerator];
+  GDataEXIFTag* tag;
+  while ((tag = [exifTagEnumerator nextObject])) {
+    NSString* tagName = [tag name];
+    if ([tagName isEqualToString:@"exposure"])
+      [infoDictionary setObject:[tag doubleNumberValue]
+                         forKey:(NSString*)kMDItemExposureTimeSeconds];
+    if ([tagName isEqualToString:@"flash"])
+      [infoDictionary setObject:[tag boolNumberValue]
+                         forKey:(NSString*)kMDItemFlashOnOff];
+    if ([tagName isEqualToString:@"focallength"])
+      [infoDictionary setObject:[tag doubleNumberValue]
+                         forKey:(NSString*)kMDItemFocalLength];
+    if ([tagName isEqualToString:@"iso"])
+      [infoDictionary setObject:[tag intNumberValue]
+                         forKey:(NSString*)kMDItemISOSpeed];
+    if ([tagName isEqualToString:@"make"])
+      [infoDictionary setObject:[tag stringValue]
+                         forKey:(NSString*)kMDItemAcquisitionMake];
+    if ([tagName isEqualToString:@"model"])
+      [infoDictionary setObject:[tag stringValue]
+                         forKey:(NSString*)kMDItemAcquisitionModel];
+  }
+  // TODO: Ideally we would set kMDItemAlbum, but keeping all the photos correct
+  // when an album is renamed will take some juggling.
+  return infoDictionary;
+}
+
 - (NSDictionary*)dictionaryForAlbum:(GDataEntryPhotoAlbum*)album {
-  return [NSDictionary dictionaryWithObjectsAndKeys:
-                                      [album GPhotoID], kGPMDItemUID,
-                           [[album title] stringValue], (NSString*)kMDItemTitle,
-                         [[album timestamp] dateValue], (NSString*)kMDItemContentCreationDate,
-                            [[album updatedDate] date], kGPMDItemModificationDate,
-    [self peopleStringsForGDataPeople:[album authors]], (NSString*)kMDItemAuthors,
-                               [[album HTMLLink] href], (NSString*)kGPMDItemURL,
-                                         kPWATypeAlbum, kPWADictionaryTypeKey,
-                [[album photoDescription] stringValue], (NSString*)kMDItemDescription,
-                                      [album location], kAlbumDictionaryLocationKey,
-                     [self thumbnailURLForEntry:album], kAlbumDictionaryThumbnailURLKey,
+  NSMutableDictionary* infoDictionary = [self baseDictionaryForPhotoBase:album];
+  [infoDictionary setObject:kPWATypeAlbum forKey:kPWADictionaryTypeKey];
+  [infoDictionary setObject:[[album timestamp] dateValue] forKey:(NSString*)kMDItemContentCreationDate];
+  [infoDictionary setObject:[album location] forKey:kAlbumDictionaryLocationKey];
+  return infoDictionary;
+}
+
+// common dictionary items for photos and albums.
+- (NSMutableDictionary*)baseDictionaryForPhotoBase:(GDataEntryPhotoBase*)entry {
+  return [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                      [entry GPhotoID], kGPMDItemUID,
+                           [[entry title] stringValue], (NSString*)kMDItemTitle,
+                            [[entry updatedDate] date], kGPMDItemModificationDate,
+    [self peopleStringsForGDataPeople:[entry authors]], (NSString*)kMDItemAuthors,
+                               [[entry HTMLLink] href], (NSString*)kGPMDItemURL,
+                [[entry photoDescription] stringValue], (NSString*)kMDItemDescription,
+                     [self thumbnailURLForEntry:entry], kPWADictionaryThumbnailURLKey,
                                                         nil];
 }
 

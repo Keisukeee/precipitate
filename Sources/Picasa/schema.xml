@@ -6,7 +6,7 @@
 
     <types>
         <type name="com.googlecode.precpitate.pwa.album">
-            <allattrs> 
+            <allattrs>
               kMDItemTitle kMDItemDisplayName kMDItemDescription kMDItemAuthors kMDItemComment kGPMDItemModificationDate kMDItemContentModificationDate kMDItemContentCreationDate
             </allattrs>
             <displayattrs>
@@ -14,9 +14,11 @@
             </displayattrs>
         </type>
         <type name="com.googlecode.precpitate.pwa.photo">
-            <allattrs> 
+            <allattrs>
+              kMDItemTitle kMDItemDisplayName kMDItemDescription kMDItemAuthors kGPMDItemModificationDate kMDItemContentModificationDate kMDItemContentCreationDate kMDItemPixelWidth kMDItemPixelHeight kMDItemExposureTimeSeconds kMDItemFlashOnOff kMDItemFocalLength kMDItemISOSpeed kMDItemAcquisitionMake kMDItemAcquisitionModel
             </allattrs>
             <displayattrs>
+              kMDItemTitle kMDItemDisplayName kMDItemDescription kMDItemAuthors kGPMDItemModificationDate kMDItemContentModificationDate kMDItemContentCreationDate kMDItemPixelWidth kMDItemPixelHeight
             </displayattrs>
         </type>
     </types>

@@ -14,8 +14,9 @@
 // limitations under the License.
 //
 
-#define kAlbumDictionaryLocationKey @"_PWALocation"
-#define kAlbumDictionaryThumbnailURLKey @"_PWAThumbnailURL"
+#define kPWADictionaryThumbnailURLKey @"_PWAThumbnailURL"
+
+#define kAlbumDictionaryLocationKey @"_AlbumLocation"
 
 #define kPWATypeAlbum @"album"
 #define kPWATypePhoto @"photo"

@@ -37,6 +37,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		00C734BE0E982723002DD717 /* pwaphoto.icns in Resources */ = {isa = PBXBuildFile; fileRef = 00C734BD0E982723002DD717 /* pwaphoto.icns */; };
 		3302A62D0D4EB71D00AAF075 /* GPBookmarkSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 3302A61F0D4EB23100AAF075 /* GPBookmarkSync.m */; };
 		3302A63D0D4EB8B600AAF075 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		3302A6440D4EBA9A00AAF075 /* TestHarness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3302A6430D4EBA9A00AAF075 /* TestHarness.m */; };
@@ -279,6 +280,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		00C734BD0E982723002DD717 /* pwaphoto.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = pwaphoto.icns; path = Sources/Picasa/pwaphoto.icns; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Agent/main.m; sourceTree = "<group>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -676,6 +678,7 @@
 		33F084420E5CEBA300DB70B9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				00C734BD0E982723002DD717 /* pwaphoto.icns */,
 				336233650E6A123D00DD5373 /* pwaalbum.icns */,
 				33F084430E5CEBC500DB70B9 /* PicasaWebAlbums-Info.plist */,
 			);
@@ -978,6 +981,7 @@
 				33F891180D51408900790AEF /* Localizable.strings in Resources */,
 				337440490E4C0B2300CFB4FC /* gdocpdf.icns in Resources */,
 				336233660E6A123D00DD5373 /* pwaalbum.icns in Resources */,
+				00C734BE0E982723002DD717 /* pwaphoto.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
