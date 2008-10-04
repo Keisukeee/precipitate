@@ -75,7 +75,7 @@
   // We don't need this information, but we need to call a fetch method to
   // ensure that the service is primed with the authorization ticket for later
   // requests.
-  NSString* spreadsheetFeedURI = kGDataGoogleDocsDefaultPrivateFullFeed;
+  NSString* spreadsheetFeedURI = kGDataGoogleSpreadsheetsPrivateFullFeed;
   if ([spreadsheetFeedURI hasPrefix:@"http:"])
     spreadsheetFeedURI = [@"https:" stringByAppendingString:[spreadsheetFeedURI substringFromIndex:5]];
   [spreadsheetService_ fetchSpreadsheetFeedWithURL:[NSURL URLWithString:spreadsheetFeedURI]
