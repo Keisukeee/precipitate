@@ -21,6 +21,24 @@
 #import "GTMGarbageCollection.h"
 #import "GTMNSFileManager+Path.h"
 
+#if MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_4
+#include <dlfcn.h>
+typedef CFTypeRef (*LSSharedFileListCreateFPtr)(
+  CFAllocatorRef inAllocator,
+  CFStringRef inListType,
+  CFTypeRef listOptions
+);
+typedef CFTypeRef (*LSSharedFileListInsertItemURLFPtr)(
+  CFTypeRef inList,
+  CFTypeRef insertAfterThisItem,
+  CFStringRef inDisplayName,
+  IconRef inIconRef,
+  CFURLRef inURL,
+  CFDictionaryRef inPropertiesToSet,
+  CFArrayRef inPropertiesToClear
+);
+#endif
+
 static NSString* const kIDSlashReplacementToken = @":SLASH:";
 
 static NSString* const kDistributedKillNotification = @"GPSyncControllerKillNotification";
@@ -79,20 +97,51 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
 // stay running in the future.
 - (void)ensureAutoLaunch {
   NSString* appPath = [[NSBundle mainBundle] bundlePath];
-  if (LSSharedFileListCreate != NULL) {
-    LSSharedFileListRef loginList = LSSharedFileListCreate(NULL,
-                                                           kLSSharedFileListSessionLoginItems,
-                                                           NULL);
+#if MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_4
+  LSSharedFileListCreateFPtr dLSSharedFileListCreate =
+    dlsym(RTLD_DEFAULT, "LSSharedFileListCreate");
+  LSSharedFileListInsertItemURLFPtr dLSSharedFileListInsertItemURL =
+    dlsym(RTLD_DEFAULT, "LSSharedFileListInsertItemURL");
+  CFStringRef dkLSSharedFileListSessionLoginItems =
+    (CFStringRef)*((int*)dlsym(RTLD_DEFAULT, "kLSSharedFileListSessionLoginItems"));
+  CFTypeRef dkLSSharedFileListItemLast =
+    (CFTypeRef)*((int*)dlsym(RTLD_DEFAULT, "kLSSharedFileListItemLast"));
+  NSLog(@"Lookup: %x %x %@ %x", dLSSharedFileListCreate, dLSSharedFileListInsertItemURL,
+        (NSString*)dkLSSharedFileListSessionLoginItems, dkLSSharedFileListItemLast);
+  // They should be all-or-nothing, but check everything in case something goes
+  // wrong with the dlsym lookup.
+  if (dLSSharedFileListCreate != NULL &&
+      dLSSharedFileListInsertItemURL != NULL &&
+      dkLSSharedFileListSessionLoginItems != NULL &&
+      dkLSSharedFileListItemLast != NULL)
+#else
+  if (LSSharedFileListCreate != NULL)
+#endif
+  {
+#if MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_4
+    CFTypeRef loginList =
+      dLSSharedFileListCreate(NULL, dkLSSharedFileListSessionLoginItems, NULL);
+#else
+    LSSharedFileListRef loginList =
+      LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
+#endif
     if (!loginList) {
       NSLog(@"Could not get a reference to login items list");
       return;
     }
     // No need to check if it's already there, since the LSSharedFileList API
     // handles de-duping for us.
+#if MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_4
+    dLSSharedFileListInsertItemURL(loginList, dkLSSharedFileListItemLast,
+                                   NULL, NULL,
+                                   (CFURLRef)[NSURL fileURLWithPath:appPath],
+                                   NULL, NULL);
+#else
     LSSharedFileListInsertItemURL(loginList, kLSSharedFileListItemLast,
                                   NULL, NULL,
                                   (CFURLRef)[NSURL fileURLWithPath:appPath],
                                   NULL, NULL);
+#endif
     CFRelease(loginList);
   } else {
     CFStringRef prefDomain = CFSTR("loginwindow");
