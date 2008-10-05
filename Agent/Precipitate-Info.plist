@@ -112,6 +112,18 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>gbookmark</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>gbookmark.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Google bookmark</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
 	</array>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
@@ -206,7 +218,7 @@
 			<key>UTTypeIconFile</key>
 			<string>pwaalbum.icns</string>
 			<key>UTTypeIdentifier</key>
-			<string>com.googlecode.precpitate.pwa.album</string>
+			<string>com.googlecode.precipitate.pwa.album</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
@@ -226,12 +238,31 @@
 			<key>UTTypeIconFile</key>
 			<string>pwaphoto.icns</string>
 			<key>UTTypeIdentifier</key>
-			<string>com.googlecode.precpitate.pwa.photo</string>
+			<string>com.googlecode.precipitate.pwa.photo</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
 				<array>
 					<string>pwaphoto</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Google bookmark</string>
+			<key>UTTypeIconFile</key>
+			<string>gbookmark.icns</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.googlecode.precipitate.bookmark</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>gbookmark</string>
 				</array>
 			</dict>
 		</dict>

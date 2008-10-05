@@ -11,8 +11,7 @@
 			<string>MDImporter</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.googlecode.precipitate.pwa.album</string>
-				<string>com.googlecode.precipitate.pwa.photo</string>
+				<string>com.googlecode.precipitate.bookmark</string>
 			</array>
 		</dict>
 	</array>
@@ -21,7 +20,7 @@
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>com.google.precipitate.picasaimportercfbundle</string>
+	<string>com.google.precipitate.gbookmarkimportercfbundle</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -34,14 +33,14 @@
 	<string>NO</string>
 	<key>CFPlugInFactories</key>
 	<dict>
-		<key>8EB474BD-B4EA-4DAB-90CF-A37DB9328071</key>
+		<key>5F69AC82-4774-48A7-B7D6-F45A58FB8165</key>
 		<string>MetadataImporterPluginFactory</string>
 	</dict>
 	<key>CFPlugInTypes</key>
 	<dict>
 		<key>8B08C4BF-415B-11D8-B3F9-0003936726FC</key>
 		<array>
-			<string>8EB474BD-B4EA-4DAB-90CF-A37DB9328071</string>
+			<string>5F69AC82-4774-48A7-B7D6-F45A58FB8165</string>
 		</array>
 	</dict>
 	<key>CFPlugInUnloadFunction</key>

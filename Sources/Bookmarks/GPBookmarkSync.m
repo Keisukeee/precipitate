@@ -55,11 +55,11 @@ static NSString* const kBookmarkURLFormat = @"https://www.google.com/bookmarks/l
 }
 
 - (NSString*)cacheFileExtensionForItem:(NSDictionary*)item {
-  return @"webbookmark"; // so we go in through the OS bookmark importer
+  return @"gbookmark";
 }
 
 - (NSArray*)itemExtensions {
-  return [NSArray arrayWithObject:@"webbookmark"];
+  return [NSArray arrayWithObject:@"gbookmark"];
 }
 
 - (NSString*)displayName {
@@ -97,20 +97,25 @@ static NSString* const kBookmarkURLFormat = @"https://www.google.com/bookmarks/l
     NSMutableDictionary* bookmarkInfo = [NSMutableDictionary dictionary];
     NSEnumerator* infoNodeEnumerator = [[bookmark children] objectEnumerator];
     NSXMLNode* infoNode;
+    NSMutableArray* keywords = [NSMutableArray array];
     while ((infoNode = [infoNodeEnumerator nextObject])) {
       if ([[infoNode name] isEqualToString:@"title"]) {
         [bookmarkInfo setObject:[infoNode stringValue] forKey:(NSString*)kMDItemTitle];
-        [bookmarkInfo setObject:[infoNode stringValue] forKey:@"Name"]; // for the webbookmark importer
       } else if ([[infoNode name] isEqualToString:@"link"]) {
         [bookmarkInfo setObject:[infoNode stringValue] forKey:(NSString*)kGPMDItemURL];
-        [bookmarkInfo setObject:[infoNode stringValue] forKey:@"URL"]; // for the webbookmark importer
       } else if ([[infoNode name] isEqualToString:@"pubDate"]) {
         [bookmarkInfo setObject:[NSDate dateWithNaturalLanguageString:[infoNode stringValue]]
                          forKey:kGPMDItemModificationDate];
       } else if ([[infoNode name] isEqualToString:@"guid"]) {
         [bookmarkInfo setObject:[infoNode stringValue] forKey:kGPMDItemUID];
+      } else if ([[infoNode name] isEqualToString:@"smh:bkmk_label"]) {
+        [keywords addObject:[infoNode stringValue]];
+      } else if ([[infoNode name] isEqualToString:@"smh:bkmk_annotation"]) {
+        [bookmarkInfo setObject:[infoNode stringValue] forKey:(NSString*)kMDItemDescription];
       }
     }
+    if ([keywords count] > 0)
+      [bookmarkInfo setObject:keywords forKey:(NSString*)kMDItemKeywords];
     [bookmarkItems addObject:bookmarkInfo];
   }
   return bookmarkItems;

@@ -38,6 +38,13 @@
 
 /* Begin PBXBuildFile section */
 		00C734BE0E982723002DD717 /* pwaphoto.icns in Resources */ = {isa = PBXBuildFile; fileRef = 00C734BD0E982723002DD717 /* pwaphoto.icns */; };
+		00C735B30E9842A3002DD717 /* gbookmark.icns in Resources */ = {isa = PBXBuildFile; fileRef = 00C735B20E9842A3002DD717 /* gbookmark.icns */; };
+		00C735D80E984350002DD717 /* GetMetadataForFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C735B40E9842C4002DD717 /* GetMetadataForFile.m */; };
+		00C735D90E984350002DD717 /* Importer-main.c in Sources */ = {isa = PBXBuildFile; fileRef = 00C735B60E9842C4002DD717 /* Importer-main.c */; };
+		00C735DA0E984350002DD717 /* schema.xml in Resources */ = {isa = PBXBuildFile; fileRef = 00C735B70E9842C4002DD717 /* schema.xml */; };
+		00C7361A0E98468E002DD717 /* PrecipitateBookmarksImporter.mdimporter in Copy Importers */ = {isa = PBXBuildFile; fileRef = 00C735C60E9842EA002DD717 /* PrecipitateBookmarksImporter.mdimporter */; };
+		00C737580E9846C4002DD717 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */; };
+		00C737590E9846C4002DD717 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
 		3302A62D0D4EB71D00AAF075 /* GPBookmarkSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 3302A61F0D4EB23100AAF075 /* GPBookmarkSync.m */; };
 		3302A63D0D4EB8B600AAF075 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		3302A6440D4EBA9A00AAF075 /* TestHarness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3302A6430D4EBA9A00AAF075 /* TestHarness.m */; };
@@ -117,6 +124,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8D1107260486CEB800E47090;
 			remoteInfo = Precipitate;
+		};
+		00C736130E984676002DD717 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00C735C50E9842EA002DD717 /* BookmarksImporter */;
+			remoteInfo = BookmarksImporter;
 		};
 		3302A7DF0D4F05EF00AAF075 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -262,6 +276,7 @@
 			files = (
 				33F88F780D50F43600790AEF /* PrecipitateDocsImporter.mdimporter in Copy Importers */,
 				3362332F0E6A0E7500DD5373 /* PrecipitatePicasaImporter.mdimporter in Copy Importers */,
+				00C7361A0E98468E002DD717 /* PrecipitateBookmarksImporter.mdimporter in Copy Importers */,
 			);
 			name = "Copy Importers";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -281,6 +296,12 @@
 
 /* Begin PBXFileReference section */
 		00C734BD0E982723002DD717 /* pwaphoto.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = pwaphoto.icns; path = Sources/Picasa/pwaphoto.icns; sourceTree = "<group>"; };
+		00C735B20E9842A3002DD717 /* gbookmark.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = gbookmark.icns; path = Sources/Bookmarks/gbookmark.icns; sourceTree = "<group>"; };
+		00C735B40E9842C4002DD717 /* GetMetadataForFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetMetadataForFile.m; path = Sources/Bookmarks/GetMetadataForFile.m; sourceTree = "<group>"; };
+		00C735B50E9842C4002DD717 /* Importer-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Importer-Info.plist"; path = "Sources/Bookmarks/Importer-Info.plist"; sourceTree = "<group>"; };
+		00C735B60E9842C4002DD717 /* Importer-main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "Importer-main.c"; path = "Sources/Bookmarks/Importer-main.c"; sourceTree = "<group>"; };
+		00C735B70E9842C4002DD717 /* schema.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = schema.xml; path = Sources/Bookmarks/schema.xml; sourceTree = "<group>"; };
+		00C735C60E9842EA002DD717 /* PrecipitateBookmarksImporter.mdimporter */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrecipitateBookmarksImporter.mdimporter; sourceTree = BUILT_PRODUCTS_DIR; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Agent/main.m; sourceTree = "<group>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -364,6 +385,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		00C735C40E9842EA002DD717 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00C737580E9846C4002DD717 /* CoreServices.framework in Frameworks */,
+				00C737590E9846C4002DD717 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3302A6250D4EB6EF00AAF075 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -447,6 +477,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00C735B10E98428C002DD717 /* Importer */ = {
+			isa = PBXGroup;
+			children = (
+				00C735B40E9842C4002DD717 /* GetMetadataForFile.m */,
+				00C735B60E9842C4002DD717 /* Importer-main.c */,
+				00C735B70E9842C4002DD717 /* schema.xml */,
+				00C735B50E9842C4002DD717 /* Importer-Info.plist */,
+			);
+			name = Importer;
+			sourceTree = "<group>";
+		};
 		080E96DDFE201D6D7F000001 /* Agent */ = {
 			isa = PBXGroup;
 			children = (
@@ -471,6 +512,7 @@
 				3388D3170D906CBC00FFC510 /* Precipitate.prefPane */,
 				33F083950E5CE61000DB70B9 /* PicasaWebAlbums.bundle */,
 				336232580E6A039400DD5373 /* PrecipitatePicasaImporter.mdimporter */,
+				00C735C60E9842EA002DD717 /* PrecipitateBookmarksImporter.mdimporter */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -524,6 +566,7 @@
 				3302A61E0D4EB23100AAF075 /* GPBookmarkSync.h */,
 				3302A61F0D4EB23100AAF075 /* GPBookmarkSync.m */,
 				33897EF30D4FB25A00A54981 /* Resources */,
+				00C735B10E98428C002DD717 /* Importer */,
 			);
 			name = "Google Bookmarks";
 			sourceTree = "<group>";
@@ -638,6 +681,7 @@
 		33897EF30D4FB25A00A54981 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				00C735B20E9842A3002DD717 /* gbookmark.icns */,
 				3302A6280D4EB6EF00AAF075 /* GoogleBookmarks-Info.plist */,
 			);
 			name = Resources;
@@ -700,6 +744,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		00C735C50E9842EA002DD717 /* BookmarksImporter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00C735CA0E9842EB002DD717 /* Build configuration list for PBXNativeTarget "BookmarksImporter" */;
+			buildPhases = (
+				00C735C20E9842EA002DD717 /* Resources */,
+				00C735C30E9842EA002DD717 /* Sources */,
+				00C735C40E9842EA002DD717 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BookmarksImporter;
+			productName = BookmarksImporter;
+			productReference = 00C735C60E9842EA002DD717 /* PrecipitateBookmarksImporter.mdimporter */;
+			productType = "com.apple.product-type.bundle";
+		};
 		3302A6260D4EB6EF00AAF075 /* GoogleBookmarks */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3302A62C0D4EB6F000AAF075 /* Build configuration list for PBXNativeTarget "GoogleBookmarks" */;
@@ -846,6 +907,7 @@
 			dependencies = (
 				33F88FC90D50F67700790AEF /* PBXTargetDependency */,
 				3362332B0E6A0E3300DD5373 /* PBXTargetDependency */,
+				00C736140E984676002DD717 /* PBXTargetDependency */,
 				33582D7C0E158C9300279D7F /* PBXTargetDependency */,
 			);
 			name = Precipitate;
@@ -879,6 +941,7 @@
 				33FED7D50D4E5DC50075A454 /* GoogleDocs */,
 				33BBBC0F0D2C4C7A007FE6D7 /* DocsImporter */,
 				3302A6260D4EB6EF00AAF075 /* GoogleBookmarks */,
+				00C735C50E9842EA002DD717 /* BookmarksImporter */,
 				33F083830E5CE61000DB70B9 /* PicasaWebAlbums */,
 				3362324C0E6A039400DD5373 /* PicasaImporter */,
 				3302A6350D4EB86B00AAF075 /* TestHarness */,
@@ -911,6 +974,14 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		00C735C20E9842EA002DD717 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00C735DA0E984350002DD717 /* schema.xml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3302A6230D4EB6EF00AAF075 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -982,6 +1053,7 @@
 				337440490E4C0B2300CFB4FC /* gdocpdf.icns in Resources */,
 				336233660E6A123D00DD5373 /* pwaalbum.icns in Resources */,
 				00C734BE0E982723002DD717 /* pwaphoto.icns in Resources */,
+				00C735B30E9842A3002DD717 /* gbookmark.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1075,6 +1147,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		00C735C30E9842EA002DD717 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00C735D80E984350002DD717 /* GetMetadataForFile.m in Sources */,
+				00C735D90E984350002DD717 /* Importer-main.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3302A6240D4EB6EF00AAF075 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1161,6 +1242,11 @@
 			isa = PBXTargetDependency;
 			target = 8D1107260486CEB800E47090 /* Precipitate */;
 			targetProxy = 009ABFA60E1FE7BD009E5175 /* PBXContainerItemProxy */;
+		};
+		00C736140E984676002DD717 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 00C735C50E9842EA002DD717 /* BookmarksImporter */;
+			targetProxy = 00C736130E984676002DD717 /* PBXContainerItemProxy */;
 		};
 		3302A7E00D4F05EF00AAF075 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1273,6 +1359,26 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		00C735C80E9842EA002DD717 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = "Sources/Bookmarks/Importer-Info.plist";
+				PRODUCT_NAME = PrecipitateBookmarksImporter;
+				WRAPPER_EXTENSION = mdimporter;
+			};
+			name = Debug;
+		};
+		00C735C90E9842EA002DD717 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = "Sources/Bookmarks/Importer-Info.plist";
+				PRODUCT_NAME = PrecipitateBookmarksImporter;
+				WRAPPER_EXTENSION = mdimporter;
+			};
+			name = Release;
+		};
 		3302A6290D4EB6F000AAF075 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
@@ -1515,6 +1621,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		00C735CA0E9842EB002DD717 /* Build configuration list for PBXNativeTarget "BookmarksImporter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00C735C80E9842EA002DD717 /* Debug */,
+				00C735C90E9842EA002DD717 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3302A62C0D4EB6F000AAF075 /* Build configuration list for PBXNativeTarget "GoogleBookmarks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

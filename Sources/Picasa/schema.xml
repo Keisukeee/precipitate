@@ -5,7 +5,7 @@
                       xsi:schemaLocation="http://www.apple.com/metadata file:///System/Library/Frameworks/CoreServices.framework/Frameworks/Metadata.framework/Resources/MetadataSchema.xsd">
 
     <types>
-        <type name="com.googlecode.precpitate.pwa.album">
+        <type name="com.googlecode.precipitate.pwa.album">
             <allattrs>
               kMDItemTitle kMDItemDisplayName kMDItemDescription kMDItemAuthors kMDItemComment kGPMDItemModificationDate kMDItemContentModificationDate kMDItemContentCreationDate
             </allattrs>
@@ -13,7 +13,7 @@
               kMDItemTitle kMDItemDisplayName kMDItemDescription kMDItemComment kGPMDItemModificationDate kMDItemContentModificationDate kMDItemContentCreationDate
             </displayattrs>
         </type>
-        <type name="com.googlecode.precpitate.pwa.photo">
+        <type name="com.googlecode.precipitate.pwa.photo">
             <allattrs>
               kMDItemTitle kMDItemDisplayName kMDItemDescription kMDItemAuthors kGPMDItemModificationDate kMDItemContentModificationDate kMDItemContentCreationDate kMDItemPixelWidth kMDItemPixelHeight kMDItemExposureTimeSeconds kMDItemFlashOnOff kMDItemFocalLength kMDItemISOSpeed kMDItemAcquisitionMake kMDItemAcquisitionModel
             </allattrs>
