@@ -25,6 +25,7 @@
   id<GPSyncManager>              manager_;  // weak reference
   GDataServiceGoogleDocs*        docService_;
   GDataServiceGoogleSpreadsheet* spreadsheetService_;
+  NSMutableArray*                docsToInflate_;
 }
 
 @end

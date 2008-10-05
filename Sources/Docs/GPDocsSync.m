@@ -23,8 +23,9 @@
 
 - (NSArray*)peopleStringsForGDataPeople:(NSArray*)people;
 - (NSDictionary*)dictionaryForEntry:(GDataEntryBase*)doc;
-- (NSString*)contentForDoc:(NSDictionary*)docInfo;
-- (void)inflateDocuments:(NSArray*)documents;
+- (void)inflateNextDoc;
+- (void)fetchContentForNextDoc;
+- (void)retrievedContentForNextDoc:(NSString*)content;
 
 @end
 
@@ -36,6 +37,13 @@
     manager_ = manager;
   }
   return self;
+}
+
+- (void)dealloc {
+  [docService_ release];
+  [spreadsheetService_ release];
+  [docsToInflate_ release];
+  [super dealloc];
 }
 
 - (void)fetchAllItemsBasicInfo
@@ -95,7 +103,13 @@
 
 - (void)fetchFullInfoForItems:(NSArray*)items
 {
-  [self inflateDocuments:items];
+  // We don't want to block the runloop for the whole time we are fetching
+  // content, so we work through the list one entry at a time. Each time we
+  // finish fetching one we'll start another (or report completion), so all we
+  // have to do here is kick off the process.
+  [docsToInflate_ release];
+  docsToInflate_ = [items mutableCopy];
+  [self inflateNextDoc];
 }
 
 - (NSString*)cacheFileExtensionForItem:(NSDictionary*)item {
@@ -125,13 +139,7 @@
   return @"Google Docs";
 }
 
-#pragma mark -
-
-- (void)dealloc {
-  [docService_ release];
-  [spreadsheetService_ release];
-  [super dealloc];
-}
+#pragma mark Basic Info Fetching
 
 - (void)serviceTicket:(GDataServiceTicket *)ticket
    finishedWithObject:(GDataFeedDocList *)docList {
@@ -167,17 +175,6 @@
   }
 }
 
-- (void)inflateDocuments:(NSArray*)docs {
-  NSEnumerator* docEnumerator = [docs objectEnumerator];
-  NSDictionary* docInfo;
-  while ((docInfo = [docEnumerator nextObject])) {
-    NSMutableDictionary* fullDocInfo = [[docInfo mutableCopy] autorelease];
-    [fullDocInfo setObject:[self contentForDoc:docInfo] forKey:(NSString*)kMDItemTextContent];
-    [manager_ fullItemsInfo:[NSArray arrayWithObject:fullDocInfo] fetchedForSource:self];
-  }
-  [manager_ fullItemsInfoFetchCompletedForSource:self];
-}
-
 - (NSArray*)peopleStringsForGDataPeople:(NSArray*)people {
   NSMutableArray* peopleStrings = [NSMutableArray arrayWithCapacity:[people count]];
   NSEnumerator* enumerator = [people objectEnumerator];
@@ -211,44 +208,72 @@
   return info;
 }
 
-- (NSString*)contentForDoc:(NSDictionary*)docInfo {
-  NSString* content = nil;
+#pragma mark Full Info Fetching
+
+- (void)inflateNextDoc {
+  // First check to see if we are done.
+  if ([docsToInflate_ count] == 0) {
+    [manager_ fullItemsInfoFetchCompletedForSource:self];
+    return;
+  }
+
+  // If not, start getting the content for the next doc. Run this as a
+  // prerformSelector:... so that we never try to get more than one document
+  // per run loop cycle.
+  [self performSelector:@selector(fetchContentForNextDoc)
+             withObject:nil
+             afterDelay:0.01];
+}
+
+- (void)retrievedContentForNextDoc:(NSString*)content {
+  // Report this complete entry back to the manager.
+  NSDictionary* docInfo = [docsToInflate_ objectAtIndex:0];
+  NSMutableDictionary* fullDocInfo = [[docInfo mutableCopy] autorelease];
+  [fullDocInfo setObject:content forKey:(NSString*)kMDItemTextContent];
+  [manager_ fullItemsInfo:[NSArray arrayWithObject:fullDocInfo] fetchedForSource:self];
+  [docsToInflate_ removeObjectAtIndex:0];
+
+  // Start the cycle again.
+  [self inflateNextDoc];
+}
+
+// Starts the process of getting content for the next document in docsToInflate_.
+// retrievedContentForNextDoc: will be called when it's finished (with @"" as
+// the content if the content couldn't be fetched).
+- (void)fetchContentForNextDoc {
+  NSDictionary* docInfo = [docsToInflate_ objectAtIndex:0];
 
   NSArray* categories = [docInfo objectForKey:kDocDictionaryCategoriesKey];
   if ([categories containsObject:kDocCategoryDocument]) {
     NSString* sourceURI = [docInfo objectForKey:kDocDictionarySourceURIKey];
     if ([sourceURI hasPrefix:@"http:"])
       sourceURI = [@"https:" stringByAppendingString:[sourceURI substringFromIndex:5]];
-    NSURL* sourceURL = [NSURL URLWithString:sourceURI];
-    NSError* error = nil;
-    NSURLResponse* response = nil;
-    NSData* data = nil;
-    NSURLRequest* request = [docService_ requestForURL:sourceURL
+    NSURLRequest* request = [docService_ requestForURL:[NSURL URLWithString:sourceURI]
                                                   ETag:nil
                                             httpMethod:nil];
-    data = [NSURLConnection sendSynchronousRequest:request
-                                 returningResponse:&response
-                                             error:&error];
-    if (data) {
-      NSXMLDocument* contentXML = [[[NSXMLDocument alloc] initWithData:data
-                                                               options:NSXMLDocumentTidyHTML
-                                                                 error:NULL] autorelease];
-      NSXMLNode* body = [[contentXML nodesForXPath:@"//body" error:NULL] lastObject];
-      if (body)
-        content = [body stringValue];
-    } else {
-      NSLog(@"Docs source couldn't get data: %@ (%@)", error, response);
-    }
+    GDataHTTPFetcher* fetcher = [GDataHTTPFetcher httpFetcherWithRequest:request];
+    [fetcher setIsRetryEnabled:YES];
+    [fetcher setMaxRetryInterval:60.0];
+    [fetcher beginFetchWithDelegate:self
+                  didFinishSelector:@selector(documentContentFetcher:finishedWithData:)
+          didFailWithStatusSelector:@selector(documentContentFetcher:failedWithStatus:data:)
+           didFailWithErrorSelector:@selector(documentContentFetcher:failedWithError:)];
   }
   else if ([categories containsObject:kDocCategorySpreadsheet]) {
+    // TODO: this fetch is still synchronous; it should be made fully async so
+    // that we don't block the runloop for however long it takes to get all
+    // the worksheets.
+
     // The HTML view of the spreadsheet at sourceURI doesn't honor the GData
     // auth header, so the document approach of just reading that page results
     // in a login page unless there happens to be a valid cookie in the OS
     // cookie store (e.g., from Safari), so pull the content out of the cells.
     NSString* sourceURI = [docInfo objectForKey:kDocDictionarySourceURIKey];
     NSRange keyLabelRange = [sourceURI rangeOfString:@"key="];
-    if (keyLabelRange.location == NSNotFound)
-      return @"";
+    if (keyLabelRange.location == NSNotFound) {
+      [self retrievedContentForNextDoc:@""];
+      return;
+    }
     NSString* key = [sourceURI substringFromIndex:(keyLabelRange.location + keyLabelRange.length)];
     NSRange ampersandRange = [key rangeOfString:@"&"];
     if (ampersandRange.location != NSNotFound)
@@ -264,8 +289,10 @@
     NSData *worksheetFeedData = [NSURLConnection sendSynchronousRequest:request
                                                       returningResponse:&response
                                                                   error:&error];
-    if (!worksheetFeedData)
-      return @"";
+    if (!worksheetFeedData) {
+      [self retrievedContentForNextDoc:@""];
+      return;
+    }
     NSXMLDocument* worksheetFeed = [[[NSXMLDocument alloc] initWithData:worksheetFeedData
                                                                 options:0
                                                                   error:nil] autorelease];
@@ -297,19 +324,54 @@
       }
     }
 
-    content = contentAccumulator;
+    [self retrievedContentForNextDoc:contentAccumulator];
   } else if ([categories containsObject:kDocCategoryPresentation]) {
     // TODO: there is currently no reliable way to get presentation content
+    [self retrievedContentForNextDoc:@""];
   } else if ([categories containsObject:kDocCategoryPDF]) {
     // TODO: there doesn't seem to be a way to get the text content without
     // downloading the entire PDF, which is potentially very costly.
+    [self retrievedContentForNextDoc:@""];
   } else {
     NSLog(@"Unknown document type: %@", categories);
+    [self retrievedContentForNextDoc:@""];
   }
+}
 
-  if (!content)
+- (void)documentContentFetcher:(GDataHTTPFetcher *)fetcher
+              finishedWithData:(NSData *)data {
+  NSXMLDocument* contentXML = [[[NSXMLDocument alloc] initWithData:data
+                                                           options:NSXMLDocumentTidyHTML
+                                                             error:NULL] autorelease];
+  NSXMLNode* body = [[contentXML nodesForXPath:@"//body" error:NULL] lastObject];
+  NSString* content = [body stringValue];
+  // Strip off the IE XML namespace block
+  if ([content hasPrefix:@"[if IE]>"]) {
+    NSRange endTag = [content rangeOfString:@"<![endif]" options:NSLiteralSearch];
+    if (endTag.location != NSNotFound) {
+      unsigned int tagEnd = endTag.location + endTag.length;
+      content = (tagEnd < [content length]) ? [content substringFromIndex:tagEnd]
+                                            : @"";
+    }
+  }
+  if (!content) {
     content = @"";
-  return content;
+    NSLog(@"Docs source couldn't get document data. (%x, %x, %x)", data, contentXML, body);
+  }
+  [self retrievedContentForNextDoc:content];
+}
+
+- (void)documentContentFetcher:(GDataHTTPFetcher *)fetcher
+              failedWithStatus:(int)status
+                          data:(NSData *)data {
+  NSLog(@"Docs source received status %d trying to get document data", status);
+  [self retrievedContentForNextDoc:@""];
+}
+
+- (void)documentContentFetcher:(GDataHTTPFetcher *)fetcher
+               failedWithError:(NSError *)error {
+  NSLog(@"Docs source failed to get document data: %@", error);
+  [self retrievedContentForNextDoc:@""];
 }
 
 @end
