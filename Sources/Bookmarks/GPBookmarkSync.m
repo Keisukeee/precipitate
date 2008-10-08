@@ -106,7 +106,7 @@ static NSString* const kBookmarkURLFormat = @"https://www.google.com/bookmarks/l
       } else if ([[infoNode name] isEqualToString:@"pubDate"]) {
         [bookmarkInfo setObject:[NSDate dateWithNaturalLanguageString:[infoNode stringValue]]
                          forKey:kGPMDItemModificationDate];
-      } else if ([[infoNode name] isEqualToString:@"guid"]) {
+      } else if ([[infoNode name] isEqualToString:@"smh:bkmk_id"]) {
         [bookmarkInfo setObject:[infoNode stringValue] forKey:kGPMDItemUID];
       } else if ([[infoNode name] isEqualToString:@"smh:bkmk_label"]) {
         [keywords addObject:[infoNode stringValue]];
