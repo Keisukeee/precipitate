@@ -309,7 +309,7 @@
    setObjectValue:(id)anObject
    forTableColumn:(NSTableColumn *)aTableColumn
               row:(int)rowIndex {
-  if ([[aTableColumn identifier] isEqualToString:@"enabled"]);
+  if ([[aTableColumn identifier] isEqualToString:@"enabled"])
     [self triggerReSync];
 }
 
