@@ -326,8 +326,22 @@
 
     [self retrievedContentForNextDoc:contentAccumulator];
   } else if ([categories containsObject:kDocCategoryPresentation]) {
-    // TODO: there is currently no reliable way to get presentation content
-    [self retrievedContentForNextDoc:@""];
+    NSString* sourceURI = [docInfo objectForKey:kDocDictionarySourceURIKey];
+    if ([sourceURI hasPrefix:@"http:"])
+      sourceURI = [@"https:" stringByAppendingString:[sourceURI substringFromIndex:5]];
+    // Default export format is PDF, but we just want the raw text.
+    sourceURI = [sourceURI stringByAppendingString:@"&exportFormat=txt"];
+
+    NSURLRequest* request = [docService_ requestForURL:[NSURL URLWithString:sourceURI]
+                                                  ETag:nil
+                                            httpMethod:nil];
+    GDataHTTPFetcher* fetcher = [GDataHTTPFetcher httpFetcherWithRequest:request];
+    [fetcher setIsRetryEnabled:YES];
+    [fetcher setMaxRetryInterval:60.0];
+    [fetcher beginFetchWithDelegate:self
+                  didFinishSelector:@selector(documentContentFetcher:finishedWithData:)
+          didFailWithStatusSelector:@selector(documentContentFetcher:failedWithStatus:data:)
+           didFailWithErrorSelector:@selector(documentContentFetcher:failedWithError:)];
   } else if ([categories containsObject:kDocCategoryPDF]) {
     // TODO: there doesn't seem to be a way to get the text content without
     // downloading the entire PDF, which is potentially very costly.
