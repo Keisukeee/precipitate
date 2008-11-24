@@ -102,12 +102,16 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
     dlsym(RTLD_DEFAULT, "LSSharedFileListCreate");
   LSSharedFileListInsertItemURLFPtr dLSSharedFileListInsertItemURL =
     dlsym(RTLD_DEFAULT, "LSSharedFileListInsertItemURL");
+  int* dkLSSharedFileListSessionLoginItemsAddress =
+    dlsym(RTLD_DEFAULT, "kLSSharedFileListSessionLoginItems");
   CFStringRef dkLSSharedFileListSessionLoginItems =
-    (CFStringRef)*((int*)dlsym(RTLD_DEFAULT, "kLSSharedFileListSessionLoginItems"));
+    dkLSSharedFileListSessionLoginItemsAddress ? (CFStringRef)*dkLSSharedFileListSessionLoginItemsAddress
+                                               : NULL;
+  int* dkLSSharedFileListItemLastAddress =
+    dlsym(RTLD_DEFAULT, "kLSSharedFileListItemLast");
   CFTypeRef dkLSSharedFileListItemLast =
-    (CFTypeRef)*((int*)dlsym(RTLD_DEFAULT, "kLSSharedFileListItemLast"));
-  NSLog(@"Lookup: %x %x %@ %x", dLSSharedFileListCreate, dLSSharedFileListInsertItemURL,
-        (NSString*)dkLSSharedFileListSessionLoginItems, dkLSSharedFileListItemLast);
+    dkLSSharedFileListItemLastAddress ? (CFTypeRef)*dkLSSharedFileListItemLastAddress
+                                      : NULL;
   // They should be all-or-nothing, but check everything in case something goes
   // wrong with the dlsym lookup.
   if (dLSSharedFileListCreate != NULL &&
