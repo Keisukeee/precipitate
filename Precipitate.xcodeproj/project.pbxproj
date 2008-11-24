@@ -1605,7 +1605,7 @@
 			baseConfigurationReference = 3388D3530D906DC400FFC510 /* DebugTigerOrLater.xcconfig */;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "USER_AGENT_VERSION=\\\"$(PRODUCT_VERSION_STRING)\\\"";
-				PRODUCT_VERSION_STRING = 1.0.4;
+				PRODUCT_VERSION_STRING = 1.0.5;
 			};
 			name = Debug;
 		};
@@ -1614,7 +1614,7 @@
 			baseConfigurationReference = 3388D3550D906DC400FFC510 /* ReleaseTigerOrLater.xcconfig */;
 			buildSettings = {
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "USER_AGENT_VERSION=\\\"$(PRODUCT_VERSION_STRING)\\\"";
-				PRODUCT_VERSION_STRING = 1.0.4;
+				PRODUCT_VERSION_STRING = 1.0.5;
 			};
 			name = Release;
 		};
