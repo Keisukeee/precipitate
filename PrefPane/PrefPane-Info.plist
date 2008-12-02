@@ -28,5 +28,7 @@
 	<string>Precipitate</string>
 	<key>NSPrincipalClass</key>
 	<string>ComGooglePrecipitatePreferencePane</string>
+	<key>NSPrefPaneSearchParameters</key>
+	<string>Precipitate</string>
 </dict>
 </plist>

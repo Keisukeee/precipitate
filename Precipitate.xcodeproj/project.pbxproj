@@ -113,6 +113,8 @@
 		33F88F780D50F43600790AEF /* PrecipitateDocsImporter.mdimporter in Copy Importers */ = {isa = PBXBuildFile; fileRef = 33BBBC100D2C4C7A007FE6D7 /* PrecipitateDocsImporter.mdimporter */; };
 		33F891180D51408900790AEF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33F891160D51408900790AEF /* Localizable.strings */; };
 		33F892130D5290B300790AEF /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F892120D5290B300790AEF /* WebKit.framework */; };
+		8BF53A090EE5A74800D981A0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BF53A080EE5A74800D981A0 /* InfoPlist.strings */; };
+		8BF53A100EE5A98D00D981A0 /* Precipitate.searchTerms in Resources */ = {isa = PBXBuildFile; fileRef = 8BF53A0F0EE5A98D00D981A0 /* Precipitate.searchTerms */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -380,6 +382,8 @@
 		33F892120D5290B300790AEF /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
 		33FED7D60D4E5DC50075A454 /* GoogleDocs.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoogleDocs.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FED7D70D4E5DC50075A454 /* GoogleDocs-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleDocs-Info.plist"; path = "Sources/Docs/GoogleDocs-Info.plist"; sourceTree = "<group>"; };
+		8BF53A060EE5A73A00D981A0 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = PrefPane/English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8BF53A0D0EE5A98200D981A0 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = English; path = PrefPane/English.lproj/Precipitate.searchTerms; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Precipitate-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Precipitate-Info.plist"; path = "Agent/Precipitate-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Precipitate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Precipitate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -584,8 +588,10 @@
 		3358273C0E14519D00279D7F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8BF53A0F0EE5A98D00D981A0 /* Precipitate.searchTerms */,
 				33897F590D4FCCFD00A54981 /* Precipitate.icns */,
 				3388D30C0D906B0000FFC510 /* PrefPane-Info.plist */,
+				8BF53A080EE5A74800D981A0 /* InfoPlist.strings */,
 				331FFDD80D9328D30044B7F1 /* PrecipitatePrefPane.xib */,
 				335827830E1451C000279D7F /* PrefPane.strings */,
 			);
@@ -1014,6 +1020,8 @@
 				331FFDDA0D9328D30044B7F1 /* PrecipitatePrefPane.xib in Resources */,
 				338030E40D9974C6008BCA40 /* Precipitate.icns in Resources */,
 				335827850E1451C000279D7F /* PrefPane.strings in Resources */,
+				8BF53A090EE5A74800D981A0 /* InfoPlist.strings in Resources */,
+				8BF53A100EE5A98D00D981A0 /* Precipitate.searchTerms in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1354,6 +1362,22 @@
 				33F891170D51408900790AEF /* English */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		8BF53A080EE5A74800D981A0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8BF53A060EE5A73A00D981A0 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		8BF53A0F0EE5A98D00D981A0 /* Precipitate.searchTerms */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8BF53A0D0EE5A98200D981A0 /* English */,
+			);
+			name = Precipitate.searchTerms;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
