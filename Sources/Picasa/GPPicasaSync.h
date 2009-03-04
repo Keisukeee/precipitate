@@ -21,7 +21,7 @@
 
 @interface GPPicasaSync : NSObject <GPSyncSource> {
   id<GPSyncManager>              manager_;  // weak
-  GDataServiceGooglePicasaWeb*   picasaService_;
+  GDataServiceGooglePhotos*      photosService_;
 }
 
 @end

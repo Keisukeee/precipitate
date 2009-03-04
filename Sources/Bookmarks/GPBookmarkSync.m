@@ -14,9 +14,10 @@
 // limitations under the License.
 //
 
+#import <GData/GData.h>
+
 #import "GPBookmarkSync.h"
 #import "GPKeychainItem.h"
-#import "GTMHTTPFetcher.h"
 #import "SharedConstants.h"
 
 static NSString* const kBookmarkURLFormat = @"https://www.google.com/bookmarks/lookup?output=rss&start=%d";
@@ -71,7 +72,7 @@ static NSString* const kBookmarkURLFormat = @"https://www.google.com/bookmarks/l
 - (void)requestBookmarksStartingFrom:(int)start {
   NSString* requestURI = [NSString stringWithFormat:kBookmarkURLFormat, start];
   NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:requestURI]];
-  GTMHTTPFetcher* fetcher = [GTMHTTPFetcher httpFetcherWithRequest:request];
+  GDataHTTPFetcher* fetcher = [GDataHTTPFetcher httpFetcherWithRequest:request];
   GPKeychainItem* loginCredentials = [GPKeychainItem keychainItemForService:kPrecipitateGoogleAccountKeychainServiceName];
   if (loginCredentials) {
     [fetcher setCredential:[NSURLCredential credentialWithUser:[loginCredentials username]
@@ -123,7 +124,7 @@ static NSString* const kBookmarkURLFormat = @"https://www.google.com/bookmarks/l
 
 #pragma mark -
 
-- (void)fetch:(GTMHTTPFetcher *)fetcher finishedWithData:(NSData *)data {
+- (void)fetch:(GDataHTTPFetcher *)fetcher finishedWithData:(NSData *)data {
   NSArray* newBookmarks = [self bookmarksFromData:data];
   // The bookmarks feed returns chunks, not everything, so unless there were no
   // bookmarks in the response we assume there are more. Once we hit an empty
@@ -137,7 +138,7 @@ static NSString* const kBookmarkURLFormat = @"https://www.google.com/bookmarks/l
   }
 }
 
-- (void)fetch:(GTMHTTPFetcher *)fetcher failedWithError:(NSError *)error {
+- (void)fetch:(GDataHTTPFetcher *)fetcher failedWithError:(NSError *)error {
   [manager_ infoFetchFailedForSource:self withError:error];
   [bookmarks_ removeAllObjects];
 }

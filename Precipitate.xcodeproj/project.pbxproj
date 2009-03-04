@@ -69,7 +69,6 @@
 		336233660E6A123D00DD5373 /* pwaalbum.icns in Resources */ = {isa = PBXBuildFile; fileRef = 336233650E6A123D00DD5373 /* pwaalbum.icns */; };
 		336B1C180D53B4390019F6B2 /* GPDocsSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 334CAE1E0D0F6798006BAF54 /* GPDocsSync.m */; };
 		337440490E4C0B2300CFB4FC /* gdocpdf.icns in Resources */ = {isa = PBXBuildFile; fileRef = 337440460E4C0B1000CFB4FC /* gdocpdf.icns */; };
-		337B5FA20E315BAD00847BC1 /* GTMHTTPFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 337B5FA10E315BAD00847BC1 /* GTMHTTPFetcher.m */; };
 		33802EA10D9885B4008BCA40 /* Precipitate.app in Resources */ = {isa = PBXBuildFile; fileRef = 8D1107320486CEB800E47090 /* Precipitate.app */; };
 		33802EB50D9885E7008BCA40 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		33802EB80D9885EE008BCA40 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332204420D4EA96C00EE30FF /* Security.framework */; };
@@ -94,6 +93,7 @@
 		33BBBC490D2C5153007FE6D7 /* Importer-main.c in Sources */ = {isa = PBXBuildFile; fileRef = 33BBBC470D2C5153007FE6D7 /* Importer-main.c */; };
 		33BBBC4B0D2C5179007FE6D7 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */; };
 		33BBBC4C0D2C5182007FE6D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
+		33D679080F5F3CDA00962528 /* GData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33D7942D0E1D39B6004A8D9C /* GData.framework */; };
 		33D794F00E1D39CD004A8D9C /* GData.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 33D7942D0E1D39B6004A8D9C /* GData.framework */; };
 		33F0838C0E5CE61000DB70B9 /* GData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33582D4B0E15895800279D7F /* GData.framework */; };
 		33F0838D0E5CE61000DB70B9 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */; };
@@ -402,6 +402,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33D679080F5F3CDA00962528 /* GData.framework in Frameworks */,
 				33802F770D988810008BCA40 /* CoreServices.framework in Frameworks */,
 				33802F750D9887B8008BCA40 /* Foundation.framework in Frameworks */,
 				3302A7AC0D4EFF2700AAF075 /* Security.framework in Frameworks */,
@@ -774,6 +775,7 @@
 				3302A6230D4EB6EF00AAF075 /* Resources */,
 				3302A6240D4EB6EF00AAF075 /* Sources */,
 				3302A6250D4EB6EF00AAF075 /* Frameworks */,
+				33D6790A0F5F3D0000962528 /* Modify GData Load Path */,
 			);
 			buildRules = (
 			);
@@ -1096,6 +1098,20 @@
 			shellPath = /usr/bin/python;
 			shellScript = "#!/usr/bin/python\n\"\"\"\nCopies the built GData.framework from the GData project build directory\ninto our build directory (if it's not already due to SYMROOT overrides).\n\"\"\"\n\nimport sys\nimport os\n\n# Check if the project file path is a parent of the build products dir. If\n# it is we know that the SYMROOT is project relative.\nif os.environ['BUILT_PRODUCTS_DIR'][0:len(os.environ['PROJECT_DIR'])] == os.environ['PROJECT_DIR']:\n  # BUILT_PRODUCTS_DIR prefix == PROJECT_DIR, GData project will have used its\n  # own output dir\n  # Get the 'build' dir name in a safe way\n  build_dir_name = os.path.split(os.environ['SYMROOT'])[1]\n  gdata_framework_path = os.path.normpath(os.path.abspath(os.path.join(\n                                        os.environ['PROJECT_DIR'],\n                                        'external/gdata-objectivec-client/Source',\n                                        build_dir_name,\n                                        os.environ['CONFIGURATION'],\n                                        'GData.framework')))\n  if not os.path.exists(gdata_framework_path):\n    print 'Missing %s' % gdata_framework_path\n    sys.exit(-1)\n  sys.exit(os.system('/Developer/Tools/CpMac -r \"%s\" \"%s\"' % \n                      (gdata_framework_path, os.environ['BUILT_PRODUCTS_DIR'])))\n\n# If the SYMROOT was not project-relative we have nothing to do. SYMROOT changes\n# apply to all projects being built, and thus the GData framework output\n# directory will be to the same location as this build already.\n";
 		};
+		33D6790A0F5F3D0000962528 /* Modify GData Load Path */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Modify GData Load Path";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/bin/install_name_tool -change @loader_path/../Frameworks/GData.framework/Versions/A/GData @executable_path/../Frameworks/GData.framework/Versions/A/GData $BUILT_PRODUCTS_DIR/$PRODUCT_NAME.$WRAPPER_EXTENSION/Contents/MacOS/$PRODUCT_NAME\n";
+		};
 		33D795D60E1D7DCE004A8D9C /* Strip GData headers */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1169,7 +1185,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3302A62D0D4EB71D00AAF075 /* GPBookmarkSync.m in Sources */,
-				337B5FA20E315BAD00847BC1 /* GTMHTTPFetcher.m in Sources */,
 				33F087150E687BDA00DB70B9 /* GPKeychainItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

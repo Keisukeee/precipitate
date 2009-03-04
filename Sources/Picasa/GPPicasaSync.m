@@ -39,7 +39,7 @@
 }
 
 - (void)dealloc {
-  [picasaService_ release];
+  [photosService_ release];
   [super dealloc];
 }
 
@@ -59,29 +59,29 @@
   NSString* username = [loginCredentials username];
   NSString* password = [loginCredentials password];
 
-  [picasaService_ autorelease];
-  picasaService_ = [[GDataServiceGooglePicasaWeb alloc] init];
-  [picasaService_ setUserAgent:kPrecipitateUserAgent];
-  [picasaService_ setUserCredentialsWithUsername:username password:password];
-  [picasaService_ setIsServiceRetryEnabled:YES];
-  [picasaService_ setServiceShouldFollowNextLinks:YES];
+  [photosService_ autorelease];
+  photosService_ = [[GDataServiceGooglePhotos alloc] init];
+  [photosService_ setUserAgent:kPrecipitateUserAgent];
+  [photosService_ setUserCredentialsWithUsername:username password:password];
+  [photosService_ setIsServiceRetryEnabled:YES];
+  [photosService_ setServiceShouldFollowNextLinks:YES];
 
   NSString* kinds = [NSString stringWithFormat:@"%@,%@",
-                     kGDataPicasaWebKindAlbum, kGDataPicasaWebKindPhoto];
+                     kGDataGooglePhotosKindAlbum, kGDataGooglePhotosKindPhoto];
   NSString* albumFeedURI = 
-    [[GDataServiceGooglePicasaWeb picasaWebFeedURLForUserID:username
-                                                    albumID:nil
-                                                  albumName:nil
-                                                    photoID:nil
-                                                       kind:kinds
-                                                     access:nil] absoluteString];
+    [[GDataServiceGooglePhotos photoFeedURLForUserID:username
+                                             albumID:nil
+                                           albumName:nil
+                                             photoID:nil
+                                                kind:kinds
+                                              access:nil] absoluteString];
   // Ideally we would use https, but the album list redirects when accessed that way.
   //if ([albumFeedURI hasPrefix:@"http:"])
   //  albumFeedURI = [@"https:" stringByAppendingString:[albumFeedURI substringFromIndex:5]];
-  [picasaService_ fetchPicasaWebFeedWithURL:[NSURL URLWithString:albumFeedURI]
-                                   delegate:self
-                          didFinishSelector:@selector(serviceTicket:finishedWithAlbum:)
-                            didFailSelector:@selector(serviceTicket:failedWithError:)];
+  [photosService_ fetchPhotoFeedWithURL:[NSURL URLWithString:albumFeedURI]
+                               delegate:self
+                      didFinishSelector:@selector(serviceTicket:finishedWithAlbum:)
+                        didFailSelector:@selector(serviceTicket:failedWithError:)];
 }
 
 - (void)fetchFullInfoForItems:(NSArray*)items {
