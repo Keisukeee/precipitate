@@ -58,6 +58,7 @@
     return nil;
   }
 
+  CFMakeCollectable(keychainItemRef);
   GPKeychainItem* item = [[[GPKeychainItem alloc] initWithRef:keychainItemRef] autorelease];
   return item;
 }

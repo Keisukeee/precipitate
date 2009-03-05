@@ -21,7 +21,7 @@
 @interface GPKeychainItem : NSObject
 {
  @private
-  SecKeychainItemRef mKeychainItemRef;
+  __strong SecKeychainItemRef mKeychainItemRef;
   BOOL mDataLoaded;
   BOOL mPasswordLoaded;
   NSString* mService;

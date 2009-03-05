@@ -53,8 +53,9 @@ GTMOBJECT_SINGLETON_BOILERPLATE(GPSharedPreferences, sharedPreferences)
 
 - (NSDictionary*)availableSources {
   CFPreferencesAppSynchronize(kPrefIdentifier);
-  NSDictionary* sourcesDict = [GTMNSMakeCollectable(CFPreferencesCopyAppValue(kSourceListKey,
-                                                                              kPrefIdentifier)) autorelease];
+  NSDictionary* sourcesDict =
+    GTMCFAutorelease(CFPreferencesCopyAppValue(kSourceListKey,
+                                               kPrefIdentifier));
   if (!sourcesDict) {
     // Do a one-time upgrade if the old prefs are present
     NSFileManager* fileManager = [NSFileManager defaultManager];
@@ -76,8 +77,8 @@ GTMOBJECT_SINGLETON_BOILERPLATE(GPSharedPreferences, sharedPreferences)
 - (void)setEnabled:(BOOL)enabled forSource:(NSString*)sourceId {
   CFPreferencesAppSynchronize(kPrefIdentifier);
   NSDictionary* oldAllSourceInfo =
-    [GTMNSMakeCollectable(CFPreferencesCopyAppValue(kSourceListKey,
-                                                    kPrefIdentifier)) autorelease];
+    GTMCFAutorelease(CFPreferencesCopyAppValue(kSourceListKey,
+                                               kPrefIdentifier));
   NSMutableDictionary* newAllSourceInfo = [[oldAllSourceInfo mutableCopy] autorelease];
 
   NSMutableDictionary* newInfo = [[[newAllSourceInfo objectForKey:sourceId] mutableCopy] autorelease];
@@ -91,8 +92,8 @@ GTMOBJECT_SINGLETON_BOILERPLATE(GPSharedPreferences, sharedPreferences)
 - (BOOL)sourceIsEnabled:(NSString*)sourceId {
   CFPreferencesAppSynchronize(kPrefIdentifier);
   NSDictionary* allSourceInfo =
-    [GTMNSMakeCollectable(CFPreferencesCopyAppValue(kSourceListKey,
-                                                    kPrefIdentifier)) autorelease];
+    GTMCFAutorelease(CFPreferencesCopyAppValue(kSourceListKey,
+                                               kPrefIdentifier));
   NSDictionary* sourceInfo = [allSourceInfo objectForKey:sourceId];
   if (!sourceInfo)
     return NO;
@@ -102,9 +103,10 @@ GTMOBJECT_SINGLETON_BOILERPLATE(GPSharedPreferences, sharedPreferences)
 - (NSTimeInterval)updateInterval {
   CFPreferencesAppSynchronize(kPrefIdentifier);
   NSNumber* intervalObject =
-    [GTMNSMakeCollectable(CFPreferencesCopyAppValue(kPrefUpdateIntervalKey,
-                                                    kPrefIdentifier)) autorelease];
-  double updateMinutes = intervalObject ? [intervalObject intValue] : kDefaultUpdateInterval;
+    GTMCFAutorelease(CFPreferencesCopyAppValue(kPrefUpdateIntervalKey,
+                                               kPrefIdentifier));
+  double updateMinutes = intervalObject ? [intervalObject intValue]
+                                        : kDefaultUpdateInterval;
   if (updateMinutes < kMinUpdateInterval)
     updateMinutes = kMinUpdateInterval;
   return updateMinutes * 60.0;
@@ -113,8 +115,8 @@ GTMOBJECT_SINGLETON_BOILERPLATE(GPSharedPreferences, sharedPreferences)
 - (NSString*)customLauncherForSource:(NSString*)sourceId {
   CFPreferencesAppSynchronize(kPrefIdentifier);
   NSDictionary* customLaunchDict =
-    [GTMNSMakeCollectable(CFPreferencesCopyAppValue(kPrefCustomLanchKey,
-                                                    kPrefIdentifier)) autorelease];
+    GTMCFAutorelease(CFPreferencesCopyAppValue(kPrefCustomLanchKey,
+                                               kPrefIdentifier));
   return [customLaunchDict objectForKey:sourceId];
 }
 

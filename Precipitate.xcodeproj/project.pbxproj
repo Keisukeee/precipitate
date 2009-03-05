@@ -1532,6 +1532,7 @@
 					x86_64,
 					ppc,
 				);
+				"GCC_ENABLE_OBJC_GC[arch=x86_64]" = required;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefPane/PrefPane_Prefix.pch;
 				INFOPLIST_FILE = "PrefPane/PrefPane-Info.plist";
@@ -1549,6 +1550,7 @@
 					x86_64,
 					ppc,
 				);
+				"GCC_ENABLE_OBJC_GC[arch=x86_64]" = required;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefPane/PrefPane_Prefix.pch;
 				INFOPLIST_FILE = "PrefPane/PrefPane-Info.plist";

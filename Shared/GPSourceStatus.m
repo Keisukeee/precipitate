@@ -85,7 +85,7 @@ GTMOBJECT_SINGLETON_BOILERPLATE(GPSourceStatus, sharedSourceStatus)
     newStatus = [[NSMutableDictionary alloc] init];
   [self willChangeValueForKey:@"allStatuses"];
   [status_ release];
-  status_ = [newStatus retain];
+  status_ = newStatus;
   [self didChangeValueForKey:@"allStatuses"];
 }
 
