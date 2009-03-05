@@ -38,12 +38,10 @@ GTMOBJECT_SINGLETON_BOILERPLATE(GPSharedPreferences, sharedPreferences)
 
 - (void)setAvailableSources:(NSDictionary*)sourceInfo {
   NSDictionary* oldSourceInfo = [self availableSources];
-  NSMutableDictionary* newSourceInfo = [[sourceInfo mutableCopy] autorelease];
+  NSMutableDictionary* newSourceInfo = [NSMutableDictionary dictionaryWithCapacity:[sourceInfo count]];
   // Don't use keyEnumerator, since we'll be modifying the dictionary
-  NSEnumerator* newSourceKeyEnumerator = [[newSourceInfo allKeys] objectEnumerator];
-  NSString* sourceId;
-  while ((sourceId = [newSourceKeyEnumerator nextObject])) {
-    NSMutableDictionary* newInfo = [[[newSourceInfo objectForKey:sourceId] mutableCopy] autorelease];
+  for (NSString* sourceId in sourceInfo) {
+    NSMutableDictionary* newInfo = [[[sourceInfo objectForKey:sourceId] mutableCopy] autorelease];
     // Default new sources to disabled
     BOOL enabled = [[[oldSourceInfo objectForKey:sourceId] objectForKey:kGPSourcePrefEnabledKey] boolValue];
     [newInfo setObject:[NSNumber numberWithBool:enabled] forKey:kGPSourcePrefEnabledKey];

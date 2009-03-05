@@ -28,7 +28,7 @@
 + (GPKeychainItem*)keychainItemForService:(NSString*)service {
   SecKeychainItemRef itemRef;
   const char* serviceName = [service UTF8String];
-  UInt32 serviceNameLength = serviceName ? strlen(serviceName) : 0;
+  UInt32 serviceNameLength = serviceName ? (UInt32)strlen(serviceName) : 0;
   OSStatus result = SecKeychainFindGenericPassword(NULL,
                                                    serviceNameLength, serviceName,
                                                    0, NULL, 0, NULL,
@@ -43,11 +43,11 @@
                               withUsername:(NSString*)username
                                   password:(NSString*)password {
   const char* serviceName = [service UTF8String];
-  UInt32 serviceLength = serviceName ? strlen(serviceName) : 0;
+  UInt32 serviceLength = serviceName ? (UInt32)strlen(serviceName) : 0;
   const char* accountName = [username UTF8String];
-  UInt32 accountLength = accountName ? strlen(accountName) : 0;
+  UInt32 accountLength = accountName ? (UInt32)strlen(accountName) : 0;
   const char* passwordData = [password UTF8String];
-  UInt32 passwordLength = passwordData ? strlen(passwordData) : 0;
+  UInt32 passwordLength = passwordData ? (UInt32)strlen(passwordData) : 0;
   SecKeychainItemRef keychainItemRef;
   OSStatus result = SecKeychainAddGenericPassword(NULL, serviceLength, serviceName,
                                                   accountLength, accountName,
@@ -86,7 +86,7 @@
   UInt32 tags[2];
   tags[0] = kSecAccountItemAttr;
   tags[1] = kSecServiceItemAttr;
-  attrInfo.count = sizeof(tags)/sizeof(UInt32);
+  attrInfo.count = (UInt32)(sizeof(tags)/sizeof(UInt32));
   attrInfo.tag = tags;
   attrInfo.format = NULL;
 
@@ -151,12 +151,12 @@
   user.tag = kSecAccountItemAttr;
   const char* usernameString = [username UTF8String];
   user.data = (void*)usernameString;
-  user.length = user.data ? strlen(user.data) : 0;
+  user.length = user.data ? (UInt32)strlen(user.data) : 0;
   SecKeychainAttributeList attrList;
   attrList.count = 1;
   attrList.attr = &user;
   const char* passwordData = [password UTF8String];
-  UInt32 passwordLength = passwordData ? strlen(passwordData) : 0;
+  UInt32 passwordLength = passwordData ? (UInt32)strlen(passwordData) : 0;
   if (SecKeychainItemModifyAttributesAndData(mKeychainItemRef,
                                              &attrList,
                                              passwordLength,
@@ -188,7 +188,7 @@
 
 - (BOOL)setAttributeType:(SecKeychainAttrType)type toString:(NSString*)value {
   const char* cString = [value UTF8String];
-  UInt32 length = cString ? strlen(cString) : 0;
+  UInt32 length = cString ? (UInt32)strlen(cString) : 0;
   return [self setAttributeType:type toValue:(void*)cString withLength:length];
 }
 

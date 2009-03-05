@@ -29,9 +29,7 @@ Boolean GetMetadataForFile(void* thisInterface,
     return FALSE;
 
   // Push any kMDItem* values directly into the output dictionary.
-  NSEnumerator* keyEnumerator = [fileInfo keyEnumerator];
-  NSString* metadataKey;
-  while ((metadataKey = [keyEnumerator nextObject])) {
+  for (NSString* metadataKey in fileInfo) {
     if ([metadataKey hasPrefix:@"kMDItem"]) {
       [outDict setObject:[fileInfo objectForKey:metadataKey]
                   forKey:metadataKey];

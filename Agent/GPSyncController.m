@@ -19,25 +19,6 @@
 #import "GPSourceStatus.h"
 #import "SharedConstants.h"
 #import "GTMGarbageCollection.h"
-#import "GTMNSFileManager+Path.h"
-
-#if MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_4
-#include <dlfcn.h>
-typedef CFTypeRef (*LSSharedFileListCreateFPtr)(
-  CFAllocatorRef inAllocator,
-  CFStringRef inListType,
-  CFTypeRef listOptions
-);
-typedef CFTypeRef (*LSSharedFileListInsertItemURLFPtr)(
-  CFTypeRef inList,
-  CFTypeRef insertAfterThisItem,
-  CFStringRef inDisplayName,
-  IconRef inIconRef,
-  CFURLRef inURL,
-  CFDictionaryRef inPropertiesToSet,
-  CFArrayRef inPropertiesToClear
-);
-#endif
 
 static NSString* const kIDSlashReplacementToken = @":SLASH:";
 
@@ -97,80 +78,19 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
 // stay running in the future.
 - (void)ensureAutoLaunch {
   NSString* appPath = [[NSBundle mainBundle] bundlePath];
-#if MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_4
-  LSSharedFileListCreateFPtr dLSSharedFileListCreate =
-    dlsym(RTLD_DEFAULT, "LSSharedFileListCreate");
-  LSSharedFileListInsertItemURLFPtr dLSSharedFileListInsertItemURL =
-    dlsym(RTLD_DEFAULT, "LSSharedFileListInsertItemURL");
-  int* dkLSSharedFileListSessionLoginItemsAddress =
-    dlsym(RTLD_DEFAULT, "kLSSharedFileListSessionLoginItems");
-  CFStringRef dkLSSharedFileListSessionLoginItems =
-    dkLSSharedFileListSessionLoginItemsAddress ? (CFStringRef)*dkLSSharedFileListSessionLoginItemsAddress
-                                               : NULL;
-  int* dkLSSharedFileListItemLastAddress =
-    dlsym(RTLD_DEFAULT, "kLSSharedFileListItemLast");
-  CFTypeRef dkLSSharedFileListItemLast =
-    dkLSSharedFileListItemLastAddress ? (CFTypeRef)*dkLSSharedFileListItemLastAddress
-                                      : NULL;
-  // They should be all-or-nothing, but check everything in case something goes
-  // wrong with the dlsym lookup.
-  if (dLSSharedFileListCreate != NULL &&
-      dLSSharedFileListInsertItemURL != NULL &&
-      dkLSSharedFileListSessionLoginItems != NULL &&
-      dkLSSharedFileListItemLast != NULL)
-#else
-  if (LSSharedFileListCreate != NULL)
-#endif
-  {
-#if MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_4
-    CFTypeRef loginList =
-      dLSSharedFileListCreate(NULL, dkLSSharedFileListSessionLoginItems, NULL);
-#else
-    LSSharedFileListRef loginList =
-      LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
-#endif
-    if (!loginList) {
-      NSLog(@"Could not get a reference to login items list");
-      return;
-    }
-    // No need to check if it's already there, since the LSSharedFileList API
-    // handles de-duping for us.
-#if MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_4
-    dLSSharedFileListInsertItemURL(loginList, dkLSSharedFileListItemLast,
-                                   NULL, NULL,
-                                   (CFURLRef)[NSURL fileURLWithPath:appPath],
-                                   NULL, NULL);
-#else
-    LSSharedFileListInsertItemURL(loginList, kLSSharedFileListItemLast,
-                                  NULL, NULL,
-                                  (CFURLRef)[NSURL fileURLWithPath:appPath],
-                                  NULL, NULL);
-#endif
-    CFRelease(loginList);
-  } else {
-    CFStringRef prefDomain = CFSTR("loginwindow");
-    CFStringRef autoLaunchKey = CFSTR("AutoLaunchedApplicationDictionary");
-    NSString* pathKey = @"Path";
-    
-    NSArray* loginItems = [GTMNSMakeCollectable(CFPreferencesCopyValue(autoLaunchKey,
-                                                                       prefDomain,
-                                                                       kCFPreferencesCurrentUser, 
-                                                                       kCFPreferencesAnyHost)) autorelease];
-    // Check if it's already there; don't bother with the alias data, since
-    // this isn't an app that will be relocated by the user.
-    if (![[loginItems valueForKey:pathKey] containsObject:appPath]) {
-      NSMutableArray* newLoginItems = [[loginItems mutableCopy] autorelease];
-      [newLoginItems addObject:[NSDictionary dictionaryWithObject:appPath forKey:pathKey]];
-      CFPreferencesSetValue(autoLaunchKey,
-                            (CFTypeRef)newLoginItems,
-                            prefDomain,
-                            kCFPreferencesCurrentUser, 
-                            kCFPreferencesAnyHost);
-      CFPreferencesSynchronize(prefDomain,
-                               kCFPreferencesCurrentUser, 
-                               kCFPreferencesAnyHost);
-    }
+  LSSharedFileListRef loginList =
+    LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
+  if (!loginList) {
+    NSLog(@"Could not get a reference to login items list");
+    return;
   }
+  // No need to check if it's already there, since the LSSharedFileList API
+  // handles de-duping for us.
+  LSSharedFileListInsertItemURL(loginList, kLSSharedFileListItemLast,
+                                NULL, NULL,
+                                (CFURLRef)[NSURL fileURLWithPath:appPath],
+                                NULL, NULL);
+  CFRelease(loginList);
 }
 
 - (void)recievedKillNotification:(NSNotification*)notification {
@@ -188,9 +108,7 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
   NSDistributedNotificationCenter* dnc = [NSDistributedNotificationCenter defaultCenter];
   [dnc postNotificationName:kPrecipitateSyncStartedNotification object:nil userInfo:nil];
   GPSharedPreferences* sourcePrefs = [GPSharedPreferences sharedPreferences];
-  NSEnumerator* sourceEnumerator = [sources_ objectEnumerator];
-  id<GPSyncSource> source;
-  while ((source = [sourceEnumerator nextObject])) {
+  for (id<GPSyncSource> source in sources_) {
     if ([sourcePrefs sourceIsEnabled:[self identifierForSource:source]]) {
       if (![currentlySyncingSources_ containsObject:source]) {
         @try {
@@ -225,9 +143,7 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
 
   NSString* sourcePluginDirectory = [self sourcePluginDirectory];
   NSArray* plugins = [[NSFileManager defaultManager] directoryContentsAtPath:sourcePluginDirectory];
-  NSEnumerator* pluginEnumerator = [plugins objectEnumerator];
-  NSString* plugin;
-  while ((plugin = [pluginEnumerator nextObject])) {
+  for (NSString* plugin in plugins) {
     NSBundle* pluginBundle = [NSBundle bundleWithPath:[sourcePluginDirectory stringByAppendingPathComponent:plugin]];
     if ([pluginBundle isLoaded])
       continue;
@@ -244,18 +160,14 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
     @try {
       id<GPSyncSource> source = [[[pluginClass alloc] initWithManager:self] autorelease];
       [sources_ addObject:source];
-      NSEnumerator* extensionEnumerator = [[source itemExtensions] objectEnumerator];
-      NSString* extension;
-      while ((extension = [extensionEnumerator nextObject]))
+      for (NSString* extension in [source itemExtensions])
         [extensionToSourceMapping_ setObject:source forKey:extension];
     } @catch (id exception) {
       NSLog(@"Failed to load source '%@': %@", plugin, exception);
     }
   }
   NSMutableDictionary* availableSources = [NSMutableDictionary dictionary];
-  NSEnumerator* sourceEnumerator = [sources_ objectEnumerator];
-  id<GPSyncSource> source;
-  while ((source = [sourceEnumerator nextObject])) {
+  for (id<GPSyncSource> source in sources_) {
     [availableSources setObject:[NSDictionary dictionaryWithObject:[source displayName]
                                                             forKey:kGPSourcePrefDisplayNameKey]
                          forKey:[self identifierForSource:source]];
@@ -327,9 +239,7 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
                   fromSource:(id<GPSyncSource>)source {
 
   NSMutableDictionary* itemsById = [NSMutableDictionary dictionary];
-  NSEnumerator* itemEnumerator = [items objectEnumerator];
-  NSDictionary* item;
-  while ((item = [itemEnumerator nextObject])) {
+  for (NSDictionary* item in items) {
     [itemsById setObject:item forKey:[item objectForKey:kGPMDItemUID]];
   }
 
@@ -337,9 +247,7 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
 
   // First,  remove anything that exists locally but is gone from the source.
   NSArray* cacheIds = [fileManager directoryContentsAtPath:cacheBase];
-  NSEnumerator* localFileEnumerator = [cacheIds objectEnumerator];
-  NSString* cacheId;
-  while ((cacheId = [localFileEnumerator nextObject])) {
+  for (NSString* cacheId in cacheIds) {
     NSString* sourceId = [[cacheId componentsSeparatedByString:kIDSlashReplacementToken] componentsJoinedByString:@"/"];
     if (![itemsById objectForKey:sourceId]) {
       NSString* path = [cacheBase stringByAppendingPathComponent:cacheId];
@@ -349,8 +257,7 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
 
   // Find the missing/out-of-date items.
   NSMutableArray* itemsToRefresh = [NSMutableArray array];
-  NSEnumerator* sourceEnumerator = [items objectEnumerator];
-  while ((item = [sourceEnumerator nextObject])) {
+  for (NSDictionary* item in items) {
     NSString* itemId = [item objectForKey:kGPMDItemUID];
     NSString* cacheId = [[itemId componentsSeparatedByString:@"/"] componentsJoinedByString:kIDSlashReplacementToken];
     NSString* directoryPath = [cacheBase stringByAppendingPathComponent:cacheId];
@@ -396,13 +303,14 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
      toCacheAtPath:(NSString*)cacheBase {
   NSFileManager* fileManager = [NSFileManager defaultManager];
 
-  NSEnumerator* sourceEnumerator = [items objectEnumerator];
-  NSDictionary* item;
-  while ((item = [sourceEnumerator nextObject])) {
+  for (NSDictionary* item in items) {
     NSString* itemId = [item objectForKey:kGPMDItemUID];
     NSString* cacheId = [[itemId componentsSeparatedByString:@"/"] componentsJoinedByString:kIDSlashReplacementToken];
     NSString* directoryPath = [cacheBase stringByAppendingPathComponent:cacheId];
-    [fileManager gtm_createFullPathToDirectory:directoryPath attributes:nil];
+    [fileManager createDirectoryAtPath:directoryPath
+           withIntermediateDirectories:YES
+                            attributes:nil
+                                 error:NULL];
 
     NSString* filename = [[self class] cacheFilenameForItem:item fromSource:source];
     NSString* itemPath = [directoryPath stringByAppendingPathComponent:filename];

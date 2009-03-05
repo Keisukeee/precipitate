@@ -58,7 +58,6 @@
 		33582DE60E158F8600279D7F /* GoogleDocs.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 33FED7D60D4E5DC50075A454 /* GoogleDocs.bundle */; };
 		33582DE70E158F8600279D7F /* GoogleBookmarks.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3302A6270D4EB6EF00AAF075 /* GoogleBookmarks.bundle */; };
 		33582E350E1595CD00279D7F /* GData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33582D4B0E15895800279D7F /* GData.framework */; };
-		33582E430E15976D00279D7F /* GData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33582D4B0E15895800279D7F /* GData.framework */; };
 		33582E4F0E1597AD00279D7F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332204420D4EA96C00EE30FF /* Security.framework */; };
 		336232530E6A039400DD5373 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
 		336232540E6A039400DD5373 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */; };
@@ -94,8 +93,9 @@
 		33BBBC4B0D2C5179007FE6D7 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */; };
 		33BBBC4C0D2C5182007FE6D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
 		33D679080F5F3CDA00962528 /* GData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33D7942D0E1D39B6004A8D9C /* GData.framework */; };
+		33D679840F5F48FC00962528 /* GData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33D7942D0E1D39B6004A8D9C /* GData.framework */; };
+		33D67A630F5F491000962528 /* GData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33D7942D0E1D39B6004A8D9C /* GData.framework */; };
 		33D794F00E1D39CD004A8D9C /* GData.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 33D7942D0E1D39B6004A8D9C /* GData.framework */; };
-		33F0838C0E5CE61000DB70B9 /* GData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33582D4B0E15895800279D7F /* GData.framework */; };
 		33F0838D0E5CE61000DB70B9 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */; };
 		33F0838E0E5CE61000DB70B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
 		33F0838F0E5CE61000DB70B9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332204420D4EA96C00EE30FF /* Security.framework */; };
@@ -351,9 +351,7 @@
 		3388D3170D906CBC00FFC510 /* Precipitate.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Precipitate.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
 		3388D3400D906D6A00FFC510 /* GPSourceStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPSourceStatus.h; path = Shared/GPSourceStatus.h; sourceTree = "<group>"; };
 		3388D3410D906D6A00FFC510 /* GPSourceStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPSourceStatus.m; path = Shared/GPSourceStatus.m; sourceTree = "<group>"; };
-		3388D3530D906DC400FFC510 /* DebugTigerOrLater.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = DebugTigerOrLater.xcconfig; path = "external/google-toolbox-for-mac/XcodeConfig/Project/DebugTigerOrLater.xcconfig"; sourceTree = "<group>"; };
 		3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = LoadableBundle.xcconfig; path = "external/google-toolbox-for-mac/XcodeConfig/Target/LoadableBundle.xcconfig"; sourceTree = "<group>"; };
-		3388D3550D906DC400FFC510 /* ReleaseTigerOrLater.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = ReleaseTigerOrLater.xcconfig; path = "external/google-toolbox-for-mac/XcodeConfig/Project/ReleaseTigerOrLater.xcconfig"; sourceTree = "<group>"; };
 		3388D37B0D906F0200FFC510 /* GTMNSFileManager+Path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GTMNSFileManager+Path.h"; path = "external/google-toolbox-for-mac/Foundation/GTMNSFileManager+Path.h"; sourceTree = "<group>"; };
 		3388D37C0D906F0200FFC510 /* GTMNSFileManager+Path.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GTMNSFileManager+Path.m"; path = "external/google-toolbox-for-mac/Foundation/GTMNSFileManager+Path.m"; sourceTree = "<group>"; };
 		3388D3B80D90764500FFC510 /* GTMObjectSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMObjectSingleton.h; path = "external/google-toolbox-for-mac/Foundation/GTMObjectSingleton.h"; sourceTree = "<group>"; };
@@ -373,6 +371,8 @@
 		33BBBC460D2C5153007FE6D7 /* GetMetadataForFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetMetadataForFile.m; path = Sources/Docs/GetMetadataForFile.m; sourceTree = "<group>"; };
 		33BBBC470D2C5153007FE6D7 /* Importer-main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "Importer-main.c"; path = "Sources/Docs/Importer-main.c"; sourceTree = "<group>"; };
 		33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
+		33D679470F5F42DA00962528 /* DebugLeopardOrLater.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = DebugLeopardOrLater.xcconfig; path = "external/google-toolbox-for-mac/XcodeConfig/Project/DebugLeopardOrLater.xcconfig"; sourceTree = "<group>"; };
+		33D679480F5F42DA00962528 /* ReleaseLeopardOrLater.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = ReleaseLeopardOrLater.xcconfig; path = "external/google-toolbox-for-mac/XcodeConfig/Project/ReleaseLeopardOrLater.xcconfig"; sourceTree = "<group>"; };
 		33D7942D0E1D39B6004A8D9C /* GData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GData.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		33F0837F0E5CDFBC00DB70B9 /* GPPicasaSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPPicasaSync.h; path = Sources/Picasa/GPPicasaSync.h; sourceTree = "<group>"; };
 		33F083800E5CDFBC00DB70B9 /* GPPicasaSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPPicasaSync.m; path = Sources/Picasa/GPPicasaSync.m; sourceTree = "<group>"; };
@@ -448,7 +448,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33F0838C0E5CE61000DB70B9 /* GData.framework in Frameworks */,
+				33D67A630F5F491000962528 /* GData.framework in Frameworks */,
 				33F0838D0E5CE61000DB70B9 /* CoreServices.framework in Frameworks */,
 				33F0838E0E5CE61000DB70B9 /* Foundation.framework in Frameworks */,
 				33F0838F0E5CE61000DB70B9 /* Security.framework in Frameworks */,
@@ -460,7 +460,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33582E430E15976D00279D7F /* GData.framework in Frameworks */,
+				33D679840F5F48FC00962528 /* GData.framework in Frameworks */,
 				33AE46A50E12F706007DE32B /* CoreServices.framework in Frameworks */,
 				33802EF30D98860A008BCA40 /* Foundation.framework in Frameworks */,
 				332204430D4EA96C00EE30FF /* Security.framework in Frameworks */,
@@ -648,9 +648,9 @@
 		3388D3560D906DC800FFC510 /* Xcode Configs */ = {
 			isa = PBXGroup;
 			children = (
-				3388D3530D906DC400FFC510 /* DebugTigerOrLater.xcconfig */,
+				33D679470F5F42DA00962528 /* DebugLeopardOrLater.xcconfig */,
+				33D679480F5F42DA00962528 /* ReleaseLeopardOrLater.xcconfig */,
 				3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */,
-				3388D3550D906DC400FFC510 /* ReleaseTigerOrLater.xcconfig */,
 			);
 			name = "Xcode Configs";
 			sourceTree = "<group>";
@@ -1527,6 +1527,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
 			buildSettings = {
+				"ARCHS[sdk=macosx10.5*]" = (
+					i386,
+					x86_64,
+					ppc,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefPane/PrefPane_Prefix.pch;
 				INFOPLIST_FILE = "PrefPane/PrefPane-Info.plist";
@@ -1539,6 +1544,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3388D3540D906DC400FFC510 /* LoadableBundle.xcconfig */;
 			buildSettings = {
+				"ARCHS[sdk=macosx10.5*]" = (
+					i386,
+					x86_64,
+					ppc,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = PrefPane/PrefPane_Prefix.pch;
 				INFOPLIST_FILE = "PrefPane/PrefPane-Info.plist";
@@ -1641,8 +1651,9 @@
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3388D3530D906DC400FFC510 /* DebugTigerOrLater.xcconfig */;
+			baseConfigurationReference = 33D679470F5F42DA00962528 /* DebugLeopardOrLater.xcconfig */;
 			buildSettings = {
+				"ARCHS[sdk=macosx10.5*]" = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "USER_AGENT_VERSION=\\\"$(PRODUCT_VERSION_STRING)\\\"";
 				PRODUCT_VERSION_STRING = 1.0.5;
 			};
@@ -1650,8 +1661,9 @@
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3388D3550D906DC400FFC510 /* ReleaseTigerOrLater.xcconfig */;
+			baseConfigurationReference = 33D679480F5F42DA00962528 /* ReleaseLeopardOrLater.xcconfig */;
 			buildSettings = {
+				"ARCHS[sdk=macosx10.5*]" = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "USER_AGENT_VERSION=\\\"$(PRODUCT_VERSION_STRING)\\\"";
 				PRODUCT_VERSION_STRING = 1.0.5;
 			};

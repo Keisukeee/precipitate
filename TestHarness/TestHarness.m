@@ -25,9 +25,7 @@
     NSLog(@"Usage: %@ <path to source> [<path to another source> ...]", [arguments objectAtIndex:0]);
     [NSApp terminate:self];
   }
-  NSEnumerator* argumentEnumerator = [[arguments subarrayWithRange:NSMakeRange(1, [arguments count] - 1)] objectEnumerator];
-  NSString* bundlePath;
-  while ((bundlePath = [argumentEnumerator nextObject])) {
+  for (NSString* bundlePath in [arguments subarrayWithRange:NSMakeRange(1, [arguments count] - 1)]) {
     NSBundle* pluginBundle = [NSBundle bundleWithPath:bundlePath];
     if ([pluginBundle isLoaded])
       continue;

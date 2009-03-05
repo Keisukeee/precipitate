@@ -20,11 +20,11 @@
 #import "GPKeychainItem.h"
 #import "SharedConstants.h"
 
-static NSString* const kBookmarkURLFormat = @"https://www.google.com/bookmarks/lookup?output=rss&start=%d";
+static NSString* const kBookmarkURLFormat = @"https://www.google.com/bookmarks/lookup?output=rss&start=%lu";
 
 @interface GPBookmarkSync (Private)
 
-- (void)requestBookmarksStartingFrom:(int)start;
+- (void)requestBookmarksStartingFrom:(NSUInteger)start;
 - (NSArray*)bookmarksFromData:(NSData*)data;
 
 @end
@@ -69,7 +69,7 @@ static NSString* const kBookmarkURLFormat = @"https://www.google.com/bookmarks/l
 
 #pragma mark -
 
-- (void)requestBookmarksStartingFrom:(int)start {
+- (void)requestBookmarksStartingFrom:(NSUInteger)start {
   NSString* requestURI = [NSString stringWithFormat:kBookmarkURLFormat, start];
   NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:requestURI]];
   GDataHTTPFetcher* fetcher = [GDataHTTPFetcher httpFetcherWithRequest:request];
@@ -92,14 +92,10 @@ static NSString* const kBookmarkURLFormat = @"https://www.google.com/bookmarks/l
                                                                error:nil] autorelease];
   NSArray* bookmarkNodes = [bookmarksXML nodesForXPath:@"//item" error:NULL];
   NSMutableArray* bookmarkItems = [NSMutableArray array];
-  NSEnumerator* nodeEnumerator = [bookmarkNodes objectEnumerator];
-  NSXMLNode* bookmark;
-  while ((bookmark = [nodeEnumerator nextObject])) {
+  for (NSXMLNode* bookmark in bookmarkNodes) {
     NSMutableDictionary* bookmarkInfo = [NSMutableDictionary dictionary];
-    NSEnumerator* infoNodeEnumerator = [[bookmark children] objectEnumerator];
-    NSXMLNode* infoNode;
     NSMutableArray* keywords = [NSMutableArray array];
-    while ((infoNode = [infoNodeEnumerator nextObject])) {
+    for (NSXMLNode* infoNode in [bookmark children]) {
       if ([[infoNode name] isEqualToString:@"title"]) {
         [bookmarkInfo setObject:[infoNode stringValue] forKey:(NSString*)kMDItemTitle];
       } else if ([[infoNode name] isEqualToString:@"link"]) {

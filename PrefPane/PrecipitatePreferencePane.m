@@ -372,9 +372,7 @@
   NSDictionary* allSourceStatus = [sourceStatusManager_ allStatuses];
 
   NSMutableArray* statusList = [NSMutableArray arrayWithCapacity:[allSourceInfo count]];
-  NSEnumerator* sourceEnumerator = [allSourceInfo keyEnumerator];
-  NSString* sourceId;
-  while ((sourceId = [sourceEnumerator nextObject])) {
+  for (NSString* sourceId in allSourceInfo) {
     NSDictionary* baseInfo = [allSourceInfo objectForKey:sourceId];
     NSDictionary* status = [allSourceStatus objectForKey:sourceId];
 

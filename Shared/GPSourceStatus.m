@@ -16,7 +16,6 @@
 
 #import "GPSourceStatus.h"
 #import "GTMObjectSingleton.h"
-#import "GTMNSFileManager+Path.h"
 
 static NSString* const kGPPrecipitateStatusFile = @"SyncStatus";
 
@@ -92,8 +91,10 @@ GTMOBJECT_SINGLETON_BOILERPLATE(GPSourceStatus, sharedSourceStatus)
 
 - (void)persistStatus {
   NSString* filePath = [self statusFilePath];
-  [[NSFileManager defaultManager] gtm_createFullPathToDirectory:[filePath stringByDeletingLastPathComponent]
-                                                     attributes:nil];
+  [[NSFileManager defaultManager] createDirectoryAtPath:[filePath stringByDeletingLastPathComponent]
+                            withIntermediateDirectories:YES
+                                             attributes:nil
+                                                  error:NULL];
   [status_ writeToFile:filePath atomically:YES];
   [[NSDistributedNotificationCenter defaultCenter] postNotificationName:kGPPrecipitateStatusChanged
                                                                  object:[self processIdString]];

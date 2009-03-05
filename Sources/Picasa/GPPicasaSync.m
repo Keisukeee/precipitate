@@ -110,9 +110,7 @@
   NSMutableArray* basicInfoDicts =
     [[[NSMutableArray alloc] initWithCapacity:[[albumList entries] count]] autorelease];
 
-  NSEnumerator* entryEnumerator = [[albumList entries] objectEnumerator];
-  GDataEntryBase* entry;
-  while ((entry = [entryEnumerator nextObject])) {
+  for (GDataEntryBase* entry in [albumList entries]) {
     @try {
       NSDictionary* entryInfo = nil;
       if ([entry isKindOfClass:[GDataEntryPhoto class]]) {
@@ -160,9 +158,7 @@
   NSArray* keywords = [[[photo mediaGroup] mediaKeywords] keywords];
   if ([keywords count] > 0)
     [infoDictionary setObject:keywords forKey:(NSString*)kMDItemKeywords];
-  NSEnumerator* exifTagEnumerator = [[[photo EXIFTags] tags] objectEnumerator];
-  GDataEXIFTag* tag;
-  while ((tag = [exifTagEnumerator nextObject])) {
+  for (GDataEXIFTag* tag in [[photo EXIFTags] tags]) {
     NSString* tagName = [tag name];
     if ([tagName isEqualToString:@"exposure"])
       [infoDictionary setObject:[tag doubleNumberValue]
@@ -212,9 +208,7 @@
 // TODO: refactor this to a shared location.
 - (NSArray*)peopleStringsForGDataPeople:(NSArray*)people {
   NSMutableArray* peopleStrings = [NSMutableArray arrayWithCapacity:[people count]];
-  NSEnumerator* enumerator = [people objectEnumerator];
-  GDataPerson* person;
-  while ((person = [enumerator nextObject])) {
+  for (GDataPerson* person in people) {
     NSString* name = [person name];
     NSString* email = [person email];
     if (name && email)

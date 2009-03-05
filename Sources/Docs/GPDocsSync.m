@@ -144,9 +144,7 @@
 - (void)serviceTicket:(GDataServiceTicket *)ticket
    finishedWithObject:(GDataFeedDocList *)docList {
   NSMutableDictionary* docsById = [NSMutableDictionary dictionary];
-  NSEnumerator* entryEnumerator = [[docList entries] objectEnumerator];
-  GDataEntryBase* entry;
-  while ((entry = [entryEnumerator nextObject])) {
+  for (GDataEntryBase* entry in [docList entries]) {
     @try {
       NSDictionary* docInfo = [self dictionaryForEntry:entry];
       if (docInfo)
@@ -177,9 +175,7 @@
 
 - (NSArray*)peopleStringsForGDataPeople:(NSArray*)people {
   NSMutableArray* peopleStrings = [NSMutableArray arrayWithCapacity:[people count]];
-  NSEnumerator* enumerator = [people objectEnumerator];
-  GDataPerson* person;
-  while ((person = [enumerator nextObject])) {
+  for (GDataPerson* person in people) {
     [peopleStrings addObject:[NSString stringWithFormat:@"%@ <%@>",
                               [person name], [person email]]];
   }
@@ -296,7 +292,7 @@
     NSXMLDocument* worksheetFeed = [[[NSXMLDocument alloc] initWithData:worksheetFeedData
                                                                 options:0
                                                                   error:nil] autorelease];
-    int worksheetCount = [[worksheetFeed nodesForXPath:@"//entry" error:NULL] count];
+    NSUInteger worksheetCount = [[worksheetFeed nodesForXPath:@"//entry" error:NULL] count];
 
     NSMutableString* contentAccumulator = [NSMutableString string];
     for (int worksheetIndex = 1; worksheetIndex <= worksheetCount; ++worksheetIndex) {
@@ -316,9 +312,7 @@
                                                                 options:0
                                                                   error:nil] autorelease];
       NSArray* contentNodes = [contentFeed nodesForXPath:@"//content" error:NULL];
-      NSEnumerator* nodeEnumerator = [contentNodes objectEnumerator];
-      NSXMLNode* node;
-      while ((node = [nodeEnumerator nextObject])) {
+      for (NSXMLNode* node in contentNodes) {
         [contentAccumulator appendString:@" "];
         [contentAccumulator appendString:[node stringValue]];
       }
@@ -363,7 +357,7 @@
   if ([content hasPrefix:@"[if IE]>"]) {
     NSRange endTag = [content rangeOfString:@"<![endif]" options:NSLiteralSearch];
     if (endTag.location != NSNotFound) {
-      unsigned int tagEnd = endTag.location + endTag.length;
+      NSUInteger tagEnd = endTag.location + endTag.length;
       content = (tagEnd < [content length]) ? [content substringFromIndex:tagEnd]
                                             : @"";
     }
