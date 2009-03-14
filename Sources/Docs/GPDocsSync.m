@@ -19,6 +19,11 @@
 #import "SharedConstants.h"
 #import "GPKeychainItem.h"
 
+static NSString* const kDocumentExportURLFormat =
+  @"https://docs.google.com/feeds/download/documents/Export?docID=%@&exportFormat=txt";
+static NSString* const kSpreadsheetExportURLFormat =
+  @"https://spreadsheets.google.com/feeds/download/spreadsheets/Export?key=%@&fmcmd=23&gid=%d";
+
 @interface GPDocsSync (Private)
 
 - (NSArray*)peopleStringsForGDataPeople:(NSArray*)people;
@@ -26,6 +31,8 @@
 - (void)inflateNextDoc;
 - (void)fetchContentForNextDoc;
 - (void)retrievedContentForNextDoc:(NSString*)content;
+// Returns the Google Docs identifier (used as a key in URLs) for the doc.
+- (NSString*)documentIdForDoc:(NSDictionary*)docInfo;
 
 @end
 
@@ -238,13 +245,17 @@
 // the content if the content couldn't be fetched).
 - (void)fetchContentForNextDoc {
   NSDictionary* docInfo = [docsToInflate_ objectAtIndex:0];
-
   NSArray* categories = [docInfo objectForKey:kDocDictionaryCategoriesKey];
-  if ([categories containsObject:kDocCategoryDocument]) {
-    NSString* sourceURI = [docInfo objectForKey:kDocDictionarySourceURIKey];
-    if ([sourceURI hasPrefix:@"http:"])
-      sourceURI = [@"https:" stringByAppendingString:[sourceURI substringFromIndex:5]];
-    NSURLRequest* request = [docService_ requestForURL:[NSURL URLWithString:sourceURI]
+
+  if ([categories containsObject:kDocCategoryDocument] ||
+      [categories containsObject:kDocCategoryPresentation]) {
+    NSString* docId = [self documentIdForDoc:docInfo];
+    if (!docId) {
+      [self retrievedContentForNextDoc:@""];
+      return;
+    }
+    NSString* textContentURI = [NSString stringWithFormat:kDocumentExportURLFormat, docId];
+    NSURLRequest* request = [docService_ requestForURL:[NSURL URLWithString:textContentURI]
                                                   ETag:nil
                                             httpMethod:nil];
     GDataHTTPFetcher* fetcher = [GDataHTTPFetcher httpFetcherWithRequest:request];
@@ -264,19 +275,13 @@
     // auth header, so the document approach of just reading that page results
     // in a login page unless there happens to be a valid cookie in the OS
     // cookie store (e.g., from Safari), so pull the content out of the cells.
-    NSString* sourceURI = [docInfo objectForKey:kDocDictionarySourceURIKey];
-    NSRange keyLabelRange = [sourceURI rangeOfString:@"key="];
-    if (keyLabelRange.location == NSNotFound) {
+    NSString* docId = [self documentIdForDoc:docInfo];
+    if (!docId) {
       [self retrievedContentForNextDoc:@""];
       return;
     }
-    NSString* key = [sourceURI substringFromIndex:(keyLabelRange.location + keyLabelRange.length)];
-    NSRange ampersandRange = [key rangeOfString:@"&"];
-    if (ampersandRange.location != NSNotFound)
-      key = [key substringWithRange:NSMakeRange(0, ampersandRange.location - 1)];
-
     NSString* worksheetFeedURI =
-      [NSString stringWithFormat:@"https://spreadsheets.google.com/feeds/worksheets/%@/private/full", key];
+      [NSString stringWithFormat:@"https://spreadsheets.google.com/feeds/worksheets/%@/private/full", docId];
     NSURLRequest *request = [spreadsheetService_ requestForURL:[NSURL URLWithString:worksheetFeedURI]
                                                           ETag:nil
                                                     httpMethod:nil];
@@ -295,47 +300,28 @@
     NSUInteger worksheetCount = [[worksheetFeed nodesForXPath:@"//entry" error:NULL] count];
 
     NSMutableString* contentAccumulator = [NSMutableString string];
-    for (int worksheetIndex = 1; worksheetIndex <= worksheetCount; ++worksheetIndex) {
+    for (int worksheetIndex = 0; worksheetIndex < worksheetCount; ++worksheetIndex) {
       NSString* contentFeedURI =
-      [NSString stringWithFormat:@"http://spreadsheets.google.com/feeds/cells/%@/%d/private/full",
-                                  key,
-                                  worksheetIndex];
+      [NSString stringWithFormat:kSpreadsheetExportURLFormat, docId, worksheetIndex];
       request = [spreadsheetService_ requestForURL:[NSURL URLWithString:contentFeedURI]
                                               ETag:nil
                                         httpMethod:nil];
-      NSData *contentFeedData = [NSURLConnection sendSynchronousRequest:request
-                                                      returningResponse:&response
-                                                                  error:&error];
-      if (!contentFeedData)
+      NSData *sheetData = [NSURLConnection sendSynchronousRequest:request
+                                                returningResponse:&response
+                                                            error:&error];
+      if (!sheetData)
         continue;
-      NSXMLDocument* contentFeed = [[[NSXMLDocument alloc] initWithData:contentFeedData
-                                                                options:0
-                                                                  error:nil] autorelease];
-      NSArray* contentNodes = [contentFeed nodesForXPath:@"//content" error:NULL];
-      for (NSXMLNode* node in contentNodes) {
-        [contentAccumulator appendString:@" "];
-        [contentAccumulator appendString:[node stringValue]];
-      }
+      NSString* content = [[[NSString alloc] initWithData:sheetData
+                                                 encoding:NSUTF8StringEncoding] autorelease];
+      if (!content)
+        continue;
+      // Add some space between pages
+      if (worksheetCount > 0)
+        [contentAccumulator appendString:@"\n\n\n\n\n"];
+      [contentAccumulator appendString:content];
     }
 
     [self retrievedContentForNextDoc:contentAccumulator];
-  } else if ([categories containsObject:kDocCategoryPresentation]) {
-    NSString* sourceURI = [docInfo objectForKey:kDocDictionarySourceURIKey];
-    if ([sourceURI hasPrefix:@"http:"])
-      sourceURI = [@"https:" stringByAppendingString:[sourceURI substringFromIndex:5]];
-    // Default export format is PDF, but we just want the raw text.
-    sourceURI = [sourceURI stringByAppendingString:@"&exportFormat=txt"];
-
-    NSURLRequest* request = [docService_ requestForURL:[NSURL URLWithString:sourceURI]
-                                                  ETag:nil
-                                            httpMethod:nil];
-    GDataHTTPFetcher* fetcher = [GDataHTTPFetcher httpFetcherWithRequest:request];
-    [fetcher setIsRetryEnabled:YES];
-    [fetcher setMaxRetryInterval:60.0];
-    [fetcher beginFetchWithDelegate:self
-                  didFinishSelector:@selector(documentContentFetcher:finishedWithData:)
-          didFailWithStatusSelector:@selector(documentContentFetcher:failedWithStatus:data:)
-           didFailWithErrorSelector:@selector(documentContentFetcher:failedWithError:)];
   } else if ([categories containsObject:kDocCategoryPDF]) {
     // TODO: there doesn't seem to be a way to get the text content without
     // downloading the entire PDF, which is potentially very costly.
@@ -346,26 +332,24 @@
   }
 }
 
+- (NSString*)documentIdForDoc:(NSDictionary*)docInfo {
+  NSString* docUUID = [docInfo objectForKey:kGPMDItemUID];
+  // Our UUID is the last part of the doc's path, so it will be something like
+  // "document%3Aabc123" or "spreadsheet%3Aabc123". We need to strip off the
+  // "type%3A" part (where %3A is a URL-encoded ':')
+  NSRange colonRange = [docUUID rangeOfString:@"%3A" options:NSCaseInsensitiveSearch];
+  if (colonRange.location != NSNotFound) {
+    return [docUUID substringFromIndex:(colonRange.location + colonRange.length)];
+  } else {
+    NSLog(@"Unable to extract an ID from '%@'", docUUID);
+    return nil;
+  }
+}
+
 - (void)documentContentFetcher:(GDataHTTPFetcher *)fetcher
               finishedWithData:(NSData *)data {
-  NSXMLDocument* contentXML = [[[NSXMLDocument alloc] initWithData:data
-                                                           options:NSXMLDocumentTidyHTML
-                                                             error:NULL] autorelease];
-  NSXMLNode* body = [[contentXML nodesForXPath:@"//body" error:NULL] lastObject];
-  NSString* content = [body stringValue];
-  // Strip off the IE XML namespace block
-  if ([content hasPrefix:@"[if IE]>"]) {
-    NSRange endTag = [content rangeOfString:@"<![endif]" options:NSLiteralSearch];
-    if (endTag.location != NSNotFound) {
-      NSUInteger tagEnd = endTag.location + endTag.length;
-      content = (tagEnd < [content length]) ? [content substringFromIndex:tagEnd]
-                                            : @"";
-    }
-  }
-  if (!content) {
-    content = @"";
-    NSLog(@"Docs source couldn't get document data. (%x, %x, %x)", data, contentXML, body);
-  }
+  NSString* content = [[[NSString alloc] initWithData:data
+                                             encoding:NSUTF8StringEncoding] autorelease];
   [self retrievedContentForNextDoc:content];
 }
 
