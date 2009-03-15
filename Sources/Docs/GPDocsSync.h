@@ -19,8 +19,8 @@
 #import "GPSyncProtocol.h"
 
 
-// Source for documents, spreadsheets, and presentations in Google Docs.
-// Note: presentations currently won't have content data.
+// Source for documents, spreadsheets, presentations, and PDFs in Google Docs.
+// Note: PDFs currently won't have content data.
 @interface GPDocsSync : NSObject <GPSyncSource> {
   id<GPSyncManager>              manager_;  // weak reference
   GDataServiceGoogleDocs*        docService_;
