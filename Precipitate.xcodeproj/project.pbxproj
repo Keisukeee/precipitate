@@ -50,10 +50,12 @@
 		3302A6440D4EBA9A00AAF075 /* TestHarness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3302A6430D4EBA9A00AAF075 /* TestHarness.m */; };
 		3302A7AC0D4EFF2700AAF075 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332204420D4EA96C00EE30FF /* Security.framework */; };
 		331A49380E15B9AC00D855C0 /* GTMSystemVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 331A49370E15B9AC00D855C0 /* GTMSystemVersion.m */; };
-		331FFDDA0D9328D30044B7F1 /* PrecipitatePrefPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 331FFDD80D9328D30044B7F1 /* PrecipitatePrefPane.xib */; };
 		331FFE2E0D94333D0044B7F1 /* GPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 332204320D4EA23100EE30FF /* GPKeychainItem.m */; };
 		332204430D4EA96C00EE30FF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332204420D4EA96C00EE30FF /* Security.framework */; };
-		335827850E1451C000279D7F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 335827830E1451C000279D7F /* Localizable.strings */; };
+		3325FFEB0F76F66400CD59EB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3325FFEA0F76F66400CD59EB /* Localizable.strings */; };
+		3325FFEF0F76F68700CD59EB /* PrecipitatePrefPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3325FFEE0F76F68700CD59EB /* PrecipitatePrefPane.xib */; };
+		3325FFF40F76F6AB00CD59EB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3325FFF30F76F6AB00CD59EB /* Localizable.strings */; };
+		3325FFF50F76F6AB00CD59EB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3325FFF30F76F6AB00CD59EB /* Localizable.strings */; };
 		33582B8C0E157F0200279D7F /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */; };
 		33582DE60E158F8600279D7F /* GoogleDocs.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 33FED7D60D4E5DC50075A454 /* GoogleDocs.bundle */; };
 		33582DE70E158F8600279D7F /* GoogleBookmarks.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3302A6270D4EB6EF00AAF075 /* GoogleBookmarks.bundle */; };
@@ -101,7 +103,6 @@
 		33F0838F0E5CE61000DB70B9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332204420D4EA96C00EE30FF /* Security.framework */; };
 		33F083900E5CE61000DB70B9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F892120D5290B300790AEF /* WebKit.framework */; };
 		33F083A30E5CE65F00DB70B9 /* GPPicasaSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F083800E5CDFBC00DB70B9 /* GPPicasaSync.m */; };
-		33F0856C0E5CF17C00DB70B9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33F891160D51408900790AEF /* Localizable.strings */; };
 		33F086180E68738D00DB70B9 /* PicasaWebAlbums.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 33F083950E5CE61000DB70B9 /* PicasaWebAlbums.bundle */; };
 		33F087140E687BD900DB70B9 /* GPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 332204320D4EA23100EE30FF /* GPKeychainItem.m */; };
 		33F087150E687BDA00DB70B9 /* GPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 332204320D4EA23100EE30FF /* GPKeychainItem.m */; };
@@ -111,7 +112,6 @@
 		33F88F470D50F2DD00790AEF /* gdocspreadsheet.icns in Resources */ = {isa = PBXBuildFile; fileRef = 334CAF1F0D1C3E58006BAF54 /* gdocspreadsheet.icns */; };
 		33F88F480D50F2DD00790AEF /* gdoc.icns in Resources */ = {isa = PBXBuildFile; fileRef = 334CAF050D17235F006BAF54 /* gdoc.icns */; };
 		33F88F780D50F43600790AEF /* PrecipitateDocsImporter.mdimporter in Copy Importers */ = {isa = PBXBuildFile; fileRef = 33BBBC100D2C4C7A007FE6D7 /* PrecipitateDocsImporter.mdimporter */; };
-		33F891180D51408900790AEF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33F891160D51408900790AEF /* Localizable.strings */; };
 		33F892130D5290B300790AEF /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F892120D5290B300790AEF /* WebKit.framework */; };
 		8BF53A090EE5A74800D981A0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BF53A080EE5A74800D981A0 /* InfoPlist.strings */; };
 		8BF53A100EE5A98D00D981A0 /* Precipitate.searchTerms in Resources */ = {isa = PBXBuildFile; fileRef = 8BF53A0F0EE5A98D00D981A0 /* Precipitate.searchTerms */; };
@@ -319,11 +319,14 @@
 		331A49360E15B9AC00D855C0 /* GTMSystemVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMSystemVersion.h; path = "external/google-toolbox-for-mac/Foundation/GTMSystemVersion.h"; sourceTree = "<group>"; };
 		331A49370E15B9AC00D855C0 /* GTMSystemVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMSystemVersion.m; path = "external/google-toolbox-for-mac/Foundation/GTMSystemVersion.m"; sourceTree = "<group>"; };
 		331A49520E15BCB400D855C0 /* PrefPane_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrefPane_Prefix.pch; path = PrefPane/PrefPane_Prefix.pch; sourceTree = "<group>"; };
-		331FFDD90D9328D30044B7F1 /* PrecipitatePrefPane.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PrecipitatePrefPane.xib; path = PrefPane/English.lproj/PrecipitatePrefPane.xib; sourceTree = "<group>"; };
+		331FFDD90D9328D30044B7F1 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = PrefPane/English.lproj/PrecipitatePrefPane.xib; sourceTree = "<group>"; };
 		331FFE360D943A3B0044B7F1 /* SharedConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharedConstants.h; path = Shared/SharedConstants.h; sourceTree = "<group>"; };
 		332204310D4EA23100EE30FF /* GPKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPKeychainItem.h; path = Shared/GPKeychainItem.h; sourceTree = "<group>"; };
 		332204320D4EA23100EE30FF /* GPKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPKeychainItem.m; path = Shared/GPKeychainItem.m; sourceTree = "<group>"; };
 		332204420D4EA96C00EE30FF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
+		3325FFEC0F76F67400CD59EB /* German */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = German; path = PrefPane/German.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3325FFF00F76F69000CD59EB /* German */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = German; path = PrefPane/German.lproj/PrecipitatePrefPane.xib; sourceTree = "<group>"; };
+		3325FFF60F76F6B200CD59EB /* German */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = German; path = Agent/German.lproj/Localizable.strings; sourceTree = "<group>"; };
 		334CAE1D0D0F6798006BAF54 /* GPDocsSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPDocsSync.h; path = Sources/Docs/GPDocsSync.h; sourceTree = "<group>"; };
 		334CAE1E0D0F6798006BAF54 /* GPDocsSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPDocsSync.m; path = Sources/Docs/GPDocsSync.m; sourceTree = "<group>"; };
 		334CAF050D17235F006BAF54 /* gdoc.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = gdoc.icns; path = Sources/Docs/gdoc.icns; sourceTree = "<group>"; };
@@ -331,7 +334,7 @@
 		334CAF1E0D1C3E58006BAF54 /* gdocpresentation.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = gdocpresentation.icns; path = Sources/Docs/gdocpresentation.icns; sourceTree = "<group>"; };
 		334CAF1F0D1C3E58006BAF54 /* gdocspreadsheet.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = gdocspreadsheet.icns; path = Sources/Docs/gdocspreadsheet.icns; sourceTree = "<group>"; };
 		334CAFFE0D1C4BF4006BAF54 /* DocsInfoKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DocsInfoKeys.h; path = Sources/Docs/DocsInfoKeys.h; sourceTree = "<group>"; };
-		335827840E1451C000279D7F /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = PrefPane/English.lproj/Localizable.strings; sourceTree = "<group>"; };
+		335827840E1451C000279D7F /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = PrefPane/English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		33582D440E15895800279D7F /* GData.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GData.xcodeproj; path = "external/gdata-objectivec-client/Source/GData.xcodeproj"; sourceTree = "<group>"; };
 		3362323A0E6A02A600DD5373 /* PWAInfoKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PWAInfoKeys.h; path = Sources/Picasa/PWAInfoKeys.h; sourceTree = "<group>"; };
 		336232580E6A039400DD5373 /* PrecipitatePicasaImporter.mdimporter */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrecipitatePicasaImporter.mdimporter; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -378,7 +381,7 @@
 		33F083800E5CDFBC00DB70B9 /* GPPicasaSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPPicasaSync.m; path = Sources/Picasa/GPPicasaSync.m; sourceTree = "<group>"; };
 		33F083950E5CE61000DB70B9 /* PicasaWebAlbums.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicasaWebAlbums.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		33F084430E5CEBC500DB70B9 /* PicasaWebAlbums-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "PicasaWebAlbums-Info.plist"; path = "Sources/Picasa/PicasaWebAlbums-Info.plist"; sourceTree = "<group>"; };
-		33F891170D51408900790AEF /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = Agent/English.lproj/Localizable.strings; sourceTree = "<group>"; };
+		33F891170D51408900790AEF /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = Agent/English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		33F892120D5290B300790AEF /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
 		33FED7D60D4E5DC50075A454 /* GoogleDocs.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoogleDocs.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FED7D70D4E5DC50075A454 /* GoogleDocs-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleDocs-Info.plist"; path = "Sources/Docs/GoogleDocs-Info.plist"; sourceTree = "<group>"; };
@@ -546,7 +549,7 @@
 			children = (
 				33897ED60D4FB0F800A54981 /* Precipitate.xib */,
 				8D1107310486CEB800E47090 /* Precipitate-Info.plist */,
-				33F891160D51408900790AEF /* Localizable.strings */,
+				3325FFF30F76F6AB00CD59EB /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -593,8 +596,8 @@
 				33897F590D4FCCFD00A54981 /* Precipitate.icns */,
 				3388D30C0D906B0000FFC510 /* PrefPane-Info.plist */,
 				8BF53A080EE5A74800D981A0 /* InfoPlist.strings */,
-				331FFDD80D9328D30044B7F1 /* PrecipitatePrefPane.xib */,
-				335827830E1451C000279D7F /* Localizable.strings */,
+				3325FFEE0F76F68700CD59EB /* PrecipitatePrefPane.xib */,
+				3325FFEA0F76F66400CD59EB /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1002,7 +1005,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33897EE10D4FB16E00A54981 /* TestHarness.xib in Resources */,
-				33F0856C0E5CF17C00DB70B9 /* Localizable.strings in Resources */,
+				3325FFF50F76F6AB00CD59EB /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1019,9 +1022,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				33802EA10D9885B4008BCA40 /* Precipitate.app in Resources */,
-				331FFDDA0D9328D30044B7F1 /* PrecipitatePrefPane.xib in Resources */,
+				3325FFEF0F76F68700CD59EB /* PrecipitatePrefPane.xib in Resources */,
 				338030E40D9974C6008BCA40 /* Precipitate.icns in Resources */,
-				335827850E1451C000279D7F /* Localizable.strings in Resources */,
+				3325FFEB0F76F66400CD59EB /* Localizable.strings in Resources */,
 				8BF53A090EE5A74800D981A0 /* InfoPlist.strings in Resources */,
 				8BF53A100EE5A98D00D981A0 /* Precipitate.searchTerms in Resources */,
 			);
@@ -1059,7 +1062,7 @@
 				33F88F460D50F2DD00790AEF /* gdocpresentation.icns in Resources */,
 				33F88F470D50F2DD00790AEF /* gdocspreadsheet.icns in Resources */,
 				33F88F480D50F2DD00790AEF /* gdoc.icns in Resources */,
-				33F891180D51408900790AEF /* Localizable.strings in Resources */,
+				3325FFF40F76F6AB00CD59EB /* Localizable.strings in Resources */,
 				337440490E4C0B2300CFB4FC /* gdocpdf.icns in Resources */,
 				336233660E6A123D00DD5373 /* pwaalbum.icns in Resources */,
 				00C734BE0E982723002DD717 /* pwaphoto.icns in Resources */,
@@ -1339,18 +1342,29 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		331FFDD80D9328D30044B7F1 /* PrecipitatePrefPane.xib */ = {
+		3325FFEA0F76F66400CD59EB /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				331FFDD90D9328D30044B7F1 /* PrecipitatePrefPane.xib */,
+				335827840E1451C000279D7F /* English */,
+				3325FFEC0F76F67400CD59EB /* German */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		3325FFEE0F76F68700CD59EB /* PrecipitatePrefPane.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				331FFDD90D9328D30044B7F1 /* English */,
+				3325FFF00F76F69000CD59EB /* German */,
 			);
 			name = PrecipitatePrefPane.xib;
 			sourceTree = "<group>";
 		};
-		335827830E1451C000279D7F /* Localizable.strings */ = {
+		3325FFF30F76F6AB00CD59EB /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				335827840E1451C000279D7F /* Localizable.strings */,
+				33F891170D51408900790AEF /* English */,
+				3325FFF60F76F6B200CD59EB /* German */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1369,14 +1383,6 @@
 				33897EE00D4FB16E00A54981 /* TestHarness.xib */,
 			);
 			name = TestHarness.xib;
-			sourceTree = "<group>";
-		};
-		33F891160D51408900790AEF /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				33F891170D51408900790AEF /* Localizable.strings */,
-			);
-			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		8BF53A080EE5A74800D981A0 /* InfoPlist.strings */ = {

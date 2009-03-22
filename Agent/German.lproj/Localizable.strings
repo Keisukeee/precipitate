@@ -1,0 +1,3 @@
+/* Common login failure messages, for use by sources */
+"NoLoginInfo" = "Keine Anmelde-Daten";
+"LoginFailed" = "Anmeldung fehlgeschlagen";

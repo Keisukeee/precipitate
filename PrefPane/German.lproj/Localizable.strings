@@ -1,0 +1,3 @@
+﻿"SuccessFormat" = "Aktualisiert %@";
+"FailureFormat" = "Fehlgeschlagen %1$@ (%2$@)";
+"VersionFormat" = "Version %@";
