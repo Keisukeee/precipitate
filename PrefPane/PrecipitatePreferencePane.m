@@ -99,16 +99,10 @@
   if (lastSyncAttempt_) {
     NSString* formattedDate = [dateFormatter stringFromDate:lastSyncAttempt_];
     if (errorMessage_) {
-      NSString* formatString =
-      [[NSBundle bundleForClass:[self class]] localizedStringForKey:@"FailureFormat"
-                                                              value:@"FailureFormat"
-                                                              table:@"PrefPane"];
+      NSString* formatString = [ComGooglePrecipitatePreferencePane localizedString:@"FailureFormat"];
       return [NSString stringWithFormat:formatString, formattedDate, errorMessage_];
     } else {
-      NSString* formatString =
-      [[NSBundle bundleForClass:[self class]] localizedStringForKey:@"SuccessFormat"
-                                                              value:@"SuccessFormat"
-                                                              table:@"PrefPane"];
+      NSString* formatString = [ComGooglePrecipitatePreferencePane localizedString:@"SuccessFormat"];
       return [NSString stringWithFormat:formatString, formattedDate];
     }
   }
@@ -212,14 +206,12 @@
     [[syncButton_ superview] setFrameSize:paneSize];
   }
 
-  NSBundle* prefPaneBundle = [NSBundle bundleForClass:[self class]];
-  NSString* versionFormat = [prefPaneBundle localizedStringForKey:@"VersionFormat"
-                                                            value:@"VersionFormat"
-                                                            table:@"PrefPane"];
+  NSString* versionFormat = [ComGooglePrecipitatePreferencePane localizedString:@"VersionFormat"];
   // In an upgrade case, System Preferences will load the old bundle on launch
   // before installing the new bundle, and since NSBundle caches information
   // getting the version that way will give us the old version. Showing
   // stale version info on an upgrade is very confusing, so work around it.
+  NSBundle* prefPaneBundle = [NSBundle bundleForClass:[self class]];
   NSString* infoPlistPath = [[[prefPaneBundle bundlePath] stringByAppendingPathComponent:@"Contents"]
                               stringByAppendingPathComponent:@"Info.plist"];
   NSDictionary* appInfo = [NSPropertyListSerialization propertyListFromData:[NSData dataWithContentsOfFile:infoPlistPath]
@@ -404,6 +396,13 @@
 - (void)setSourceStatuses:(NSArray*)statuses {
   [sourceStatuses_ autorelease];
   sourceStatuses_ = [statuses retain];
+}
+
++ (NSString*)localizedString:(NSString*)key {
+  NSBundle* prefPaneBundle = [NSBundle bundleForClass:[self class]];
+  return [prefPaneBundle localizedStringForKey:key
+                                         value:key
+                                         table:nil];
 }
 
 @end

@@ -33,6 +33,7 @@
 - (NSArray*)sourceStatuses;
 - (IBAction)setLogin:(id)sender;
 - (IBAction)syncNow:(id)sender;
++ (NSString*)localizedString:(NSString*)key;
 
 @end
 
