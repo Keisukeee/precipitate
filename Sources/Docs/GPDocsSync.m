@@ -15,9 +15,11 @@
 //
 
 #import "GPDocsSync.h"
+
 #import "DocsInfoKeys.h"
-#import "SharedConstants.h"
+#import "GDataSourceUtils.h"
 #import "GPKeychainItem.h"
+#import "SharedConstants.h"
 
 static NSString* const kDocumentExportURLFormat =
   @"https://docs.google.com/feeds/download/documents/Export?docID=%@&exportFormat=txt";
@@ -26,7 +28,6 @@ static NSString* const kSpreadsheetExportURLFormat =
 
 @interface GPDocsSync (Private)
 
-- (NSArray*)peopleStringsForGDataPeople:(NSArray*)people;
 - (NSDictionary*)dictionaryForEntry:(GDataEntryBase*)doc;
 - (void)inflateNextDoc;
 - (void)fetchContentForNextDoc;
@@ -57,34 +58,22 @@ static NSString* const kSpreadsheetExportURLFormat =
 {
   GPKeychainItem* loginCredentials = [manager_ accountCredentials];
   if (!loginCredentials) {
-    NSString* errorString = NSLocalizedString(@"NoLoginInfo", nil);
-    NSDictionary* errorInfo = [NSDictionary dictionaryWithObject:errorString
-                                                          forKey:NSLocalizedDescriptionKey];
-    [manager_ infoFetchFailedForSource:self withError:[NSError errorWithDomain:@"LoginFailure"
-                                                                          code:403
-                                                                      userInfo:errorInfo]];
+    NSError* error = [NSError gp_loginErrorWithDescriptionKey:@"NoLoginInfo"];
+    [manager_ infoFetchFailedForSource:self withError:error];
     return;
   }
-
-  NSString* username = [loginCredentials username];
-  NSString* password = [loginCredentials password];
 
   // If the debugging flag to enable logging is set, do so.
   if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"EnableGDataHTTPLogging"] boolValue])
     [GDataHTTPFetcher setIsLoggingEnabled:YES];
-  
+
   [docService_ autorelease];
   docService_ = [[GDataServiceGoogleDocs alloc] init];
-  [docService_ setUserAgent:kPrecipitateUserAgent];
-  [docService_ setUserCredentialsWithUsername:username password:password];
-  [docService_ setIsServiceRetryEnabled:YES];
-  [docService_ setServiceShouldFollowNextLinks:YES];
+  [docService_ gp_configureWithCredentials:loginCredentials];
 
   [spreadsheetService_ autorelease];
   spreadsheetService_ = [[GDataServiceGoogleSpreadsheet alloc] init];
-  [spreadsheetService_ setUserAgent:kPrecipitateUserAgent];
-  [spreadsheetService_ setUserCredentialsWithUsername:username password:password];
-  [spreadsheetService_ setIsServiceRetryEnabled:YES];
+  [spreadsheetService_ gp_configureWithCredentials:loginCredentials];
 
   // We don't need this information, but we need to call a fetch method to
   // ensure that the service is primed with the authorization ticket for later
@@ -167,25 +156,11 @@ static NSString* const kSpreadsheetExportURLFormat =
 
 - (void)serviceTicket:(GDataServiceTicket *)ticket
       failedWithError:(NSError *)error {
+  NSError* reportedError = error;
   if ([error code] == 403) {
-    NSString* errorString = NSLocalizedString(@"LoginFailed", nil);
-    NSDictionary* errorInfo = [NSDictionary dictionaryWithObject:errorString
-                                                          forKey:NSLocalizedDescriptionKey];
-    [manager_ infoFetchFailedForSource:self withError:[NSError errorWithDomain:@"LoginFailure"
-                                                                          code:403
-                                                                      userInfo:errorInfo]];
-  } else {
-    [manager_ infoFetchFailedForSource:self withError:error];
+    reportedError = [NSError gp_loginErrorWithDescriptionKey:@"LoginFailed"];
   }
-}
-
-- (NSArray*)peopleStringsForGDataPeople:(NSArray*)people {
-  NSMutableArray* peopleStrings = [NSMutableArray arrayWithCapacity:[people count]];
-  for (GDataPerson* person in people) {
-    [peopleStrings addObject:[NSString stringWithFormat:@"%@ <%@>",
-                              [person name], [person email]]];
-  }
-  return peopleStrings;
+  [manager_ infoFetchFailedForSource:self withError:reportedError];
 }
 
 - (NSDictionary*)dictionaryForEntry:(GDataEntryBase*)entry {
@@ -197,7 +172,7 @@ static NSString* const kSpreadsheetExportURLFormat =
                       [[entry identifier] lastPathComponent], kGPMDItemUID,
                                                        title, (NSString*)kMDItemTitle,
                                   [[entry updatedDate] date], kGPMDItemModificationDate,
-          [self peopleStringsForGDataPeople:[entry authors]], (NSString*)kMDItemAuthors,
+            [[entry authors] gp_peopleStringsForGDataPeople], (NSString*)kMDItemAuthors,
                                      [[entry HTMLLink] href], (NSString*)kGPMDItemURL,
                                  [[entry content] sourceURI], kDocDictionarySourceURIKey,
                    [[entry categories] valueForKey:@"label"], kDocDictionaryCategoriesKey,

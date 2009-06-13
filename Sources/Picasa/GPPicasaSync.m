@@ -15,6 +15,8 @@
 //
 
 #import "GPPicasaSync.h"
+
+#import "GDataSourceUtils.h"
 #import "GPKeychainItem.h"
 #import "SharedConstants.h"
 #import "PWAInfoKeys.h"
@@ -25,7 +27,6 @@
 - (NSMutableDictionary*)baseDictionaryForPhotoBase:(GDataEntryPhotoBase*)entry;
 - (NSDictionary*)dictionaryForPhoto:(GDataEntryPhoto*)photo;
 - (NSDictionary*)dictionaryForAlbum:(GDataEntryPhotoAlbum*)album;
-- (NSArray*)peopleStringsForGDataPeople:(NSArray*)people;
 - (NSString*)thumbnailURLForEntry:(GDataEntryPhotoBase*)entry;
 @end
 
@@ -46,29 +47,19 @@
 - (void)fetchAllItemsBasicInfo {
   GPKeychainItem* loginCredentials = [manager_ accountCredentials];
   if (!loginCredentials) {
-    NSString* errorString = NSLocalizedString(@"NoLoginInfo", nil);
-    NSDictionary* errorInfo = [NSDictionary dictionaryWithObject:errorString
-                                                          forKey:NSLocalizedDescriptionKey];
-    [manager_ infoFetchFailedForSource:self withError:[NSError errorWithDomain:@"LoginFailure"
-                                                                          code:403
-                                                                      userInfo:errorInfo]];
+    NSError* error = [NSError gp_loginErrorWithDescriptionKey:@"LoginFailed"];
+    [manager_ infoFetchFailedForSource:self withError:error];
     return;
   }
-  
-  NSString* username = [loginCredentials username];
-  NSString* password = [loginCredentials password];
 
   [photosService_ autorelease];
   photosService_ = [[GDataServiceGooglePhotos alloc] init];
-  [photosService_ setUserAgent:kPrecipitateUserAgent];
-  [photosService_ setUserCredentialsWithUsername:username password:password];
-  [photosService_ setIsServiceRetryEnabled:YES];
-  [photosService_ setServiceShouldFollowNextLinks:YES];
+  [photosService_ gp_configureWithCredentials:loginCredentials];
 
   NSString* kinds = [NSString stringWithFormat:@"%@,%@",
                      kGDataGooglePhotosKindAlbum, kGDataGooglePhotosKindPhoto];
   NSString* albumFeedURI = 
-    [[GDataServiceGooglePhotos photoFeedURLForUserID:username
+    [[GDataServiceGooglePhotos photoFeedURLForUserID:[loginCredentials username]
                                              albumID:nil
                                            albumName:nil
                                              photoID:nil
@@ -135,16 +126,11 @@
 
 - (void)serviceTicket:(GDataServiceTicket *)ticket
       failedWithError:(NSError *)error {
+  NSError* reportedError = error;
   if ([error code] == 403) {
-    NSString* errorString = NSLocalizedString(@"LoginFailed", nil);
-    NSDictionary* errorInfo = [NSDictionary dictionaryWithObject:errorString
-                                                          forKey:NSLocalizedDescriptionKey];
-    [manager_ infoFetchFailedForSource:self withError:[NSError errorWithDomain:@"LoginFailure"
-                                                                          code:403
-                                                                      userInfo:errorInfo]];
-  } else {
-    [manager_ infoFetchFailedForSource:self withError:error];
+    reportedError = [NSError gp_loginErrorWithDescriptionKey:@"LoginFailed"];
   }
+  [manager_ infoFetchFailedForSource:self withError:reportedError];
 }
 
 - (NSDictionary*)dictionaryForPhoto:(GDataEntryPhoto*)photo {
@@ -197,28 +183,11 @@
                                       [entry GPhotoID], kGPMDItemUID,
                            [[entry title] stringValue], (NSString*)kMDItemTitle,
                             [[entry updatedDate] date], kGPMDItemModificationDate,
-    [self peopleStringsForGDataPeople:[entry authors]], (NSString*)kMDItemAuthors,
+      [[entry authors] gp_peopleStringsForGDataPeople], (NSString*)kMDItemAuthors,
                                [[entry HTMLLink] href], (NSString*)kGPMDItemURL,
                 [[entry photoDescription] stringValue], (NSString*)kMDItemDescription,
                      [self thumbnailURLForEntry:entry], kPWADictionaryThumbnailURLKey,
                                                         nil];
-}
-
-// TODO: refactor this to a shared location.
-- (NSArray*)peopleStringsForGDataPeople:(NSArray*)people {
-  NSMutableArray* peopleStrings = [NSMutableArray arrayWithCapacity:[people count]];
-  for (GDataPerson* person in people) {
-    NSString* name = [person name];
-    NSString* email = [person email];
-    if (name && email)
-      [peopleStrings addObject:[NSString stringWithFormat:@"%@ <%@>",
-                                  name, email]];
-    else if (name)
-      [peopleStrings addObject:name];
-    else if (email)
-      [peopleStrings addObject:email];
-  }
-  return peopleStrings;
 }
 
 - (NSString*)thumbnailURLForEntry:(GDataEntryPhotoBase*)entry {

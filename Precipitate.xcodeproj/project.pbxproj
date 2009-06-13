@@ -40,6 +40,8 @@
 		000E280B0FE44E3A000554F4 /* GPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 332204320D4EA23100EE30FF /* GPKeychainItem.m */; };
 		000E280C0FE44E3D000554F4 /* GPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 332204320D4EA23100EE30FF /* GPKeychainItem.m */; };
 		000E28170FE4507F000554F4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332204420D4EA96C00EE30FF /* Security.framework */; };
+		000E297D0FE455AD000554F4 /* GDataSourceUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 000E297C0FE455AD000554F4 /* GDataSourceUtils.m */; };
+		000E297E0FE455AD000554F4 /* GDataSourceUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 000E297C0FE455AD000554F4 /* GDataSourceUtils.m */; };
 		00C734BE0E982723002DD717 /* pwaphoto.icns in Resources */ = {isa = PBXBuildFile; fileRef = 00C734BD0E982723002DD717 /* pwaphoto.icns */; };
 		00C735B30E9842A3002DD717 /* gbookmark.icns in Resources */ = {isa = PBXBuildFile; fileRef = 00C735B20E9842A3002DD717 /* gbookmark.icns */; };
 		00C735D80E984350002DD717 /* GetMetadataForFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C735B40E9842C4002DD717 /* GetMetadataForFile.m */; };
@@ -294,6 +296,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		000E297B0FE455AD000554F4 /* GDataSourceUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GDataSourceUtils.h; path = Sources/GDataSourceUtils.h; sourceTree = "<group>"; };
+		000E297C0FE455AD000554F4 /* GDataSourceUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GDataSourceUtils.m; path = Sources/GDataSourceUtils.m; sourceTree = "<group>"; };
 		00C734BD0E982723002DD717 /* pwaphoto.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = pwaphoto.icns; path = Sources/Picasa/pwaphoto.icns; sourceTree = "<group>"; };
 		00C735B20E9842A3002DD717 /* gbookmark.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = gbookmark.icns; path = Sources/Bookmarks/gbookmark.icns; sourceTree = "<group>"; };
 		00C735B40E9842C4002DD717 /* GetMetadataForFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetMetadataForFile.m; path = Sources/Bookmarks/GetMetadataForFile.m; sourceTree = "<group>"; };
@@ -480,6 +484,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		000E29610FE45504000554F4 /* GData Base */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "GData Base";
+			sourceTree = "<group>";
+		};
+		000E296E0FE45553000554F4 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				000E297B0FE455AD000554F4 /* GDataSourceUtils.h */,
+				000E297C0FE455AD000554F4 /* GDataSourceUtils.m */,
+				000E29610FE45504000554F4 /* GData Base */,
+				33FED7E30D4E5E050075A454 /* Google Docs */,
+				33F0837E0E5CDF0C00DB70B9 /* Picasa */,
+				3302A61D0D4EB1FF00AAF075 /* Google Bookmarks */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
 		00C735B10E98428C002DD717 /* Importer */ = {
 			isa = PBXGroup;
 			children = (
@@ -528,9 +552,7 @@
 				3388D3440D906D7D00FFC510 /* Common */,
 				3388D3020D906A2700FFC510 /* Pref Pane */,
 				080E96DDFE201D6D7F000001 /* Agent */,
-				33FED7E30D4E5E050075A454 /* Google Docs */,
-				3302A61D0D4EB1FF00AAF075 /* Google Bookmarks */,
-				33F0837E0E5CDF0C00DB70B9 /* Picasa */,
+				000E296E0FE45553000554F4 /* Sources */,
 				3302A63E0D4EB8CE00AAF075 /* Source Test Harness */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -947,9 +969,9 @@
 				33FED7D50D4E5DC50075A454 /* GoogleDocs */,
 				33BBBC0F0D2C4C7A007FE6D7 /* DocsImporter */,
 				3302A6260D4EB6EF00AAF075 /* GoogleBookmarks */,
-				00C735C50E9842EA002DD717 /* BookmarksImporter */,
 				33F083830E5CE61000DB70B9 /* PicasaWebAlbums */,
 				3362324C0E6A039400DD5373 /* PicasaImporter */,
+				00C735C50E9842EA002DD717 /* BookmarksImporter */,
 				3302A6350D4EB86B00AAF075 /* TestHarness */,
 			);
 		};
@@ -1231,6 +1253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33F083A30E5CE65F00DB70B9 /* GPPicasaSync.m in Sources */,
+				000E297E0FE455AD000554F4 /* GDataSourceUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1239,6 +1262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				336B1C180D53B4390019F6B2 /* GPDocsSync.m in Sources */,
+				000E297D0FE455AD000554F4 /* GDataSourceUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
