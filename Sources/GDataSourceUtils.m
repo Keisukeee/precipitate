@@ -16,11 +16,9 @@
 
 #import "GDataSourceUtils.h"
 
-#import "SharedConstants.h"
-
 @implementation GDataServiceGoogle(PrecipitateSourceExtensions)
 - (void)gp_configureWithCredentials:(GPKeychainItem*)credentials {
-  [self setUserAgent:kPrecipitateUserAgent];
+  [self setUserAgent:@"Google-Precipitate-" USER_AGENT_VERSION];
   [self setIsServiceRetryEnabled:YES];
   [self setServiceShouldFollowNextLinks:YES];
 
@@ -41,7 +39,7 @@
 }
 @end
 
-@interface NSArray(PrecipitateSourceExtensions)
+@implementation NSArray(PrecipitateSourceExtensions)
 - (NSArray*)gp_peopleStringsForGDataPeople  {
   NSMutableArray* peopleStrings =
       [NSMutableArray arrayWithCapacity:[self count]];

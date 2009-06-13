@@ -17,8 +17,6 @@
 // The service name used for Precipitate's keychain entry.
 #define kPrecipitateGoogleAccountKeychainServiceName @"Precipitate: Google Account"
 
-#define kPrecipitateUserAgent @"Google-Precipitate-" USER_AGENT_VERSION
-
 // Distributed notifications used for coordination of the UI and the helper app.
 #define kPrecipitateReSyncNeededNotification @"PrecipitateReSyncNeeded"
 #define kPrecipitateSyncStartedNotification @"PrecipitateSyncStarted"
