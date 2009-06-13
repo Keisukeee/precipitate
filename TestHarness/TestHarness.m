@@ -16,6 +16,7 @@
 
 #import "TestHarness.h"
 
+#import "GPKeychainItem.h"
 
 @implementation TestHarness
 
@@ -71,5 +72,8 @@
   [NSApp terminate:self];
 }
 
+- (GPKeychainItem*)accountCredentials {
+  return [GPKeychainItem keychainItemForService:@"Precipitate Test Account"];
+}
 
 @end

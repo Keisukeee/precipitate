@@ -21,22 +21,30 @@
 #define kGPMDItemURL CFSTR("kMDItemURL")
 
 
+@class GPKeychainItem;
 @protocol GPSyncSource;
 
 
 // Implemented by an object loading and managing source plugins.
 @protocol GPSyncManager <NSObject>
 
+// Callback for when fetchAllItemsBasicInfo has completed.
 - (void)basicItemsInfo:(NSArray*)items
       fetchedForSource:(id<GPSyncSource>)source;
 
+// Callback for when fetchFullInfoForItems has new data available.
 - (void)fullItemsInfo:(NSArray*)items
      fetchedForSource:(id<GPSyncSource>)source;
 
+// Callback for when fetchFullInfoForItems has completed.
 - (void)fullItemsInfoFetchCompletedForSource:(id<GPSyncSource>)source;
 
+// Callback for when fetchAllItemsBasicInfo or  fetchFullInfoForItems fails.
 - (void)infoFetchFailedForSource:(id<GPSyncSource>)source
                        withError:(NSError*)error;
+
+// Returns the credentials for the account being sync'd.
+- (GPKeychainItem*)accountCredentials;
 
 @end
 

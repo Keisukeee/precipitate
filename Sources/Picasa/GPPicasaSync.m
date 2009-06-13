@@ -44,8 +44,7 @@
 }
 
 - (void)fetchAllItemsBasicInfo {
-  GPKeychainItem* loginCredentials = 
-    [GPKeychainItem keychainItemForService:kPrecipitateGoogleAccountKeychainServiceName];
+  GPKeychainItem* loginCredentials = [manager_ accountCredentials];
   if (!loginCredentials) {
     NSString* errorString = NSLocalizedString(@"NoLoginInfo", nil);
     NSDictionary* errorInfo = [NSDictionary dictionaryWithObject:errorString

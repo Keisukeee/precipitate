@@ -37,6 +37,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		000E280B0FE44E3A000554F4 /* GPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 332204320D4EA23100EE30FF /* GPKeychainItem.m */; };
+		000E280C0FE44E3D000554F4 /* GPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 332204320D4EA23100EE30FF /* GPKeychainItem.m */; };
+		000E28170FE4507F000554F4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332204420D4EA96C00EE30FF /* Security.framework */; };
 		00C734BE0E982723002DD717 /* pwaphoto.icns in Resources */ = {isa = PBXBuildFile; fileRef = 00C734BD0E982723002DD717 /* pwaphoto.icns */; };
 		00C735B30E9842A3002DD717 /* gbookmark.icns in Resources */ = {isa = PBXBuildFile; fileRef = 00C735B20E9842A3002DD717 /* gbookmark.icns */; };
 		00C735D80E984350002DD717 /* GetMetadataForFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 00C735B40E9842C4002DD717 /* GetMetadataForFile.m */; };
@@ -48,10 +51,8 @@
 		3302A62D0D4EB71D00AAF075 /* GPBookmarkSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 3302A61F0D4EB23100AAF075 /* GPBookmarkSync.m */; };
 		3302A63D0D4EB8B600AAF075 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		3302A6440D4EBA9A00AAF075 /* TestHarness.m in Sources */ = {isa = PBXBuildFile; fileRef = 3302A6430D4EBA9A00AAF075 /* TestHarness.m */; };
-		3302A7AC0D4EFF2700AAF075 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332204420D4EA96C00EE30FF /* Security.framework */; };
 		331A49380E15B9AC00D855C0 /* GTMSystemVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 331A49370E15B9AC00D855C0 /* GTMSystemVersion.m */; };
 		331FFE2E0D94333D0044B7F1 /* GPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 332204320D4EA23100EE30FF /* GPKeychainItem.m */; };
-		332204430D4EA96C00EE30FF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332204420D4EA96C00EE30FF /* Security.framework */; };
 		3325FFEB0F76F66400CD59EB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3325FFEA0F76F66400CD59EB /* Localizable.strings */; };
 		3325FFEF0F76F68700CD59EB /* PrecipitatePrefPane.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3325FFEE0F76F68700CD59EB /* PrecipitatePrefPane.xib */; };
 		3325FFF40F76F6AB00CD59EB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3325FFF30F76F6AB00CD59EB /* Localizable.strings */; };
@@ -100,13 +101,9 @@
 		33D794F00E1D39CD004A8D9C /* GData.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 33D7942D0E1D39B6004A8D9C /* GData.framework */; };
 		33F0838D0E5CE61000DB70B9 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33BBBC4A0D2C5179007FE6D7 /* CoreServices.framework */; };
 		33F0838E0E5CE61000DB70B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
-		33F0838F0E5CE61000DB70B9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 332204420D4EA96C00EE30FF /* Security.framework */; };
 		33F083900E5CE61000DB70B9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F892120D5290B300790AEF /* WebKit.framework */; };
 		33F083A30E5CE65F00DB70B9 /* GPPicasaSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 33F083800E5CDFBC00DB70B9 /* GPPicasaSync.m */; };
 		33F086180E68738D00DB70B9 /* PicasaWebAlbums.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 33F083950E5CE61000DB70B9 /* PicasaWebAlbums.bundle */; };
-		33F087140E687BD900DB70B9 /* GPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 332204320D4EA23100EE30FF /* GPKeychainItem.m */; };
-		33F087150E687BDA00DB70B9 /* GPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 332204320D4EA23100EE30FF /* GPKeychainItem.m */; };
-		33F087160E687BDE00DB70B9 /* GPKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 332204320D4EA23100EE30FF /* GPKeychainItem.m */; };
 		33F88F450D50F2DD00790AEF /* gdocdocument.icns in Resources */ = {isa = PBXBuildFile; fileRef = 334CAF1D0D1C3E58006BAF54 /* gdocdocument.icns */; };
 		33F88F460D50F2DD00790AEF /* gdocpresentation.icns in Resources */ = {isa = PBXBuildFile; fileRef = 334CAF1E0D1C3E58006BAF54 /* gdocpresentation.icns */; };
 		33F88F470D50F2DD00790AEF /* gdocspreadsheet.icns in Resources */ = {isa = PBXBuildFile; fileRef = 334CAF1F0D1C3E58006BAF54 /* gdocspreadsheet.icns */; };
@@ -408,7 +405,6 @@
 				33D679080F5F3CDA00962528 /* GData.framework in Frameworks */,
 				33802F770D988810008BCA40 /* CoreServices.framework in Frameworks */,
 				33802F750D9887B8008BCA40 /* Foundation.framework in Frameworks */,
-				3302A7AC0D4EFF2700AAF075 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +412,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				000E28170FE4507F000554F4 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,7 +451,6 @@
 				33D67A630F5F491000962528 /* GData.framework in Frameworks */,
 				33F0838D0E5CE61000DB70B9 /* CoreServices.framework in Frameworks */,
 				33F0838E0E5CE61000DB70B9 /* Foundation.framework in Frameworks */,
-				33F0838F0E5CE61000DB70B9 /* Security.framework in Frameworks */,
 				33F083900E5CE61000DB70B9 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,7 +462,6 @@
 				33D679840F5F48FC00962528 /* GData.framework in Frameworks */,
 				33AE46A50E12F706007DE32B /* CoreServices.framework in Frameworks */,
 				33802EF30D98860A008BCA40 /* Foundation.framework in Frameworks */,
-				332204430D4EA96C00EE30FF /* Security.framework in Frameworks */,
 				33F892130D5290B300790AEF /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1188,7 +1183,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3302A62D0D4EB71D00AAF075 /* GPBookmarkSync.m in Sources */,
-				33F087150E687BDA00DB70B9 /* GPKeychainItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1198,6 +1192,7 @@
 			files = (
 				3302A63D0D4EB8B600AAF075 /* main.m in Sources */,
 				3302A6440D4EBA9A00AAF075 /* TestHarness.m in Sources */,
+				000E280B0FE44E3A000554F4 /* GPKeychainItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1236,7 +1231,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				33F083A30E5CE65F00DB70B9 /* GPPicasaSync.m in Sources */,
-				33F087160E687BDE00DB70B9 /* GPKeychainItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1245,7 +1239,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				336B1C180D53B4390019F6B2 /* GPDocsSync.m in Sources */,
-				33F087140E687BD900DB70B9 /* GPKeychainItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1258,6 +1251,7 @@
 				3388D3420D906D6A00FFC510 /* GPSourceStatus.m in Sources */,
 				3388D37D0D906F0200FFC510 /* GTMNSFileManager+Path.m in Sources */,
 				33AE44FC0E11B584007DE32B /* GPSharedPreferences.m in Sources */,
+				000E280C0FE44E3D000554F4 /* GPKeychainItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

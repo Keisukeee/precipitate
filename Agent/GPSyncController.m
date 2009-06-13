@@ -14,6 +14,7 @@
 // limitations under the License.
 //
 
+#import "GPKeychainItem.h"
 #import "GPSyncController.h"
 #import "GPSharedPreferences.h"
 #import "GPSourceStatus.h"
@@ -322,6 +323,7 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
 }
 
 #pragma mark -
+#pragma mark Sync Manager Protocol
 
 - (void)basicItemsInfo:(NSArray*)items fetchedForSource:(id<GPSyncSource>)source {
   NSString* cachePath = [self cachePathForSource:source];
@@ -338,9 +340,12 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
 }
 
 - (void)infoFetchFailedForSource:(id<GPSyncSource>)source
-                       withError:(NSError*)error
-{
+                       withError:(NSError*)error {
   [self finishedSource:source withError:error];
+}
+
+- (GPKeychainItem*)accountCredentials {
+  return [GPKeychainItem keychainItemForService:kPrecipitateGoogleAccountKeychainServiceName];
 }
 
 #pragma mark -

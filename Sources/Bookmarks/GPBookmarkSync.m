@@ -73,7 +73,7 @@ static NSString* const kBookmarkURLFormat = @"https://www.google.com/bookmarks/l
   NSString* requestURI = [NSString stringWithFormat:kBookmarkURLFormat, start];
   NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:requestURI]];
   GDataHTTPFetcher* fetcher = [GDataHTTPFetcher httpFetcherWithRequest:request];
-  GPKeychainItem* loginCredentials = [GPKeychainItem keychainItemForService:kPrecipitateGoogleAccountKeychainServiceName];
+  GPKeychainItem* loginCredentials = [manager_ accountCredentials];
   if (loginCredentials) {
     [fetcher setCredential:[NSURLCredential credentialWithUser:[loginCredentials username]
                                                       password:[loginCredentials password]
