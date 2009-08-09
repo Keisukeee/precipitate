@@ -14,9 +14,10 @@
 // limitations under the License.
 //
 
+#import "GPBookmarkSync.h"
+
 #import <GData/GData.h>
 
-#import "GPBookmarkSync.h"
 #import "GPKeychainItem.h"
 #import "SharedConstants.h"
 

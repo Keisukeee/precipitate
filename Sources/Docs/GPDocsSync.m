@@ -16,6 +16,8 @@
 
 #import "GPDocsSync.h"
 
+#import <GData/GData.h>
+
 #import "DocsInfoKeys.h"
 #import "GDataSourceUtils.h"
 #import "GPKeychainItem.h"
@@ -81,19 +83,17 @@ static NSString* const kSpreadsheetExportURLFormat =
   NSString* spreadsheetFeedURI = kGDataGoogleSpreadsheetsPrivateFullFeed;
   if ([spreadsheetFeedURI hasPrefix:@"http:"])
     spreadsheetFeedURI = [@"https:" stringByAppendingString:[spreadsheetFeedURI substringFromIndex:5]];
-  [spreadsheetService_ fetchSpreadsheetFeedWithURL:[NSURL URLWithString:spreadsheetFeedURI]
-                                          delegate:self
-                                 didFinishSelector:nil
-                                   didFailSelector:nil];
+  [spreadsheetService_ fetchFeedWithURL:[NSURL URLWithString:spreadsheetFeedURI]
+                               delegate:self
+                      didFinishSelector:nil];
 
   // Get the data we actually want. The callbacks will report to the manager
   NSString* docsFeedURI = kGDataGoogleDocsDefaultPrivateFullFeed;
   if ([docsFeedURI hasPrefix:@"http:"])
     docsFeedURI = [@"https:" stringByAppendingString:[docsFeedURI substringFromIndex:5]];
-  [docService_ fetchDocsFeedWithURL:[NSURL URLWithString:docsFeedURI]
-                           delegate:self
-                  didFinishSelector:@selector(serviceTicket:finishedWithObject:)
-                    didFailSelector:@selector(serviceTicket:failedWithError:)];
+  [docService_ fetchFeedWithURL:[NSURL URLWithString:docsFeedURI]
+                       delegate:self
+              didFinishSelector:@selector(serviceTicket:finishedWithFeed:error:)];
 }
 
 - (void)fetchFullInfoForItems:(NSArray*)items
@@ -136,8 +136,15 @@ static NSString* const kSpreadsheetExportURLFormat =
 
 #pragma mark Basic Info Fetching
 
-- (void)serviceTicket:(GDataServiceTicket *)ticket
-   finishedWithObject:(GDataFeedDocList *)docList {
+- (void)serviceTicket:(GDataServiceTicket*)ticket
+     finishedWithFeed:(GDataFeedDocList*)docList
+                error:(NSError*)error {
+  if (error) {
+    [manager_ infoFetchFailedForSource:self
+                             withError:[error gp_reportableError]];
+    return;
+  }
+
   NSMutableDictionary* docsById = [NSMutableDictionary dictionary];
   for (GDataEntryBase* entry in [docList entries]) {
     @try {
@@ -152,15 +159,6 @@ static NSString* const kSpreadsheetExportURLFormat =
   }
 
   [manager_ basicItemsInfo:[docsById allValues] fetchedForSource:self];
-}
-
-- (void)serviceTicket:(GDataServiceTicket *)ticket
-      failedWithError:(NSError *)error {
-  NSError* reportedError = error;
-  if ([error code] == 403) {
-    reportedError = [NSError gp_loginErrorWithDescriptionKey:@"LoginFailed"];
-  }
-  [manager_ infoFetchFailedForSource:self withError:reportedError];
 }
 
 - (NSDictionary*)dictionaryForEntry:(GDataEntryBase*)entry {

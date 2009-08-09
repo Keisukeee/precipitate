@@ -15,9 +15,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <GData/GData.h>
 #import "GPSyncProtocol.h"
 
+@class GDataServiceGooglePhotos;
 
 @interface GPPicasaSync : NSObject <GPSyncSource> {
   id<GPSyncManager>              manager_;  // weak

@@ -15,9 +15,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <GData/GData.h>
 #import "GPSyncProtocol.h"
 
+@class GDataServiceGoogleDocs;
+@class GDataServiceGoogleSpreadsheet;
 
 // Source for documents, spreadsheets, presentations, and PDFs in Google Docs.
 // Note: PDFs currently won't have content data.

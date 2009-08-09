@@ -16,6 +16,8 @@
 
 #import "GPPicasaSync.h"
 
+#import <GData/GData.h>
+
 #import "GDataSourceUtils.h"
 #import "GPKeychainItem.h"
 #import "SharedConstants.h"
@@ -68,10 +70,9 @@
   // Ideally we would use https, but the album list redirects when accessed that way.
   //if ([albumFeedURI hasPrefix:@"http:"])
   //  albumFeedURI = [@"https:" stringByAppendingString:[albumFeedURI substringFromIndex:5]];
-  [photosService_ fetchPhotoFeedWithURL:[NSURL URLWithString:albumFeedURI]
-                               delegate:self
-                      didFinishSelector:@selector(serviceTicket:finishedWithAlbum:)
-                        didFailSelector:@selector(serviceTicket:failedWithError:)];
+  [photosService_ fetchFeedWithURL:[NSURL URLWithString:albumFeedURI]
+                          delegate:self
+                 didFinishSelector:@selector(serviceTicket:finishedWithAlbum:error:)];
 }
 
 - (void)fetchFullInfoForItems:(NSArray*)items {
@@ -96,7 +97,14 @@
 #pragma mark -
 
 - (void)serviceTicket:(GDataServiceTicket *)ticket
-    finishedWithAlbum:(GDataFeedPhotoAlbum *)albumList {
+    finishedWithAlbum:(GDataFeedPhotoAlbum *)albumList
+                error:(NSError*)error {
+  if (error) {
+    [manager_ infoFetchFailedForSource:self
+                             withError:[error gp_reportableError]];
+    return;
+  }
+
   NSMutableArray* basicInfoDicts =
     [[[NSMutableArray alloc] initWithCapacity:[[albumList entries] count]] autorelease];
 
@@ -122,15 +130,6 @@
   }
 
   [manager_ basicItemsInfo:basicInfoDicts fetchedForSource:self];
-}
-
-- (void)serviceTicket:(GDataServiceTicket *)ticket
-      failedWithError:(NSError *)error {
-  NSError* reportedError = error;
-  if ([error code] == 403) {
-    reportedError = [NSError gp_loginErrorWithDescriptionKey:@"LoginFailed"];
-  }
-  [manager_ infoFetchFailedForSource:self withError:reportedError];
 }
 
 - (NSDictionary*)dictionaryForPhoto:(GDataEntryPhoto*)photo {

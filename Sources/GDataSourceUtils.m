@@ -37,6 +37,13 @@
                                   forKey:NSLocalizedDescriptionKey];
   return [NSError errorWithDomain:@"LoginFailure" code:403 userInfo:errorInfo];
 }
+
+- (NSError*)gp_reportableError {
+  if ([self code] == 403) {
+    return [NSError gp_loginErrorWithDescriptionKey:@"LoginFailed"];
+  }
+  return self;
+}
 @end
 
 @implementation NSArray(PrecipitateSourceExtensions)

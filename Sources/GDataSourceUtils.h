@@ -29,6 +29,9 @@
 // Returns an NSError for a login failure described by the localized string
 // from the app bundle with the given key.
 + (NSError*)gp_loginErrorWithDescriptionKey:(NSString*)key;
+
+// Returns the error that should be reported to users for the given error.
+- (NSError*)gp_reportableError;
 @end
 
 @interface NSArray(PrecipitateSourceExtensions)
