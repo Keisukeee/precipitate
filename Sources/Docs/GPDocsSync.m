@@ -77,21 +77,13 @@ static NSString* const kSpreadsheetExportURLFormat =
   spreadsheetService_ = [[GDataServiceGoogleSpreadsheet alloc] init];
   [spreadsheetService_ gp_configureWithCredentials:loginCredentials];
 
-  // We don't need this information, but we need to call a fetch method to
-  // ensure that the service is primed with the authorization ticket for later
-  // requests.
-  NSString* spreadsheetFeedURI = kGDataGoogleSpreadsheetsPrivateFullFeed;
-  if ([spreadsheetFeedURI hasPrefix:@"http:"])
-    spreadsheetFeedURI = [@"https:" stringByAppendingString:[spreadsheetFeedURI substringFromIndex:5]];
-  [spreadsheetService_ fetchFeedWithURL:[NSURL URLWithString:spreadsheetFeedURI]
-                               delegate:self
-                      didFinishSelector:nil];
+  // Authenticate the spreadsheetService_ to handle later requests.
+  [spreadsheetService_ authenticateWithDelegate:self
+                        didAuthenticateSelector:nil];
 
   // Get the data we actually want. The callbacks will report to the manager
-  NSString* docsFeedURI = kGDataGoogleDocsDefaultPrivateFullFeed;
-  if ([docsFeedURI hasPrefix:@"http:"])
-    docsFeedURI = [@"https:" stringByAppendingString:[docsFeedURI substringFromIndex:5]];
-  [docService_ fetchFeedWithURL:[NSURL URLWithString:docsFeedURI]
+  NSURL* docsFeedURL = [GDataServiceGoogleDocs docsFeedURLUsingHTTPS:YES];
+  [docService_ fetchFeedWithURL:docsFeedURL
                        delegate:self
               didFinishSelector:@selector(serviceTicket:finishedWithFeed:error:)];
 }
@@ -137,7 +129,7 @@ static NSString* const kSpreadsheetExportURLFormat =
 #pragma mark Basic Info Fetching
 
 - (void)serviceTicket:(GDataServiceTicket*)ticket
-     finishedWithFeed:(GDataFeedDocList*)docList
+     finishedWithFeed:(GDataFeedBase*)docList
                 error:(NSError*)error {
   if (error) {
     [manager_ infoFetchFailedForSource:self
