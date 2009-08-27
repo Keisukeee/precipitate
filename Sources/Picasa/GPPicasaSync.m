@@ -26,6 +26,8 @@
 #define kPWADictionaryTypeKey @"_PWAType"
 
 @interface GPPicasaSync (Private)
+- (void)fetchItemsWithKind:(NSString*)kind didFinishSelector:(SEL)doneSelector;
+- (void)addBasicInfoFromFeed:(GDataFeedBase *)feed;
 - (NSMutableDictionary*)baseDictionaryForPhotoBase:(GDataEntryPhotoBase*)entry;
 - (NSDictionary*)dictionaryForPhoto:(GDataEntryPhoto*)photo;
 - (NSDictionary*)dictionaryForAlbum:(GDataEntryPhotoAlbum*)album;
@@ -43,6 +45,8 @@
 
 - (void)dealloc {
   [photosService_ release];
+  [username_ release];
+  [basicInfo_ release];
   [super dealloc];
 }
 
@@ -57,22 +61,13 @@
   [photosService_ autorelease];
   photosService_ = [[GDataServiceGooglePhotos alloc] init];
   [photosService_ gp_configureWithCredentials:loginCredentials];
+  [username_ autorelease];
+  username_ = [[loginCredentials username] copy];
+  [basicInfo_ autorelease];
+  basicInfo_ = [[NSMutableArray alloc] init];
 
-  NSString* kinds = [NSString stringWithFormat:@"%@,%@",
-                     kGDataGooglePhotosKindAlbum, kGDataGooglePhotosKindPhoto];
-  NSString* albumFeedURI = 
-    [[GDataServiceGooglePhotos photoFeedURLForUserID:[loginCredentials username]
-                                             albumID:nil
-                                           albumName:nil
-                                             photoID:nil
-                                                kind:kinds
-                                              access:nil] absoluteString];
-  // Ideally we would use https, but the album list redirects when accessed that way.
-  //if ([albumFeedURI hasPrefix:@"http:"])
-  //  albumFeedURI = [@"https:" stringByAppendingString:[albumFeedURI substringFromIndex:5]];
-  [photosService_ fetchFeedWithURL:[NSURL URLWithString:albumFeedURI]
-                          delegate:self
-                 didFinishSelector:@selector(serviceTicket:finishedWithAlbum:error:)];
+  [self fetchItemsWithKind:kGDataGooglePhotosKindAlbum
+         didFinishSelector:@selector(serviceTicket:finishedWithAlbums:error:)];
 }
 
 - (void)fetchFullInfoForItems:(NSArray*)items {
@@ -96,19 +91,24 @@
 
 #pragma mark -
 
-- (void)serviceTicket:(GDataServiceTicket *)ticket
-    finishedWithAlbum:(GDataFeedPhotoAlbum *)albumList
-                error:(NSError*)error {
-  if (error) {
-    [manager_ infoFetchFailedForSource:self
-                             withError:[error gp_reportableError]];
-    return;
-  }
+- (void)fetchItemsWithKind:(NSString*)kind didFinishSelector:(SEL)doneSelector {
+  NSString* feedURI = 
+    [[GDataServiceGooglePhotos photoFeedURLForUserID:username_
+                                             albumID:nil
+                                           albumName:nil
+                                             photoID:nil
+                                                kind:kind
+                                              access:nil] absoluteString];
+  // Ideally we would use https, but the feed redirects when accessed that way.
+  //if ([feedURI hasPrefix:@"http:"])
+  //  feedURI = [@"https:" stringByAppendingString:[feedURI substringFromIndex:5]];
+  [photosService_ fetchFeedWithURL:[NSURL URLWithString:feedURI]
+                          delegate:self
+                 didFinishSelector:doneSelector];
+}
 
-  NSMutableArray* basicInfoDicts =
-    [[[NSMutableArray alloc] initWithCapacity:[[albumList entries] count]] autorelease];
-
-  for (GDataEntryBase* entry in [albumList entries]) {
+- (void)addBasicInfoFromFeed:(GDataFeedBase *)feed {
+  for (GDataEntryBase* entry in [feed entries]) {
     @try {
       NSDictionary* entryInfo = nil;
       if ([entry isKindOfClass:[GDataEntryPhoto class]]) {
@@ -116,27 +116,59 @@
       } else if ([entry isKindOfClass:[GDataEntryPhotoAlbum class]]) {
         entryInfo = [self dictionaryForAlbum:(GDataEntryPhotoAlbum*)entry];
       } else {
-        NSLog(@"Unexpected entry in album list: %@", entry);
+        NSLog(@"Unexpected entry in PWA feed: %@", entry);
         continue;
       }
 
       if (entryInfo)
-        [basicInfoDicts addObject:entryInfo];
+        [basicInfo_ addObject:entryInfo];
       else
         NSLog(@"Couldn't get info for PWA entry: %@", entry);
     } @catch (id exception) {
-      NSLog(@"Caught exception while processing basic album info: %@", exception);
+      NSLog(@"Caught exception while processing basic item info: %@", exception);
     }
   }
+}
 
-  [manager_ basicItemsInfo:basicInfoDicts fetchedForSource:self];
+- (void)serviceTicket:(GDataServiceTicket *)ticket
+   finishedWithAlbums:(GDataFeedBase *)albumList
+                error:(NSError*)error {
+  if (error) {
+    [manager_ infoFetchFailedForSource:self
+                             withError:[error gp_reportableError]];
+    return;
+  }
+
+  [self addBasicInfoFromFeed:albumList];
+
+  [self fetchItemsWithKind:kGDataGooglePhotosKindPhoto
+         didFinishSelector:@selector(serviceTicket:finishedWithPhotos:error:)];
+}
+
+- (void)serviceTicket:(GDataServiceTicket *)ticket
+   finishedWithPhotos:(GDataFeedBase *)photoList
+                error:(NSError*)error {
+  if (error) {
+    [manager_ infoFetchFailedForSource:self
+                             withError:[error gp_reportableError]];
+    return;
+  }
+  
+  [self addBasicInfoFromFeed:photoList];
+
+  [manager_ basicItemsInfo:basicInfo_ fetchedForSource:self];
+  [basicInfo_ autorelease];
+  basicInfo_ = nil;
 }
 
 - (NSDictionary*)dictionaryForPhoto:(GDataEntryPhoto*)photo {
   NSMutableDictionary* infoDictionary = [self baseDictionaryForPhotoBase:photo];
   [infoDictionary setObject:kPWATypePhoto forKey:kPWADictionaryTypeKey];
-  [infoDictionary setObject:[[photo timestamp] dateValue]
-                     forKey:(NSString*)kMDItemContentCreationDate];
+  NSDate* creationDate = [[photo timestamp] dateValue];
+  if (creationDate) {
+    [infoDictionary setObject:creationDate
+                       forKey:(NSString*)kMDItemContentCreationDate];
+  }
   [infoDictionary setObject:[photo width] forKey:(NSString*)kMDItemPixelWidth];
   [infoDictionary setObject:[photo height] forKey:(NSString*)kMDItemPixelHeight];
   NSArray* keywords = [[[photo mediaGroup] mediaKeywords] keywords];
