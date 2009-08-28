@@ -217,6 +217,20 @@
 			remoteGlobalIDString = 3362324C0E6A039400DD5373;
 			remoteInfo = PicasaImporter;
 		};
+		3380130E10472B3B00C9E7D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 33582D440E15895800279D7F /* GData.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4F1C6E0F1027B3CE00B46459 /* libGDataTouchStaticLib.a */;
+			remoteInfo = GDataTouchStaticLib;
+		};
+		3380131010472B3B00C9E7D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 33582D440E15895800279D7F /* GData.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4F85E018103B83B700B4C418 /* GDataIPhoneUnitTests.octest */;
+			remoteInfo = GDataIPhoneUnitTests;
+		};
 		33802E960D98856A008BCA40 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -623,7 +637,9 @@
 			isa = PBXGroup;
 			children = (
 				33582D4B0E15895800279D7F /* GData.framework */,
+				3380130F10472B3B00C9E7D9 /* libGDataTouchStaticLib.a */,
 				33582D4D0E15895800279D7F /* GDataUnitTests.octest */,
+				3380131110472B3B00C9E7D9 /* GDataIPhoneUnitTests.octest */,
 				33582D4F0E15895800279D7F /* DevelopmentTestTool */,
 			);
 			name = Products;
@@ -997,6 +1013,20 @@
 			fileType = "compiled.mach-o.executable";
 			path = DevelopmentTestTool;
 			remoteRef = 33582D4E0E15895800279D7F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3380130F10472B3B00C9E7D9 /* libGDataTouchStaticLib.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGDataTouchStaticLib.a;
+			remoteRef = 3380130E10472B3B00C9E7D9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3380131110472B3B00C9E7D9 /* GDataIPhoneUnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = GDataIPhoneUnitTests.octest;
+			remoteRef = 3380131010472B3B00C9E7D9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1687,7 +1717,7 @@
 					"GDATA_REQUIRE_SERVICE_INCLUDES=1",
 					"USER_AGENT_VERSION=\\\"$(PRODUCT_VERSION_STRING)\\\"",
 				);
-				PRODUCT_VERSION_STRING = 1.0.5;
+				PRODUCT_VERSION_STRING = 1.0.6;
 			};
 			name = Debug;
 		};
@@ -1703,7 +1733,7 @@
 					"GDATA_REQUIRE_SERVICE_INCLUDES=1",
 					"USER_AGENT_VERSION=\\\"$(PRODUCT_VERSION_STRING)\\\"",
 				);
-				PRODUCT_VERSION_STRING = 1.0.5;
+				PRODUCT_VERSION_STRING = 1.0.6;
 			};
 			name = Release;
 		};
