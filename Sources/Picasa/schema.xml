@@ -7,18 +7,18 @@
     <types>
         <type name="com.googlecode.precipitate.pwa.album">
             <allattrs>
-              kMDItemTitle kMDItemDisplayName kMDItemDescription kMDItemAuthors kMDItemComment kGPMDItemModificationDate kMDItemContentModificationDate kMDItemContentCreationDate
+              kMDItemTitle kMDItemDisplayName kMDItemDescription kMDItemAuthors kMDItemComment kMDItemContentModificationDate kMDItemContentCreationDate
             </allattrs>
             <displayattrs>
-              kMDItemTitle kMDItemDisplayName kMDItemDescription kMDItemComment kGPMDItemModificationDate kMDItemContentModificationDate kMDItemContentCreationDate
+              kMDItemTitle kMDItemDisplayName kMDItemDescription kMDItemComment kMDItemContentModificationDate kMDItemContentCreationDate
             </displayattrs>
         </type>
         <type name="com.googlecode.precipitate.pwa.photo">
             <allattrs>
-              kMDItemTitle kMDItemDisplayName kMDItemDescription kMDItemAuthors kGPMDItemModificationDate kMDItemContentModificationDate kMDItemContentCreationDate kMDItemPixelWidth kMDItemPixelHeight kMDItemExposureTimeSeconds kMDItemFlashOnOff kMDItemFocalLength kMDItemISOSpeed kMDItemAcquisitionMake kMDItemAcquisitionModel
+              kMDItemTitle kMDItemDisplayName kMDItemDescription kMDItemAuthors kMDItemContentModificationDate kMDItemContentCreationDate kMDItemPixelWidth kMDItemPixelHeight kMDItemExposureTimeSeconds kMDItemFlashOnOff kMDItemFocalLength kMDItemISOSpeed kMDItemAcquisitionMake kMDItemAcquisitionModel
             </allattrs>
             <displayattrs>
-              kMDItemTitle kMDItemDisplayName kMDItemDescription kMDItemAuthors kGPMDItemModificationDate kMDItemContentModificationDate kMDItemContentCreationDate kMDItemPixelWidth kMDItemPixelHeight
+              kMDItemTitle kMDItemDisplayName kMDItemDescription kMDItemAuthors kMDItemContentModificationDate kMDItemContentCreationDate kMDItemPixelWidth kMDItemPixelHeight
             </displayattrs>
         </type>
     </types>
