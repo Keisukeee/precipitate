@@ -109,7 +109,7 @@
   mPassword = nil;
 
   if (result != noErr) {
-    NSLog(@"Couldn't load keychain data (error %d)", result);
+    NSLog(@"Couldn't load keychain data (error %d)", (int)result);
     mUsername = [[NSString alloc] init];
     mService = [[NSString alloc] init];
     mPassword = [[NSString alloc] init];
