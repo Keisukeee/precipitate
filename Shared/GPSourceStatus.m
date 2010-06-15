@@ -33,6 +33,7 @@ NSString* const kGPStatusErrorMessageKey = @"LastError";
 - (NSString*)statusFilePath;
 - (void)persistStatus;
 - (void)loadStatus;
+- (void)backingFileChanged:(NSNotification*)notification;
 
 @end
 

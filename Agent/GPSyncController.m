@@ -36,6 +36,8 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
 - (void)syncAllSources;
 - (void)updateSources;
 - (void)finishedSource:(id<GPSyncSource>)source withError:(NSError*)error;
+- (void)recievedKillNotification:(NSNotification*)notification;
+- (void)recievedReSyncNotification:(NSNotification*)notification;
 
 @end
 
