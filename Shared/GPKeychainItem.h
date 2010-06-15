@@ -23,7 +23,6 @@
  @private
   __strong SecKeychainItemRef mKeychainItemRef;
   BOOL mDataLoaded;
-  BOOL mPasswordLoaded;
   NSString* mService;
   NSString* mUsername;
   NSString* mPassword;
