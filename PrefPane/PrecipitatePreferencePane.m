@@ -232,7 +232,7 @@
     NULL, NULL, kLSLaunchDontSwitch, NULL
   };
   LSOpenFromURLSpec(&launchSpec, NULL);
-  
+
 
   [sourceTable_ setIntercellSpacing:NSMakeSize(6.0, 8.0)];
 
@@ -274,7 +274,7 @@
   [self triggerReSync];
 }
 
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView {
+- (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView {
   // The real data source is done through bindings; this is only here because
   // we need to watch tableView:setObjectValue:forTableColumn:row:, and the
   // OS complains if we claim to be a data source without implementing this.
@@ -283,7 +283,7 @@
 
 - (id)tableView:(NSTableView *)aTableView
  objectValueForTableColumn:(NSTableColumn *)aTableColumn
-            row:(int)rowIndex {
+            row:(NSInteger)rowIndex {
   // The real data source is done through bindings; this is only here because
   // we need to watch tableView:setObjectValue:forTableColumn:row:, and the
   // OS complains if we claim to be a data source without implementing this.
@@ -293,7 +293,7 @@
 - (void)tableView:(NSTableView *)aTableView
    setObjectValue:(id)anObject
    forTableColumn:(NSTableColumn *)aTableColumn
-              row:(int)rowIndex {
+              row:(NSInteger)rowIndex {
   if ([[aTableColumn identifier] isEqualToString:@"enabled"])
     [self triggerReSync];
 }
