@@ -199,13 +199,6 @@
 }
 
 - (void)mainViewDidLoad {
-  // Adjust to fix 10.5+ pref pane width.
-  if ([GTMSystemVersion isLeopardOrGreater]) {
-    NSSize paneSize = [[syncButton_ superview] frame].size;
-    paneSize.width = 668;
-    [[syncButton_ superview] setFrameSize:paneSize];
-  }
-
   NSString* versionFormat = [ComGooglePrecipitatePreferencePane localizedString:@"VersionFormat"];
   // In an upgrade case, System Preferences will load the old bundle on launch
   // before installing the new bundle, and since NSBundle caches information
