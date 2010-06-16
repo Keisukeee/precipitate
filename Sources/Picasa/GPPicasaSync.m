@@ -32,6 +32,12 @@
 - (NSDictionary*)dictionaryForPhoto:(GDataEntryPhoto*)photo;
 - (NSDictionary*)dictionaryForAlbum:(GDataEntryPhotoAlbum*)album;
 - (NSString*)thumbnailURLForEntry:(GDataEntryPhotoBase*)entry;
+- (void)serviceTicket:(GDataServiceTicket *)ticket
+   finishedWithAlbums:(GDataFeedBase *)albumList
+                error:(NSError*)error;
+- (void)serviceTicket:(GDataServiceTicket *)ticket
+   finishedWithPhotos:(GDataFeedBase *)photoList
+                error:(NSError*)error;
 @end
 
 @implementation GPPicasaSync
@@ -92,7 +98,7 @@
 #pragma mark -
 
 - (void)fetchItemsWithKind:(NSString*)kind didFinishSelector:(SEL)doneSelector {
-  NSString* feedURI = 
+  NSString* feedURI =
     [[GDataServiceGooglePhotos photoFeedURLForUserID:username_
                                              albumID:nil
                                            albumName:nil
@@ -153,7 +159,7 @@
                              withError:[error gp_reportableError]];
     return;
   }
-  
+
   [self addBasicInfoFromFeed:photoList];
 
   [manager_ basicItemsInfo:basicInfo_ fetchedForSource:self];

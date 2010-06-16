@@ -27,6 +27,8 @@ static NSString* const kBookmarkURLFormat = @"https://www.google.com/bookmarks/l
 
 - (void)requestBookmarksStartingFrom:(NSUInteger)start;
 - (NSArray*)bookmarksFromData:(NSData*)data;
+- (void)fetch:(GDataHTTPFetcher *)fetcher finishedWithData:(NSData *)data;
+- (void)fetch:(GDataHTTPFetcher *)fetcher failedWithError:(NSError *)error;
 
 @end
 

@@ -36,6 +36,16 @@ static NSString* const kSpreadsheetExportURLFormat =
 - (void)retrievedContentForNextDoc:(NSString*)content;
 // Returns the Google Docs identifier (used as a key in URLs) for the doc.
 - (NSString*)documentIdForDoc:(NSDictionary*)docInfo;
+- (void)serviceTicket:(GDataServiceTicket*)ticket
+     finishedWithFeed:(GDataFeedBase*)docList
+                error:(NSError*)error;
+- (void)documentContentFetcher:(GDataHTTPFetcher *)fetcher
+              finishedWithData:(NSData *)data;
+- (void)documentContentFetcher:(GDataHTTPFetcher *)fetcher
+              failedWithStatus:(int)status
+                          data:(NSData *)data;
+- (void)documentContentFetcher:(GDataHTTPFetcher *)fetcher
+               failedWithError:(NSError *)error;
 
 @end
 
