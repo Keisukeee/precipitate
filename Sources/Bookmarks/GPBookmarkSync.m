@@ -21,14 +21,13 @@
 #import "GPKeychainItem.h"
 #import "SharedConstants.h"
 
-static NSString* const kBookmarkURLFormat = @"https://www.google.com/bookmarks/lookup?output=rss&start=%lu";
-
 @interface GPBookmarkSync (Private)
 
 - (void)requestBookmarksStartingFrom:(NSUInteger)start;
 - (NSArray*)bookmarksFromData:(NSData*)data;
-- (void)fetch:(GDataHTTPFetcher *)fetcher finishedWithData:(NSData *)data;
-- (void)fetch:(GDataHTTPFetcher *)fetcher failedWithError:(NSError *)error;
+- (void)fetch:(GTMHTTPFetcher*)fetcher
+    finishedWithData:(NSData*)data
+    error:(NSError*)error;
 
 @end
 
@@ -73,20 +72,20 @@ static NSString* const kBookmarkURLFormat = @"https://www.google.com/bookmarks/l
 #pragma mark -
 
 - (void)requestBookmarksStartingFrom:(NSUInteger)start {
-  NSString* requestURI = [NSString stringWithFormat:kBookmarkURLFormat, start];
+  NSString* requestURI = [NSString stringWithFormat:
+      @"https://www.google.com/bookmarks/lookup?output=rss&start=%lu", start];
   NSURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:requestURI]];
-  GDataHTTPFetcher* fetcher = [GDataHTTPFetcher httpFetcherWithRequest:request];
+  GTMHTTPFetcher* fetcher = [GTMHTTPFetcher fetcherWithRequest:request];
   GPKeychainItem* loginCredentials = [manager_ accountCredentials];
   if (loginCredentials) {
     [fetcher setCredential:[NSURLCredential credentialWithUser:[loginCredentials username]
                                                       password:[loginCredentials password]
                                                    persistence:NSURLCredentialPersistenceForSession]];
   }
-  [fetcher setIsRetryEnabled:YES];
+  [fetcher setRetryEnabled:YES];
   [fetcher setMaxRetryInterval:60.0];
   [fetcher beginFetchWithDelegate:self
-                didFinishSelector:@selector(fetch:finishedWithData:)
-                  didFailSelector:@selector(fetch:failedWithError:)];
+                didFinishSelector:@selector(fetch:finishedWithData:error:)];
 }
 
 - (NSArray*)bookmarksFromData:(NSData*)data {
@@ -123,23 +122,25 @@ static NSString* const kBookmarkURLFormat = @"https://www.google.com/bookmarks/l
 
 #pragma mark -
 
-- (void)fetch:(GDataHTTPFetcher *)fetcher finishedWithData:(NSData *)data {
-  NSArray* newBookmarks = [self bookmarksFromData:data];
-  // The bookmarks feed returns chunks, not everything, so unless there were no
-  // bookmarks in the response we assume there are more. Once we hit an empty
-  // feed, we can be sure we've walked the entire list.
-  if ([newBookmarks count] > 0) {
-    [bookmarks_ addObjectsFromArray:newBookmarks];
-    [self requestBookmarksStartingFrom:[bookmarks_ count]];
-  } else {
-    [manager_ basicItemsInfo:bookmarks_ fetchedForSource:self];
+- (void)fetch:(GTMHTTPFetcher*)fetcher
+    finishedWithData:(NSData*)data
+    error:(NSError*)error {
+  if (error) {
+    [manager_ infoFetchFailedForSource:self withError:error];
     [bookmarks_ removeAllObjects];
+  } else {
+    NSArray* newBookmarks = [self bookmarksFromData:data];
+    // The bookmarks feed returns chunks, not everything, so unless there were
+    // no bookmarks in the response we assume there are more. Once we hit an
+    // empty feed, we can be sure we've walked the entire list.
+    if ([newBookmarks count] > 0) {
+      [bookmarks_ addObjectsFromArray:newBookmarks];
+      [self requestBookmarksStartingFrom:[bookmarks_ count]];
+    } else {
+      [manager_ basicItemsInfo:bookmarks_ fetchedForSource:self];
+      [bookmarks_ removeAllObjects];
+    }
   }
-}
-
-- (void)fetch:(GDataHTTPFetcher *)fetcher failedWithError:(NSError *)error {
-  [manager_ infoFetchFailedForSource:self withError:error];
-  [bookmarks_ removeAllObjects];
 }
 
 @end

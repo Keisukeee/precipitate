@@ -23,11 +23,6 @@
 #import "GPKeychainItem.h"
 #import "SharedConstants.h"
 
-static NSString* const kDocumentExportURLFormat =
-  @"https://docs.google.com/feeds/download/documents/Export?docID=%@&exportFormat=txt";
-static NSString* const kSpreadsheetExportURLFormat =
-  @"https://spreadsheets.google.com/feeds/download/spreadsheets/Export?key=%@&fmcmd=23&gid=%d";
-
 @interface GPDocsSync (Private)
 
 - (NSDictionary*)dictionaryForEntry:(GDataEntryBase*)doc;
@@ -39,13 +34,9 @@ static NSString* const kSpreadsheetExportURLFormat =
 - (void)serviceTicket:(GDataServiceTicket*)ticket
      finishedWithFeed:(GDataFeedBase*)docList
                 error:(NSError*)error;
-- (void)documentContentFetcher:(GDataHTTPFetcher *)fetcher
-              finishedWithData:(NSData *)data;
-- (void)documentContentFetcher:(GDataHTTPFetcher *)fetcher
-              failedWithStatus:(int)status
-                          data:(NSData *)data;
-- (void)documentContentFetcher:(GDataHTTPFetcher *)fetcher
-               failedWithError:(NSError *)error;
+- (void)documentContentFetcher:(GTMHTTPFetcher*)fetcher
+              finishedWithData:(NSData*)data
+                         error:(NSError*)error;
 
 @end
 
@@ -76,8 +67,9 @@ static NSString* const kSpreadsheetExportURLFormat =
   }
 
   // If the debugging flag to enable logging is set, do so.
-  if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"EnableGDataHTTPLogging"] boolValue])
-    [GDataHTTPFetcher setIsLoggingEnabled:YES];
+  if ([[[NSUserDefaults standardUserDefaults]
+          objectForKey:@"EnableGDataHTTPLogging"] boolValue])
+    [GTMHTTPFetcher setLoggingEnabled:YES];
 
   [docService_ autorelease];
   docService_ = [[GDataServiceGoogleDocs alloc] init];
@@ -92,7 +84,7 @@ static NSString* const kSpreadsheetExportURLFormat =
                         didAuthenticateSelector:nil];
 
   // Get the data we actually want. The callbacks will report to the manager
-  NSURL* docsFeedURL = [GDataServiceGoogleDocs docsFeedURLUsingHTTPS:YES];
+  NSURL* docsFeedURL = [GDataServiceGoogleDocs docsFeedURL];
   [docService_ fetchFeedWithURL:docsFeedURL
                        delegate:self
               didFinishSelector:@selector(serviceTicket:finishedWithFeed:error:)];
@@ -228,17 +220,17 @@ static NSString* const kSpreadsheetExportURLFormat =
       [self retrievedContentForNextDoc:@""];
       return;
     }
-    NSString* textContentURI = [NSString stringWithFormat:kDocumentExportURLFormat, docId];
+    NSString* textContentURI = [NSString stringWithFormat:
+        @"https://docs.google.com/feeds/download/documents/Export?docID=%@&exportFormat=txt",
+        docId];
     NSURLRequest* request = [docService_ requestForURL:[NSURL URLWithString:textContentURI]
                                                   ETag:nil
                                             httpMethod:nil];
-    GDataHTTPFetcher* fetcher = [GDataHTTPFetcher httpFetcherWithRequest:request];
-    [fetcher setIsRetryEnabled:YES];
+    GTMHTTPFetcher* fetcher = [GTMHTTPFetcher fetcherWithRequest:request];
+    [fetcher setRetryEnabled:YES];
     [fetcher setMaxRetryInterval:60.0];
     [fetcher beginFetchWithDelegate:self
-                  didFinishSelector:@selector(documentContentFetcher:finishedWithData:)
-          didFailWithStatusSelector:@selector(documentContentFetcher:failedWithStatus:data:)
-           didFailWithErrorSelector:@selector(documentContentFetcher:failedWithError:)];
+                  didFinishSelector:@selector(documentContentFetcher:finishedWithData:error:)];
   }
   else if ([categories containsObject:kDocCategorySpreadsheet]) {
     // TODO: this fetch is still synchronous; it should be made fully async so
@@ -275,8 +267,9 @@ static NSString* const kSpreadsheetExportURLFormat =
 
     NSMutableString* contentAccumulator = [NSMutableString string];
     for (int worksheetIndex = 0; worksheetIndex < worksheetCount; ++worksheetIndex) {
-      NSString* contentFeedURI =
-      [NSString stringWithFormat:kSpreadsheetExportURLFormat, docId, worksheetIndex];
+      NSString* contentFeedURI = [NSString stringWithFormat:
+          @"https://spreadsheets.google.com/feeds/download/spreadsheets/Export?key=%@&fmcmd=23&gid=%d",
+          docId, worksheetIndex];
       request = [spreadsheetService_ requestForURL:[NSURL URLWithString:contentFeedURI]
                                               ETag:nil
                                         httpMethod:nil];
@@ -320,24 +313,18 @@ static NSString* const kSpreadsheetExportURLFormat =
   }
 }
 
-- (void)documentContentFetcher:(GDataHTTPFetcher *)fetcher
-              finishedWithData:(NSData *)data {
-  NSString* content = [[[NSString alloc] initWithData:data
-                                             encoding:NSUTF8StringEncoding] autorelease];
-  [self retrievedContentForNextDoc:content];
-}
-
-- (void)documentContentFetcher:(GDataHTTPFetcher *)fetcher
-              failedWithStatus:(int)status
-                          data:(NSData *)data {
-  NSLog(@"Docs source received status %d trying to get document data", status);
-  [self retrievedContentForNextDoc:@""];
-}
-
-- (void)documentContentFetcher:(GDataHTTPFetcher *)fetcher
-               failedWithError:(NSError *)error {
-  NSLog(@"Docs source failed to get document data: %@", error);
-  [self retrievedContentForNextDoc:@""];
+- (void)documentContentFetcher:(GTMHTTPFetcher*)fetcher
+              finishedWithData:(NSData*)data
+                         error:(NSError*)error {
+  if (error) {
+    NSLog(@"Docs source failed to get document data: %@", error);
+    [self retrievedContentForNextDoc:@""];
+  } else {
+    NSString* content =
+        [[[NSString alloc] initWithData:data
+                               encoding:NSUTF8StringEncoding] autorelease];
+    [self retrievedContentForNextDoc:content];
+  }
 }
 
 @end

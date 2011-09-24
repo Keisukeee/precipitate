@@ -125,7 +125,7 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
       NSString* sourceCachePath = [self cachePathForSource:source];
       NSFileManager* fm = [NSFileManager defaultManager];
       if ([fm fileExistsAtPath:sourceCachePath]) {
-        [fm removeFileAtPath:sourceCachePath handler:NULL];
+        [fm removeItemAtPath:sourceCachePath error:NULL];
         [syncStatus_ clearSyncStatusForSource:[self identifierForSource:source]];
       }
     }
@@ -145,7 +145,8 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
     extensionToSourceMapping_ = [[NSMutableDictionary alloc] init];
 
   NSString* sourcePluginDirectory = [self sourcePluginDirectory];
-  NSArray* plugins = [[NSFileManager defaultManager] directoryContentsAtPath:sourcePluginDirectory];
+  NSArray* plugins = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:sourcePluginDirectory
+                                                                         error:NULL];
   for (NSString* plugin in plugins) {
     NSBundle* pluginBundle = [NSBundle bundleWithPath:[sourcePluginDirectory stringByAppendingPathComponent:plugin]];
     if ([pluginBundle isLoaded])
@@ -249,12 +250,13 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
   NSFileManager* fileManager = [NSFileManager defaultManager];
 
   // First,  remove anything that exists locally but is gone from the source.
-  NSArray* cacheIds = [fileManager directoryContentsAtPath:cacheBase];
+  NSArray* cacheIds = [fileManager contentsOfDirectoryAtPath:cacheBase
+                                                       error:NULL];
   for (NSString* cacheId in cacheIds) {
     NSString* sourceId = [[cacheId componentsSeparatedByString:kIDSlashReplacementToken] componentsJoinedByString:@"/"];
     if (![itemsById objectForKey:sourceId]) {
       NSString* path = [cacheBase stringByAppendingPathComponent:cacheId];
-      [fileManager removeFileAtPath:path handler:nil];
+      [fileManager removeItemAtPath:path error:NULL];
     }
   }
 
@@ -267,7 +269,7 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
     NSString* filename = [[self class] cacheFilenameForItem:item fromSource:source];
     NSString* itemPath = [directoryPath stringByAppendingPathComponent:filename];
     if ([fileManager fileExistsAtPath:itemPath]) {
-      NSDate* fileModDate = [[fileManager fileAttributesAtPath:itemPath traverseLink:NO] fileModificationDate];
+      NSDate* fileModDate = [[fileManager attributesOfItemAtPath:itemPath error:NULL] fileModificationDate];
       NSDate* sourceModDate = [item objectForKey:kGPMDItemModificationDate];
       if (fileModDate && sourceModDate && ([fileModDate compare:sourceModDate] != NSOrderedAscending))
         continue;
@@ -275,7 +277,7 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
       // If the directory exists without the file, the item was probably renamed,
       // meaning there is a stale file in the directory with a different name,
       // so remove it.
-      [fileManager removeFileAtPath:directoryPath handler:nil];
+      [fileManager removeItemAtPath:directoryPath error:NULL];
     }
 
     // If we got here, either we don't have a cache of the item, or it's stale.
@@ -318,9 +320,10 @@ static NSString* const kDefaultCacheExtension = @"precipitate";
     NSString* filename = [[self class] cacheFilenameForItem:item fromSource:source];
     NSString* itemPath = [directoryPath stringByAppendingPathComponent:filename];
     [item writeToFile:itemPath atomically:YES];
-    [fileManager changeFileAttributes:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES]
+    [fileManager setAttributes:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES]
                                                                   forKey:NSFileExtensionHidden]
-                               atPath:itemPath];
+                  ofItemAtPath:itemPath
+                         error:NULL];
   }
 }
 

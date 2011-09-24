@@ -67,7 +67,7 @@ GTMOBJECT_SINGLETON_BOILERPLATE(GPSharedPreferences, sharedPreferences)
     if ([fileManager fileExistsAtPath:oldPrefsPath] && ![fileManager fileExistsAtPath:newPrefsPath]) {
       // Read again now that we have prefs in the right place. This is safe
       // because we sucessfully removed the old file, so we can't recurse again.
-      if ([fileManager movePath:oldPrefsPath toPath:newPrefsPath handler:nil])
+      if ([fileManager moveItemAtPath:oldPrefsPath toPath:newPrefsPath error:NULL])
         return [self availableSources];
     }
   }
